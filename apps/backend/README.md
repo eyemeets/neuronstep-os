@@ -1,7 +1,5 @@
 # NeuronStep Server
 
-## NeuronStep Course Curriculum Generator
-
 **NeuronStep App** is the mobile app that allows users to interact with the NeuronStep platform. It enables students, educators, and content creators to submit course requests and view generated curricula. The app communicates with the NeuronStep Server to validate requests and generate personalized course plans. With a focus on simplicity and accessibility, the app delivers a tailored learning experience based on user preferences, integrating educational frameworks like Bloom’s Taxonomy and Cognitive Load Theory to enhance learning outcomes.
 
 
