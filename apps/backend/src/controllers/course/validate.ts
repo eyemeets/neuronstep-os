@@ -1,15 +1,15 @@
 import type { Request, Response } from 'express'
-import type { ValidateObjectiveUserData } from '../types/curricula'
-import { CurriculaSubmissionType } from '../types/curricula'
-import { validateLearningObjective } from '../services/course-validator/validate'
-import { processFile } from '../services/file-processor'
+import type { ValidateObjectiveUserData } from '../../types/curricula'
+import { CurriculaSubmissionType } from '../../types/curricula'
+import { validateLearningObjective } from '../../services/course-validator/validate'
+import { processFile } from '../../services/file-processor'
 
 /**
- * Controller function to handle content analysis or file processing.
+ * Controller function to handle user query and do analysis and prepare for the course.
  * @param req - The Express request object.
  * @param res - The Express response object.
  */
-export const courseContentController = async (req: Request, res: Response) => {
+export const courseValidatorController = async (req: Request, res: Response) => {
   try {
     const file = req.file
     const params = Object.assign(req.body, { file }) as ValidateObjectiveUserData

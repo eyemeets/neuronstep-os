@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express'
 import pdfParse from 'pdf-parse'
 import * as Tesseract from 'tesseract.js'
-import type { CurriculumObjectivePlanAndOutlineStructure } from '../types/curricula'
-import { createContentForCourse } from '../services/course-creator/create'
+import type { CurriculumObjectivePlanAndOutlineStructure } from '../../types/curricula'
+import { createContentForCourse } from '../../services/course-creator/create'
 
 /**
- * Handles POST requests for '/api/course-creator', processing different types of input (PDF, image, text, description).
+ * Handles POST requests for '/api/course/create', processing different types of input (PDF, image, text, description).
  * @param req - The Express request object.
  * @param res - The Express response object.
  * @returns A JSON object with the processed content or an error message.
