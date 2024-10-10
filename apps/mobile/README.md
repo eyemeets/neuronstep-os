@@ -1,13 +1,14 @@
 
 # NeuronStep App
 
-**NeuronStep** is an AI-powered mobile application that generates, validates, and analyzes educational curricula. Built for students, educators, content creators, and anyone who values structured learning, NeuronStep uses the "gpt-4o-mini" model to create dynamic course content and provide feedback based on educational frameworks like Bloom’s Taxonomy and Cognitive Load Theory.
+**NeuronStep (Mobile)** is the frontend that generates, validates, and analyzes educational curricula. Built for students, educators, content creators, and anyone who values structured learning, NeuronStep uses the "gpt-4o-mini" model to create dynamic course content and provide feedback. The app leverages educational frameworks like Bloom’s Taxonomy and Cognitive Load Theory to tailor learning experiences to the needs and preferences of users.
+
 
 ### Server Repository
 
 The server for this project can be found at the following GitHub repository:
 
-[os-neuronstep-server](https://github.com/eyemeets/os-neuronstep-server)
+[os-neuronstep-server](../backend/)
 
 This repository contains all the necessary backend code and APIs that power the NeuronStep application. Make sure to check the README in the repository for setup instructions, configuration details, and deployment guidelines.
 
