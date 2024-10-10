@@ -1,6 +1,6 @@
 # NeuronStep Server
 
-**NeuronStep App** is the mobile app that allows users to interact with the NeuronStep platform. It enables students, educators, and content creators to submit course requests and view generated curricula. The app communicates with the NeuronStep Server to validate requests and generate personalized course plans. With a focus on simplicity and accessibility, the app delivers a tailored learning experience based on user preferences, integrating educational frameworks like Bloom’s Taxonomy and Cognitive Load Theory to enhance learning outcomes.
+**NeuronStep Server** is the backend system of the NeuronStep platform, designed to handle the validation, analysis, and generation of educational curricula. Powered by the "gpt-4o-mini" model, it processes user requests, validates course objectives, analyzes learning requirements, and generates curricula plans with topics, subtopics, and content blocks. The server uses educational frameworks like Bloom's Taxonomy and Cognitive Load Theory to ensure that the generated courses are structured and tailored to users' preferences, learning styles, and languages.
 
 
 ## Features
