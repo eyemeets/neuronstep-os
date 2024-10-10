@@ -1,7 +1,7 @@
 
 # NeuronStep Open Source
 
-This is the **monorepo** for the **NeuronStep** project, which includes both the [**NeuronStep Mobile App**]("./apps/mobile") and the [**NeuronStep Server**]("./apps/backend").
+This is the **monorepo** for the **NeuronStep** project, which includes both the [**NeuronStep Mobile App**](./apps/mobile) and the [**NeuronStep Server**](./apps/backend).
 
 NeuronStep is a Retrieval Augmented Generation (RAG) system that validates course requests, analyzes them, and generates complete curricula. It creates curriculum plans with topics, subtopics, and content blocks tailored to any language, learning preference, or style, allowing users to fine-tune courses to their specific needs.
 
