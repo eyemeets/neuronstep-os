@@ -5,7 +5,7 @@ import type { CurriculumObjectivePlanAndOutlineStructure } from '../types/curric
 import { createContentForCourse } from '../services/course-creator/create'
 
 /**
- * Handles POST requests for '/api/topic-content', processing different types of input (PDF, image, text, description).
+ * Handles POST requests for '/api/course-creator', processing different types of input (PDF, image, text, description).
  * @param req - The Express request object.
  * @param res - The Express response object.
  * @returns A JSON object with the processed content or an error message.
