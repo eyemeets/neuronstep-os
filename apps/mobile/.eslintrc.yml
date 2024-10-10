@@ -1,0 +1,30 @@
+extends:
+  - 'eslint-config-custom'
+  - 'plugin:react/recommended'
+  - 'plugin:react-native/all'
+
+overrides:
+  - files:
+      - "*.ts"
+      - "*.tsx"
+      - "!src/"
+    parser: '@typescript-eslint/parser'
+    rules:
+      no-unused-vars: 'off'
+      no-undef: 'off'
+      '@typescript-eslint/no-unused-vars': 'off'
+
+settings:
+  react:
+    version: 'detect'
+
+rules:
+  react/prop-types: 'off'
+  react/react-in-jsx-scope: 'off'
+  react-native/no-unused-styles: 'error'
+  react-native/no-inline-styles: 'warn'
+  react-native/no-color-literals: 'warn'
+  react-native/no-raw-text: 'error'
+  react-native/split-platform-components: 'error'
+  react-native/sort-styles: 
+    - error
