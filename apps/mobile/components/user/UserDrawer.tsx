@@ -1,39 +1,58 @@
 import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Animated, PanResponder, SafeAreaView, TouchableWithoutFeedback } from 'react-native'
-import { Drawer, Avatar, Text, Dialog } from 'react-native-paper'
+import { Drawer, Avatar, Dialog } from 'react-native-paper'
 import { useUiStore } from '@/stores/user-ui'
 import { useAuthStore } from '@/stores/auth'
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import { useTypedNavigation } from '@/hooks/useTypedNav'
 import type { AuthStackParamList } from '@/types/auth'
-
-const styles = StyleSheet.create({
-  drawerContainer: {
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    width: 350,
-    zIndex: 1000
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 999 // Ensure overlay covers the entire screen
-  },
-  profileContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingBottom: 16,
-    paddingHorizontal: 16,
-    paddingTop: 16
-  },
-  profileTextContainer: {
-    marginLeft: 16
-  }
-})
+import Text from '@/components/atoms/Text'
+import Button from '@/components/atoms/Button'
 
 const CustomDrawer: React.FC = () => {
   const theme = getPaperTheme()
+  const styles = StyleSheet.create({
+    avatarStyle: {
+      marginLeft: 8
+    },
+    dialogButton: {
+      marginRight: 10
+    },
+    drawerContainer: {
+      bottom: 0,
+      left: 0,
+      position: 'absolute',
+      top: 0,
+      width: 350,
+      zIndex: 1000
+    },
+    drawerSection: {
+      borderBottomWidth: 0, marginBottom: 0, paddingBottom: 0
+    },
+    overlay: {
+      ...StyleSheet.absoluteFillObject,
+      zIndex: 999 // Ensure overlay covers the entire screen
+    },
+    profileContainer: {
+      alignItems: 'center',
+      borderBottomColor: theme.colors.elevation.level1,
+      borderBottomWidth: 1,
+      flexDirection: 'row',
+      paddingBottom: 16,
+      paddingHorizontal: 16, paddingTop: 16
+    },
+    profileText: {
+      color: theme.colors.onBackground,
+      fontWeight: '500'
+    },
+    profileTextContainer: {
+      marginLeft: 16
+    },
+    userNameText: {
+      fontWeight: '600'
+    }
+  })
+
   const isDrawerOpen = useUiStore((state) => state.isDrawerOpen)
   const closeDrawer = useUiStore((state) => state.closeDrawer)
   const slideAnim = React.useRef(new Animated.Value(-350)).current
@@ -159,37 +178,48 @@ const CustomDrawer: React.FC = () => {
                 <Avatar.Text
                   size={48}
                   label={userInitial}
-                  style={{ backgroundColor: theme.colors.background, marginLeft: 8 }}
-                  color={theme.colors.accent}
+                  style={[ styles.avatarStyle, { backgroundColor: theme.colors.accent } ]}
+                  color={theme.colors.drawerBackground}
                 />
                 <View style={styles.profileTextContainer}>
-                  <Text variant="titleLarge" style={{ color: theme.colors.onBackground, fontWeight: '600' }}>{userName}</Text>
-                  <Text variant="bodyLarge" style={{ color: 'gray', fontWeight: '500' }}>View profile</Text>
+                  <Text 
+                    textType="largeBody"
+                    style={styles.userNameText}>
+                    {userName}
+                  </Text>
+                  <Text 
+                    textType="smallBody"
+                    value="View profile"
+                    style={styles.profileText} />
                 </View>
               </View>
             </SafeAreaView>
-            <Drawer.Section>
-              <Drawer.Item label="Settings and privacy" icon="cog" onPress={() => {}} labelStyle={{ fontWeight: '700' }} />
+            <View style={styles.drawerSection}>
+              <Drawer.Item
+                label="Settings and privacy"
+                icon="cog"
+                onPress={() => {}}
+              />
 
               <Drawer.Item
                 label="Log out"
                 icon="logout"
                 onPress={handleSignOut}
-                labelStyle={{ fontWeight: '700' }}
               />
-            </Drawer.Section>
+            </View>
           </Animated.View>
         </View>
       )}
 
-      <Dialog
-        visible={dialogVisible}
-        onDismiss={hideDialog}
-        title="Sign Out Error"
-        contentText={error || ''}
-        confirmText="OK"
-        onConfirm={hideDialog}
-      />
+      <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+        <Dialog.Title><Text>Sign Out Error</Text></Dialog.Title>
+        <Dialog.Content>
+          <Text>{error || ''}</Text>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button text="Ok" onPress={hideDialog} style={styles.dialogButton} />
+        </Dialog.Actions>
+      </Dialog>
     </>
   )
 }

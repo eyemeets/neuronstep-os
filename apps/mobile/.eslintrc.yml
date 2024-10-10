@@ -28,3 +28,7 @@ rules:
   react-native/split-platform-components: 'error'
   react-native/sort-styles: 
     - error
+  react/jsx-max-props-per-line:
+    - error
+    - when: multiline
+      maximum: 1

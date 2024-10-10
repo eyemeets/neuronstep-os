@@ -9,6 +9,8 @@ import Button from '@/components/atoms/Button'
 import Icon from 'react-native-vector-icons/MaterialIcons' // Assuming you're using Material Icons
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import { analyzeCourse } from '@/services/useAnalyzeCourse'
+import { auth } from '@/fb.config'
+import { useFirestore } from '@/hooks/useFirestore'
 
 const CurriculumValidationPanel: React.FC = () => {
   const theme = getPaperTheme()
@@ -47,14 +49,45 @@ const CurriculumValidationPanel: React.FC = () => {
   const { objective } = useCurriculumStore()
   const navigation = useTypedNavigation()
   const { isValidationPanelVisible, closeValidationPanel } = useUiStore()
+  const { addDoc } = useFirestore()
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!objective) {
       throw new Error(`Objective is ${typeof objective}`)
     }
+    useCurriculumStore.getState().setObjective(objective)
 
     // Send the validation object for analysis and content creation
-    analyzeCourse(objective)
+    const response = await analyzeCourse(objective)
+
+    if (!response) {
+      throw new Error('Plan and outline was null or undefined.')
+    }
+
+    const uid = auth.currentUser?.uid
+
+    const plan = {
+      uid,
+      createdAt: new Date(),
+      ...response.plan
+    }
+
+    const outline = {
+      uid,
+      createdAt: new Date(),
+      ...response.outline
+    }
+
+    // Populate store data
+    useCurriculumStore.getState().setPlan(plan)
+    useCurriculumStore.getState().setOutline(outline)
+
+    // Write data to db
+    Promise.all([
+      addDoc('course-plans', plan),
+      addDoc('course-outlines', outline)
+    ])    
+
     // Navigate to chapters and wait for content generation
     navigation.navigate('chapters')
   }

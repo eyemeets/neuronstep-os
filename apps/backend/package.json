@@ -18,6 +18,7 @@
     "express": "^4.21.0",
     "express-file-routing": "^3.0.3",
     "express-fileupload": "^1.5.1",
+    "firebase-admin": "^12.6.0",
     "jsdom": "^25.0.1",
     "multer": "1.4.5-lts.1",
     "openai": "^4.63.0",
@@ -27,10 +28,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
-    "supertest": "^7.0.0",
-    "tsconfig": "workspace:*",
-    "vitest": "^2.1.2",
     "@types/async-retry": "^1.4.8",
     "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.17",
@@ -42,13 +39,16 @@
     "@types/node": "^22.5.5",
     "@types/pdf-parse": "^1.1.4",
     "@types/supertest": "^6.0.2",
+    "eslint-config-custom": "workspace:*",
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-format": "^0.1.0",
     "globals": "^15.9.0",
+    "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsconfig": "workspace:*",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.2"
   }
 }
-

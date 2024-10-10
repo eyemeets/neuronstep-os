@@ -16,6 +16,8 @@ import { useCurriculumStore } from '@/stores/curriculum'
 import type { PromptData, ValidatedObjective } from '@/types/curricula'
 import { sleep } from '@/utils'
 import { useUiStore } from '@/stores/user-ui'
+import { auth } from '@/fb.config'
+import { useFirestore } from '@/hooks/useFirestore'
 
 const styles = StyleSheet.create({
   activityIndicator: {
@@ -100,6 +102,8 @@ const PromptBox = () => {
     resolver: yupResolver(promptSchema)
   })
 
+  const { addDoc } = useFirestore()
+
   useEffect(() => {
     Animated.timing(animatedHeight, {
       toValue: isSettingsVisible ? 600 : 0,
@@ -151,28 +155,35 @@ const PromptBox = () => {
     data.learningStyle = data.learningStyle || 'visual'
     data.tone = data.tone || 'friendly'
     data.curriculum = data.curriculum || 'General'
-    console.log('Sending request')
+
     try {
       await sleep(500) // Use it to test mockup data instead of paying money for requests.
-      const objective = await validatePrompt({
+      const response = await validatePrompt({
         data: JSON.stringify(data),
         mockupResponse: true
       })
 
-      console.log(objective, '<- Received')
-      if (objective) {
-        useCurriculumStore.getState().setObjective(objective)
-
-        // Write data to firebase
-
-        // Open up the validation panel
-        userUI.openValidationPanel()
-      }
-      else {
+      if (!response) {
         setRequestValidating(false)
         throw new Error('Objective was null or undefined.')
       }
 
+      const uid = auth.currentUser?.uid
+
+      const objective = {
+        uid, // Add user's uid
+        createdAt: new Date(),
+        ...response
+      }
+
+      // Populate store data
+      useCurriculumStore.getState().setObjective(objective)
+
+      // Write data to db
+      addDoc('course-objectives', objective)
+
+      // Open up the validation panel
+      userUI.openValidationPanel()
       setRequestValidating(false)
 
     }

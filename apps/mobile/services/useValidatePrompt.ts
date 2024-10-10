@@ -1,4 +1,5 @@
-import { createServerInstance } from '../services/api' // Import the function to create the instance
+import { auth } from '@/fb.config'
+import { createCourseServerInstance } from '../services/api' // Import the function to create the instance
 import { endpoints } from '../services/endpoints'
 import curriculumObjectiveResponseData from '@/mockup/curriculum/objective-response'
 import type { ValidatedObjective } from '@/types/curricula' // Import the correct type
@@ -10,9 +11,8 @@ export const validatePrompt = async (params: { data: string; mockupResponse?: bo
       return curriculumObjectiveResponseData as ValidatedObjective // Return mock data directly
     }
 
-    // Otherwise, make the real API call
-    const server = await createServerInstance() // Ensure server instance is created before usage
-    const response = await server.post<ValidatedObjective>(endpoints.validateObjective, params.data)
+    const course = await createCourseServerInstance()
+    const response = await course.post<ValidatedObjective>(endpoints.validateObjective, params.data)
 
     return response.data // Return the data of type ValidatedObjective
   }

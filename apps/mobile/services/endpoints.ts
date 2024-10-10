@@ -1,5 +1,5 @@
 export const endpoints = {
-  validateObjective: '/course-validator', // POST
-  analyzeCourse: '/course-analysis', // POST
-  createCourse: '/course-creator' // POST
+  validateObjective: '/course/validate', // POST
+  analyzeCourse: '/course/analyze', // POST
+  createCourse: '/course/create' // POST
 }

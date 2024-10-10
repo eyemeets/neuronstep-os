@@ -30,7 +30,21 @@ interface CustomTextProps extends Omit<React.ComponentProps<typeof PaperText>, '
   value?: string | number
   style?: TextStyle
   children?: React.ReactNode
-  textType?: 'h1' | 'h2' | 'h3' | 'paragraph' | 'small'
+  textType?: 
+  | 'h1' 
+  | 'h2' 
+  | 'h3' 
+  | 'paragraph' 
+  | 'small' 
+  | 'largeTitle' 
+  | 'mediumTitle' 
+  | 'smallTitle' 
+  | 'largeBody' 
+  | 'mediumBody' 
+  | 'smallBody' 
+  | 'caption' 
+  | 'overline' 
+  | 'button' // Add all the new custom types here
   fontWeight?: 'bold' | 'normal' | 'light'
   fontStyle?: 'italic' | 'normal'
   variant?: TextVariants // Accept the variant prop with specific values
@@ -78,34 +92,46 @@ const CustomText: React.FC<CustomTextProps> = ({
   // Define styles based on the textType and assign the appropriate font family
   const getTextTypeStyle = (): TextStyle => {
     switch (textType) {
-      case 'h1':
-        return { fontSize: 32, fontWeight: 'bold', fontFamily: 'Lora-Bold' }
-      case 'h2':
+      case 'largeTitle':
+        return { fontSize: 36, fontWeight: 'bold', fontFamily: 'Lora-Bold' }
+      case 'mediumTitle':
         return { fontSize: 28, fontWeight: 'bold', fontFamily: 'Lora-Bold' }
-      case 'h3':
-        return { fontSize: 24, fontWeight: 'bold', fontFamily: 'Lora-Regular' }
-      case 'small':
-        return { fontSize: 14, fontFamily: 'Outfit-Light' }
-      case 'paragraph':
+      case 'smallTitle':
+        return { fontSize: 24, fontWeight: '500', fontFamily: 'Lora-Regular' }
+      case 'largeBody':
+        return { fontSize: 18, fontWeight: '400', fontFamily: 'Outfit-Regular' }
+      case 'mediumBody':
+        return { fontSize: 16, fontWeight: '400', fontFamily: 'Outfit-Regular' }
+      case 'smallBody':
+        return { fontSize: 14, fontWeight: '300', fontFamily: 'Outfit-Light' }
+      case 'caption':
+        return { fontSize: 12, fontWeight: '300', fontFamily: 'Outfit-Light', letterSpacing: 0.5 }
+      case 'overline':
+        return { fontSize: 10, fontWeight: '500', fontFamily: 'Outfit-Regular', textTransform: 'uppercase' }
+      case 'button':
+        return { fontSize: 16, fontWeight: '500', fontFamily: 'Outfit-Medium', textTransform: 'uppercase' }
       default:
-        return { fontSize: 16, fontFamily: 'Outfit-Regular' }
+        return { fontSize: 16, fontFamily: 'Outfit-Regular' } // Default to regular paragraph
     }
   }
 
-  const combinedStyle: TextStyle = {
-    ...getTextTypeStyle(),
-    fontWeight,
-    fontStyle,
-    color: theme.colors.onBackground || '#fff', // Ensure the correct theme color is applied
-    ...style // Apply additional custom styles
-  }
+  // If variant is defined, don't use the textType styles
+  const combinedStyle: TextStyle = variant
+    ? { color: theme.colors.onBackground || '#fff', ...style } // Use variant's built-in styles
+    : {
+        ...getTextTypeStyle(), // Apply textType styles if no variant is used
+        fontWeight,
+        fontStyle,
+        color: theme.colors.onBackground || '#fff', // Ensure the correct theme color is applied
+        ...style // Apply additional custom styles
+      }
 
   return (
     <Animated.View style={{ opacity: animatedOpacity }}>
       <StyledText
         className={className}
         style={combinedStyle}
-        variant={variant} // Pass the variant prop to Paper's Text component
+        variant={variant} // Pass the variant prop to Paper's Text component if provided
         {...rest}
       >
         {value ? value : children}

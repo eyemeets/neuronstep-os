@@ -1,11 +1,11 @@
-import type { CurriculumOutlineSchema } from '@/types/curricula'
-import { createServerInstance } from '../services/api' // Use the createServerInstance function
+import type { CurriculumOutlineSchema, CurriculumPlan } from '@/types/curricula'
+import { createCourseServerInstance } from '../services/api' // Use the createServerInstance function
 import { endpoints } from '../services/endpoints'
 
-export const createCourse = async (coursePlan: any): Promise<CurriculumOutlineSchema | null> => {
+export const createCourse = async (coursePlan: CurriculumPlan): Promise<CurriculumOutlineSchema | null> => {
   try {
-    const server = await createServerInstance() // Ensure server instance is created
-    const response = await server.post<CurriculumOutlineSchema>(endpoints.createCourse, coursePlan)
+    const course = await createCourseServerInstance()
+    const response = await course.post<CurriculumOutlineSchema>(endpoints.createCourse, coursePlan)
 
     return response.data
   }
