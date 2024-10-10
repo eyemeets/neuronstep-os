@@ -9,6 +9,7 @@ import bodyParser from 'body-parser'
 import fileUpload from 'express-fileupload'
 import cors from 'cors'
 import { getLocalNetworkIp } from './utils/utils'
+import { updateEnvFile } from './utils/env'
 
 const app = express()
 
@@ -36,9 +37,14 @@ app.listen(port, localIp, async () => {
     directory: path.join(__dirname, 'routes')
   })
 
-  console.log(`\n Express server running on http://${localIp}:${port}`)
+  const apiUrl = `http://${localIp}:${port}`
 
-  return
+  // Only update the .env file in development environment
+  if (process.env.NODE_ENV === 'development') {
+    updateEnvFile(apiUrl)
+  }
+
+  console.log(`Express server running on ${apiUrl}`)
 })
 
 export default app

@@ -80,7 +80,7 @@ export function courseDurationRange(level: EducationLevel): TopicRange {
 }
 
 export function generateContentBasedOnLearningStyle(preferences: UserLearningPreferences) {
-  switch (preferences.learningStyle) {
+  switch (preferences) {
     case 'visual':
       return 'Generate content with rich visuals, diagrams, and video tutorials'
     case 'auditory':
@@ -95,7 +95,7 @@ export function generateContentBasedOnLearningStyle(preferences: UserLearningPre
 }
 
 export function generateLearningStyleDescription(preferences: UserLearningPreferences): string {
-  switch (preferences.learningStyle) {
+  switch (preferences) {
     case 'visual':
       return 'a visually rich format with diagrams, charts, and video tutorials'
     case 'auditory':
@@ -110,7 +110,7 @@ export function generateLearningStyleDescription(preferences: UserLearningPrefer
 }
 
 export function generateContentBasedOnTone(preferences: UserTonePreferences) {
-  switch (preferences.tone) {
+  switch (preferences) {
     case 'fun':
       return 'Create content with humor, engaging anecdotes, and lighthearted examples'
     case 'serious':
@@ -133,7 +133,7 @@ export function generateContentBasedOnTone(preferences: UserTonePreferences) {
 }
 
 export function generateToneDescription(preferences: UserTonePreferences): string {
-  switch (preferences.tone) {
+  switch (preferences) {
     case 'fun':
       return 'a lighthearted and engaging tone with humor and playful examples'
     case 'serious':

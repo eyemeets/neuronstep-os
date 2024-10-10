@@ -1,6 +1,7 @@
 {
   "extends": "tsconfig",
   "compilerOptions": {
+    "baseUrl": ".",
     "allowJs": true,
     "jsx": "react-native",
     "lib": ["DOM", "ESNext"],
@@ -8,7 +9,7 @@
     "target": "ESNext",
     "paths": {
       "@/*": ["./*"],
-      "@firebase/auth": ["./node_modules/@firebase/auth/dist/index.rn.d.ts"]
+      "@firebase/auth": ["../../node_modules/@firebase/auth/dist/index.rn.d.ts"]
     }
   },
   "include": [
