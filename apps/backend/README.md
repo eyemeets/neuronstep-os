@@ -2,7 +2,8 @@
 
 ## NeuronStep Course Curriculum Generator
 
-**NeuronStep** is an AI-driven course generation system designed for students, educators, course creators, and anyone interested in structured learning. By leveraging the "gpt-4o-mini" model, it creates, analyzes, and validates course objectives, curricula, and outlines. NeuronStep utilizes educational frameworks like Bloom's Taxonomy and Cognitive Load Theory, providing users with a structured, adaptive learning experience tailored to their needs.
+**NeuronStep App** is the mobile app that allows users to interact with the NeuronStep platform. It enables students, educators, and content creators to submit course requests and view generated curricula. The app communicates with the NeuronStep Server to validate requests and generate personalized course plans. With a focus on simplicity and accessibility, the app delivers a tailored learning experience based on user preferences, integrating educational frameworks like Bloom’s Taxonomy and Cognitive Load Theory to enhance learning outcomes.
+
 
 ## Features
 - **Course Objective Validation**: Validate learning objectives against curricula and receive feedback on their suitability.

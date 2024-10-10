@@ -1,9 +1,9 @@
 
 # NeuronStep Open Source
 
-This is the **monorepo** for the **NeuronStep** project, which includes both the [**NeuronStep Mobile App**]("./apps/mobile") and the [**NeuronStep Server**]("./apps/backend"). 
+This is the **monorepo** for the **NeuronStep** project, which includes both the [**NeuronStep Mobile App**]("./apps/mobile") and the [**NeuronStep Server**]("./apps/backend").
 
-NeuronStep is a Retrieval Augmented Generation (RAG) system designed to create, analyze, and validate educational curricula, providing adaptive learning tools for students, educators, and course creators.
+NeuronStep is a Retrieval Augmented Generation (RAG) system that validates course requests, analyzes them, and generates complete curricula. It creates curriculum plans with topics, subtopics, and content blocks tailored to any language, learning preference, or style, allowing users to fine-tune courses to their specific needs.
 
 The monorepo structure allows for shared development between the mobile app and server, leveraging common packages and ensuring consistency across the project.
 
@@ -13,9 +13,9 @@ The monorepo structure allows for shared development between the mobile app and 
 root/
 ├── apps/
 │   ├── mobile/          # NeuronStep mobile app built with React Native and Expo
-│   └── server/          # NeuronStep server using Express for API and backend services
+│   └── backend/         # NeuronStep server using Express for API and backend services
 ├── packages/            # Shared components, utilities, and services across mobile and server
-└── README.md            # This file
+├── README.md            # This file
 ```
 
 ## Features
