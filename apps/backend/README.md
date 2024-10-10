@@ -109,9 +109,9 @@ To add a new route, simply add a new file to `src/routes/` and export route hand
 ## API Usage
 
 ### 1. Course Objective Validation
-This API validates a given learning objective and returns feedback, validation results, and suggestions.
+This API validates a user objective and returns feedback, validation results, and suggestions.
 
-- : **Endpoint** `POST http://localhost:3000/course-validator`
+- : **Endpoint** `POST http://localhost:3000/course/objective`
 
 - **Request Payload**:
 ```JSON
@@ -128,7 +128,7 @@ This API validates a given learning objective and returns feedback, validation r
 ### 2. Course Analysis
 After the course objective has been validated, this API performs a detailed analysis of the course, including recommendations for improvement, learning styles, and educational frameworks.
 
-- **Endpoint**: `POST http://localhost:3000/course-analysis`
+- **Endpoint**: `POST http://localhost:3000/course/analysis`
 
 - **Request Payload**: Use the validated learning objective from the previous step.
 
@@ -158,7 +158,7 @@ After the course objective has been validated, this API performs a detailed anal
 ### 3. Course Creation
 This API generates a detailed curriculum structure based on the analyzed course objective and includes chapters, subtopics, and suggested content.
 
-- **Endpoint**: `POST http://localhost:3000/course-creator`
+- **Endpoint**: `POST http://localhost:3000/course/create`
 
 - **Request Payload**: Use the analyzed course plan from the previous step.
 

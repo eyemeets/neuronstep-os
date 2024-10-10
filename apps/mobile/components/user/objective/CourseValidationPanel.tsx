@@ -8,7 +8,7 @@ import Text from '@/components/atoms/Text'
 import Button from '@/components/atoms/Button'
 import Icon from 'react-native-vector-icons/MaterialIcons' // Assuming you're using Material Icons
 import { getPaperTheme } from '@/hooks/useThemeColor'
-import { analyzeCourse } from '@/services/useAnalyzeCourse'
+import { analyzeCourse } from '@/services/analyze-course'
 import { auth } from '@/fb.config'
 import { useFirestore } from '@/hooks/useFirestore'
 

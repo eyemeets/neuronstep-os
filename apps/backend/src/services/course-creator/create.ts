@@ -5,8 +5,9 @@ import { sendMessageAndParseResponse } from '../openai'
 import { createInitialInstructionPrompt, createContentPromptForBlock } from './prompt'
 import type { BlockContentResponse, InitialInstructionResponse } from './schema'
 import { ZodInitialInstructionResponseSchema, ZodBlockContentResponseSchema } from './schema'
+import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
 
-export async function createContentForCourse(params: CurriculumObjectivePlanAndOutlineStructure) {
+export async function createContentForCourse(params: CurriculumObjectivePlanAndOutlineStructure, user: UserRecord) {
   const assistantId = params.plan.assistantId
   const threadId = params.plan.threadId
 

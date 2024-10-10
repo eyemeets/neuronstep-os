@@ -5,7 +5,7 @@ import type admin from 'firebase-admin'
 declare global {
   namespace Express {
     interface Request {
-      user?: admin.auth.DecodedIdToken // The type for the decoded token
+      user?: admin.auth.UserRecord // The type for the decoded token
     }
   }
 }

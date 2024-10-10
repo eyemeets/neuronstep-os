@@ -6,7 +6,7 @@ import View from '../../atoms/View'
 import TextInput from '../../atoms/TextInput'
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import Select from '../../atoms/Select'
-import { validatePrompt } from '@/services/useValidatePrompt'
+import { validateObjective } from '@/services/validate-objective'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
@@ -150,17 +150,20 @@ const PromptBox = () => {
   const handleValidate = async (data: PromptData) => {
     setRequestValidating(true)
     // Set default values for missing fields
-    data.language = data.language || 'en-US'
-    data.educationLevel = data.educationLevel || 'undergraduate'
-    data.learningStyle = data.learningStyle || 'visual'
-    data.tone = data.tone || 'friendly'
-    data.curriculum = data.curriculum || 'General'
+    const formattedData = {
+      objective: data.objective,
+      language: data.language || 'en-US',
+      education_level: data.educationLevel || 'undergraduate',
+      learning_style: data.learningStyle || 'visual',
+      tone: data.tone || 'accademic',
+      curriculum: data.curriculum || 'General'
+    }
 
     try {
-      await sleep(500) // Use it to test mockup data instead of paying money for requests.
-      const response = await validatePrompt({
-        data: JSON.stringify(data),
-        mockupResponse: true
+      //await sleep(500) // Use it to test mockup data instead of paying money for requests.
+      const response = await validateObjective({
+        data: JSON.stringify(formattedData),
+        mockupResponse: false
       })
 
       if (!response) {
@@ -189,7 +192,7 @@ const PromptBox = () => {
     }
     catch (error) {
       setRequestValidating(false)
-      console.error('Error while calling validatePrompt:', error)
+      console.error('Error while calling validateObjective:', error)
     }
   }
 

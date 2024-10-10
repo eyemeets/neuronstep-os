@@ -8,6 +8,10 @@ import { processFile } from '../../services/file-processor'
  * @param res - The Express response object.
  */
 export const courseAnalysisController = async (req: Request, res: Response) => {
+  if (!req.user) {
+    return res.status(400).json({ error: 'User object is undefined' })
+  }
+
   try {
     const file = req.file
     const params = Object.assign(req.body, { file }) as ValidatedObjective
@@ -16,7 +20,7 @@ export const courseAnalysisController = async (req: Request, res: Response) => {
       error: 'No parameters provided'
     })
 
-    const curriculumOutline = await analyzeContent(params)
+    const curriculumOutline = await analyzeContent(params, req.user)
 
     if (curriculumOutline) {
       return res.json(curriculumOutline)

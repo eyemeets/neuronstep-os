@@ -6,11 +6,13 @@ import type { ValidatedObjective } from '../../types/curricula'
 import { createUserPromptForCurriculumOutlineSchema, createUserPromptForCurriculumPlan } from './prompt'
 import { ZodCurriculumOutlineSchema, ZodCurriculumPlanSchema } from './schema'
 import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
+import type { UserRecord } from 'firebase-admin/lib/auth/user-record' // Import the UserRecord type
 
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
 
-export async function analyzeContent(params: ValidatedObjective) {
+export async function analyzeContent(params: ValidatedObjective, user: UserRecord) {
+  user.uid
   const assistant = await setupAssistantAndThread({
     name: 'Curriculum Designer',
     instructions: 'You are an expert curriculum designer with a deep understanding of educational frameworks and adaptive learning strategies.',
@@ -71,8 +73,6 @@ export async function analyzeContent(params: ValidatedObjective) {
       image_prompt: topicImagePrompt, // This assigns the image prompt for the topic
       subtopics: chapter.subtopics.map((subtopic) => {
         const subtopicImagePrompt = generateSubtopicImagePrompt(params.image_theme, subtopic.subtopic)
-
-        console.log('subtopicImagePrompt -> ', subtopicImagePrompt)
 
         return {
           ...subtopic,

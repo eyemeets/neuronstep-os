@@ -1,11 +1,11 @@
 import type { CurriculumOutlineSchema, CurriculumPlan } from '@/types/curricula'
-import { createCourseServerInstance } from '../services/api' // Use the createServerInstance function
-import { endpoints } from '../services/endpoints'
+import { createCourseServerInstance } from './api' // Use the createServerInstance function
+import { endpoints } from './endpoints'
 
 export const createCourse = async (coursePlan: CurriculumPlan): Promise<CurriculumOutlineSchema | null> => {
   try {
     const course = await createCourseServerInstance()
-    const response = await course.post<CurriculumOutlineSchema>(endpoints.createCourse, coursePlan)
+    const response = await course.post<CurriculumOutlineSchema>(endpoints.course.create, coursePlan)
 
     return response.data
   }
@@ -16,6 +16,6 @@ export const createCourse = async (coursePlan: CurriculumPlan): Promise<Curricul
     else {
       console.error('An unexpected error occurred during course creation')
     }
-    return null // Return null if there's an error
+    return null
   }
 }

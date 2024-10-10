@@ -1,13 +1,13 @@
 import type { CurriculumOutlineSchema, CurriculumPlan, ValidatedObjective } from '@/types/curricula'
-import { createCourseServerInstance } from '../services/api' // Use the createServerInstance function
-import { endpoints } from '../services/endpoints'
+import { createCourseServerInstance } from './api' // Use the createServerInstance function
+import { endpoints } from './endpoints'
 
 type CourseAnalysisReturnParams = { plan: CurriculumPlan; outline: CurriculumOutlineSchema } | null
 
 export const analyzeCourse = async (validatedObjective: ValidatedObjective): Promise<CourseAnalysisReturnParams> => {
   try {
     const course = await createCourseServerInstance()
-    const response = await course.post<CourseAnalysisReturnParams>(endpoints.analyzeCourse, validatedObjective)
+    const response = await course.post<CourseAnalysisReturnParams>(endpoints.course.analyze, validatedObjective)
 
     return response.data
   }

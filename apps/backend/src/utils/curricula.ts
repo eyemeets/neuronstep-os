@@ -3,6 +3,7 @@ import { EducationLevel } from '../types/curricula'
 
 // Updated function to match the refined values for different education levels
 export function courseDurationRange(level: EducationLevel): TopicRange {
+  console.log( 'level', level )
   switch (level) {
     case EducationLevel.PRESCHOOL:
       return {

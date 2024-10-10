@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import type { ValidateObjectiveUserData } from '../../types/curricula'
 import { CurriculaSubmissionType } from '../../types/curricula'
-import { validateLearningObjective } from '../../services/course-validator/validate'
+import { validateLearningObjective } from '../../services/course-objective/objective'
 import { processFile } from '../../services/file-processor'
 
 /**
@@ -9,11 +9,15 @@ import { processFile } from '../../services/file-processor'
  * @param req - The Express request object.
  * @param res - The Express response object.
  */
-export const courseValidatorController = async (req: Request, res: Response) => {
+export const courseObjectiveController = async (req: Request, res: Response) => {
+  if (!req.user) {
+    return res.status(400).json({ error: 'User object is undefined' })
+  }
+
   try {
     const file = req.file
     const params = Object.assign(req.body, { file }) as ValidateObjectiveUserData
-
+    
     // Parse and validate the objective using the helper function
     const validatedObjective = parseAndValidateObjective(params)
 
@@ -23,11 +27,10 @@ export const courseValidatorController = async (req: Request, res: Response) => 
     }
 
     if (validatedObjective) {
-      // Handle description text
-      const response = await validateLearningObjective(params, CurriculaSubmissionType.TEXT)
+      // Handle description text and pass the userRecord instead of req.user
+      const response = await validateLearningObjective(params, CurriculaSubmissionType.TEXT, req.user)
 
       if (!response) return res.status(400).json({ reason: response, error: 'Invalid input provided' })
-      //analyzeCurriculaSubmission(text, submissionType)
       
       return res.json(response)
     }

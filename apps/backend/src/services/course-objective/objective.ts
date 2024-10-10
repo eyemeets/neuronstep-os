@@ -4,6 +4,7 @@ import type { ValidateObjectiveUserData } from '../../types/curricula'
 import { CurriculaSubmissionType } from '../../types/curricula'
 import { createUserPrompt } from './prompt'
 import { ZodSubmissionSchema } from './schema'
+import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
 
 /**
  * Function to validate if the objective is educational and suitable for curriculum creation
@@ -16,7 +17,7 @@ import { ZodSubmissionSchema } from './schema'
  * @param {CCSubmissionType} submissionType - The type of submission (TEXT, PDF, DESCRIPTION)
  * @returns {Promise<Object>} Object with validation status, reason, objective summary, and potential subject classification
  */
-export async function validateLearningObjective(params: ValidateObjectiveUserData, submissionType: CurriculaSubmissionType) {
+export async function validateLearningObjective(params: ValidateObjectiveUserData, submissionType: CurriculaSubmissionType, user: UserRecord) {
   const systemPrompt = getSubmissionTypeSystemPrompt(submissionType)
 
   if (!systemPrompt.length) {

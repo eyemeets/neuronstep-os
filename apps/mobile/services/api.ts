@@ -2,17 +2,16 @@ import { auth } from '@/fb.config'
 import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 
-// Use Expo's environment variable to get the base URL
 const baseURL = process.env.EXPO_PUBLIC_API_URL
 
 export const createServerInstance = async (config: AxiosRequestConfig = {}) => {
   const server = axios.create({
+    ...config, // Spread any additional configurations from the parameter
     baseURL: `${baseURL}${config.baseURL}`,
     headers: {
       'Content-Type': 'application/json',
       ...config.headers // Merge any custom headers from config
-    },
-    ...config // Spread any additional configurations from the parameter
+    }
   })
 
   server.interceptors.response.use(
