@@ -1,5 +1,5 @@
+import type { CustomUserSchemaParams } from 'shared-types'
 import { z } from 'zod'
-import type { CustomUserSchemaParams } from '../../types/course-validator'
 
 export const imageThemeSchema = z.object({
   theme: z.enum([ 'cinematic', '3D', 'abstract', 'surreal', 'minimalistic' ]).describe('The overall visual style or theme of the image'),

@@ -2,8 +2,6 @@
 import { v4 as uuidv4 } from 'uuid' // Import the UUID generator
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { sendMessageAndParseResponse, setupAssistantAndThread } from '../openai' // Adjust the import path as needed
-import type { CurriculumPlan } from '../../types/curricula'
-import type { ValidatedObjective } from '../../types/curricula'
 import { createUserPromptForCurriculumOutlineSchema, createUserPromptForCurriculumPlan } from './prompt'
 import { ZodCurriculumOutlineSchema, ZodCurriculumPlanSchema } from './schema'
 import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
@@ -11,6 +9,7 @@ import type { UserRecord } from 'firebase-admin/lib/auth/user-record' // Import 
 
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
+import type { CoursePlanSchema, ValidatedObjective } from 'shared-types'
 
 const a = [ { test: '' } ]
 
@@ -112,11 +111,11 @@ async function generateCurriculumPlan(params: {
   assistantId: string
   threadId: string
   responseFormat: AssistantResponseFormatOption | null | undefined
-}): Promise<CurriculumPlan | undefined> {
+}): Promise<CoursePlanSchema | undefined> {
   const userMsgForCurriculumPlan = createUserPromptForCurriculumPlan(params.validatedObjective)
 
   // Send the message and get the curriculum plan
-  const plan = await sendMessageAndParseResponse<CurriculumPlan>({
+  const plan = await sendMessageAndParseResponse<CoursePlanSchema>({
     stream: false,
     assistantId: params.assistantId,
     threadId: params.threadId,
@@ -141,7 +140,7 @@ async function generateCurriculumPlan(params: {
 async function createContentOutlineForCurriculum(params: {
   stream?: boolean
   validatedObjective: ValidatedObjective
-  curriculumPlan: CurriculumPlan | undefined
+  curriculumPlan: CoursePlanSchema | undefined
   assistantId: string
   threadId: string
   responseFormat: AssistantResponseFormatOption | null | undefined

@@ -1,5 +1,6 @@
 // course-generator/prompts.ts
-import type { CurriculumObjectivePlanAndOutlineStructure, CurriculumOutlineSchema } from '../../types/curricula'
+
+import type { CourseOutlineChapterSchema, CourseOutlinePageSchema, CourseOutlineSchema, CourseOutlineSubtopicSchema, CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
 
 /**
  * Creates an initial instruction prompt to set the context for content generation.
@@ -85,9 +86,9 @@ export function createInitialInstructionPrompt(params: CurriculumObjectivePlanAn
  */
 export function createContentPromptForBlock(
   params: CurriculumObjectivePlanAndOutlineStructure,
-  chapter: CurriculumOutlineSchema['chapters'][0],
-  subtopic: CurriculumOutlineSchema['chapters'][0]['subtopics'][0],
-  page: CurriculumOutlineSchema['chapters'][0]['subtopics'][0]['pages'][0]
+  chapter: CourseOutlineChapterSchema,
+  subtopic: CourseOutlineSubtopicSchema,
+  page: CourseOutlinePageSchema
 ): string {
   return `
   You are a distinguished educational content creator with a PhD in Education, specializing in curriculum development and instructional design. Your expertise ensures the generation of high-quality, academically rigorous content tailored to the needs of ${params.plan.educational_level} students.

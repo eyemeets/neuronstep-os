@@ -1,10 +1,10 @@
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { createGPTCompletion } from '../openai'
-import type { ValidateObjectiveUserData } from '../../types/curricula'
-import { CurriculaSubmissionType } from '../../types/curricula'
 import { createUserPrompt } from './prompt'
 import { ZodSubmissionSchema } from './schema'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
+import { CurriculaSubmissionType } from 'shared-types'
+import type { ValidateObjectiveUserData } from 'shared-types'
 
 /**
  * Function to validate if the objective is educational and suitable for curriculum creation

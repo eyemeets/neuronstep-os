@@ -1,11 +1,11 @@
 // content-generator/createContentForCourse.ts
 import { zodResponseFormat } from 'openai/helpers/zod'
-import type { CurriculumObjectivePlanAndOutlineStructure } from '../../types/curricula'
 import { sendMessageAndParseResponse } from '../openai'
 import { createInitialInstructionPrompt, createContentPromptForBlock } from './prompt'
 import type { BlockContentResponse, InitialInstructionResponse } from './schema'
 import { ZodInitialInstructionResponseSchema, ZodBlockContentResponseSchema } from './schema'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
+import type { CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
 
 export async function createContentForCourse(params: CurriculumObjectivePlanAndOutlineStructure, user: UserRecord) {
   const assistantId = params.plan.assistantId

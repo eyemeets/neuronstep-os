@@ -1,8 +1,7 @@
 import type { Request, Response } from 'express'
-import type { ValidateObjectiveUserData } from '../../types/curricula'
-import { CurriculaSubmissionType } from '../../types/curricula'
 import { validateLearningObjective } from '../../services/course-objective/objective'
 import { processFile } from '../../services/file-processor'
+import { CurriculaSubmissionType, type ValidateObjectiveUserData } from 'shared-types'
 
 /**
  * Controller function to handle user query and do analysis and prepare for the course.

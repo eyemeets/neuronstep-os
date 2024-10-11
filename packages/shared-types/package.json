@@ -1,12 +1,16 @@
 {
   "name": "shared-types",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Shared type definitions for NeuronStep",
+  "main": "index.ts",
+  "types": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Daniel Hendricks",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
 }

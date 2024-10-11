@@ -42,6 +42,7 @@
     "@types/supertest": "^6.0.2",
     "@types/uuid": "^10.0.0",
     "eslint-config-custom": "workspace:*",
+    "shared-types": "workspace:*",
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-format": "^0.1.0",
     "globals": "^15.9.0",

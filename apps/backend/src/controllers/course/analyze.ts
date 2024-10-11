@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { analyzeContent } from '../../services/course-analysis/analyze'
-import type { ValidatedObjective } from '../../types/curricula'
 import { processFile } from '../../services/file-processor'
+import type { ValidatedObjective } from 'shared-types'
 /**
  * Controller function to handle content analysis or file processing.
  * @param req - The Express request object.

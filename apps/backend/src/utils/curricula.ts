@@ -1,5 +1,5 @@
-import type { TopicRange, UserLearningPreferences, UserTonePreferences } from '../types/curricula'
-import { EducationLevel } from '../types/curricula'
+import type { TopicRange, UserLearningPreferences, UserTonePreferences } from 'shared-types'
+import { EducationLevel } from 'shared-types'
 
 // Updated function to match the refined values for different education levels
 export function courseDurationRange(level: EducationLevel): TopicRange {

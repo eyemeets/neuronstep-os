@@ -1,7 +1,7 @@
 // content-analysis/schema.ts
 import { z } from 'zod'
-import type { CurriculumOutlineSchema } from '../../types/curricula'
-import { ContentTypeEnum } from '../../types/curricula'
+import { ContentTypeEnum } from 'shared-types'
+import type { CourseOutlineSchema } from 'shared-types'
 
 export type CurriculumPlanZod = z.infer<typeof ZodCurriculumPlanSchema>
 
@@ -67,7 +67,7 @@ export const ZodCurriculumOutlineSchema = z.object({
 })
 
 
-export const emptyCurriculumOutlineSchema: CurriculumOutlineSchema = {
+export const emptyCurriculumOutlineSchema: CourseOutlineSchema = {
   id: '',
   title: '', // Title of the course, to be populated later
   description: '', // Description of the course, to be populated later

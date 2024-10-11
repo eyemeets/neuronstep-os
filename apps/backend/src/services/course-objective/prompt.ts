@@ -1,4 +1,4 @@
-import type { ValidateObjectiveUserData } from '../../types/curricula'
+import type { ValidateObjectiveUserData } from 'shared-types'
 import { courseDurationRange, generateLearningStyleDescription, generateToneDescription } from '../../utils/curricula'
 
 export function createUserPrompt(params: ValidateObjectiveUserData) {

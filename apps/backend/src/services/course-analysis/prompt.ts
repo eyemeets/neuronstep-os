@@ -1,5 +1,5 @@
 // content-analysis/prompt.ts
-import type { CurriculumPlan, ValidatedObjective } from '../../types/curricula'
+import type { CoursePlanSchema, ValidatedObjective } from 'shared-types'
 import { courseDurationRange, generateLearningStyleDescription, generateToneDescription } from '../../utils/curricula'
 
 export function createUserPromptForCurriculumPlan(params: ValidatedObjective) {
@@ -169,7 +169,7 @@ export function createUserPromptForCurriculumPlan(params: ValidatedObjective) {
   **Ensure that your response is in valid JSON format and conforms to the schema provided. Do not include any explanations or additional text outside the JSON response.`
 }
 
-export function createUserPromptForCurriculumOutlineSchema(params: ValidatedObjective, curriculumPlan: CurriculumPlan) {
+export function createUserPromptForCurriculumOutlineSchema(params: ValidatedObjective, curriculumPlan: CoursePlanSchema) {
   const numberOfTopics = curriculumPlan.number_of_main_topics
   const numberOfSubTopics = curriculumPlan.number_of_sub_topics
   const numberOfPages = curriculumPlan.number_of_pages

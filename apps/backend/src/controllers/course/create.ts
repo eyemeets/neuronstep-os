@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { createContentForCourse } from '../../services/course-creator/create'
-import type { CurriculumObjectivePlanAndOutlineStructure } from '../../types/curricula'
 import { processFile } from '../../services/file-processor'
+import type { CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
 
 export async function courseCreationController(req: Request, res: Response) {
   if (!req.user) {

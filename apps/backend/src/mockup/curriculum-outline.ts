@@ -1,4 +1,5 @@
-import type { CurriculumPlanAndOutlineStructure } from '../types/curricula'
+import type { CurriculumPlanAndOutlineStructure } from 'shared-types'
+
 
 export default {
   'plan': {
