@@ -1,4 +1,4 @@
-export interface CourseOutlineSchema { // old name CurriculumOutlineSchema
+export interface CourseOutlineSchema {
   id: string
   title: string
   description: string

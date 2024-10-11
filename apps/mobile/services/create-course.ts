@@ -1,11 +1,11 @@
-import type { CurriculumOutlineSchema, CurriculumPlan } from '@/types/curricula'
+import type { CoursePlanSchema, CourseOutlineSchema } from 'shared-types'
 import { createCourseServerInstance } from './api' // Use the createServerInstance function
 import { endpoints } from './endpoints'
 
-export const createCourse = async (coursePlan: CurriculumPlan): Promise<CurriculumOutlineSchema | null> => {
+export const createCourse = async (coursePlan: CoursePlanSchema): Promise<CourseOutlineSchema | null> => {
   try {
     const course = await createCourseServerInstance()
-    const response = await course.post<CurriculumOutlineSchema>(endpoints.course.create, coursePlan)
+    const response = await course.post<CourseOutlineSchema>(endpoints.course.create, coursePlan)
 
     return response.data
   }

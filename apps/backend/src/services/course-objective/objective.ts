@@ -54,7 +54,7 @@ export async function validateLearningObjective(params: UserObjectiveParamsSchem
 
     validatedData.curriculum = params.curriculum
     validatedData.language = params.language
-    validatedData.educational_level = params.education_level
+    validatedData.education_level = params.education_level
     validatedData.learning_style = params.learning_style
     validatedData.user_query = params.objective
 

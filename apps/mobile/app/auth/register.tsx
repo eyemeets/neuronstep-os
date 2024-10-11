@@ -11,21 +11,23 @@ import TextInput from '@/components/atoms/TextInput'
 import Dialog from '@/components/atoms/Dialog'
 import Text from '@/components/atoms/Text'
 import { auth, db } from '@/fb.config'
+import type { User } from 'firebase/auth'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import ActivityIndicator from '@/components/atoms/ActivityIndicator'
+import type { FirebaseError } from 'firebase/app'
 
 // Define external styles for the component
 const styles = StyleSheet.create({
   flexContainer: {
     flex: 1
   },
-  scrollContainer: {
-    flexGrow: 1
-  },
   header: {
     marginBottom: 25
+  },
+  scrollContainer: {
+    flexGrow: 1
   }
 })
 
@@ -37,9 +39,9 @@ const registerSchema = yup.object().shape({
 })
 
 const Register = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [dialogVisible, setDialogVisible] = useState(false)
+  const [ loading, setLoading ] = useState(false)
+  const [ error, setError ] = useState<string | null>(null)
+  const [ dialogVisible, setDialogVisible ] = useState(false)
 
   const navigation = useTypedNavigation<AuthStackParamList>()
 
@@ -68,10 +70,10 @@ const Register = () => {
         useNativeDriver: true
       }).start()
     }
-  }, [loading, buttonScale])
+  }, [ loading, buttonScale ])
 
   // Function to save user session to AsyncStorage
-  const saveUserSession = async (user: any) => {
+  const saveUserSession = async (user: User) => {
     try {
       await AsyncStorage.setItem(
         'userSession',
@@ -112,7 +114,8 @@ const Register = () => {
       console.log('User registered and info saved to Firestore')
       navigation.navigate('user', { screen: 'objective' })
     }
-    catch (error: any) {
+    catch (e) {
+      const error = e as FirebaseError
       let errorMessage = 'An unknown error occurred'
 
       if (error.code) {
@@ -217,7 +220,7 @@ const Register = () => {
             />
 
             {/* Register Button with Morphing Animation */}
-            <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
+            <Animated.View style={{ transform: [ { scale: buttonScale } ] }}>
               <Button
                 text="Register"
                 mode="contained"

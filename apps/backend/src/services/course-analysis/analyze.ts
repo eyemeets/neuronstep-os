@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { sendMessageAndParseResponse, setupAssistantAndThread } from '../openai'
-import { createUserPromptForCurriculumOutlineSchema, createUserPromptForCurriculumPlan } from './prompt'
-import { ZodCurriculumOutlineSchema, ZodCurriculumPlanSchema } from './schema'
+import { createUserPromptForCourseOutlineSchema, createUserPromptForCurriculumPlan } from './prompt'
+import { ZodCourseOutlineSchema, ZodCurriculumPlanSchema } from './schema'
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
 
@@ -44,7 +44,7 @@ export async function analyzeContent(params: CourseObjectiveSchema, user: UserRe
       curriculumPlan: curriculumPlan,
       threadId: assistant.threadId,
       assistantId: assistant.assistantId,
-      responseFormat: zodResponseFormat(ZodCurriculumOutlineSchema, 'validation_response')
+      responseFormat: zodResponseFormat(ZodCourseOutlineSchema, 'validation_response')
     })
 
   // Add this guard clause
@@ -149,7 +149,7 @@ async function createContentOutlineForCurriculum(params: {
   }
 
   // Create the user message for curriculum outline schema
-  const userMsgForTopics = createUserPromptForCurriculumOutlineSchema(params.validatedObjective, params.curriculumPlan)
+  const userMsgForTopics = createUserPromptForCourseOutlineSchema(params.validatedObjective, params.curriculumPlan)
 
   // Use sendMessageAndParseResponse with streaming enabled and pass the processChunk callback
   const topics = await sendMessageAndParseResponse({
@@ -158,7 +158,7 @@ async function createContentOutlineForCurriculum(params: {
     threadId: params.threadId,
     userMessageContent: userMsgForTopics,
     responseFormat: params.responseFormat,
-    schema: ZodCurriculumOutlineSchema,
+    schema: ZodCourseOutlineSchema,
     errorMessage: 'Failed to parse educational outline'
   }, processChunk) // Pass the callback function to handle streamed chunks
 

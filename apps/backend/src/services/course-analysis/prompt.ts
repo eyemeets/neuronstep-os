@@ -7,7 +7,7 @@ export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema)
   const {
     content_description,
     sub_learning_objectives = [],
-    educational_level,
+    education_level,
     learning_outcomes = [],
     skills_21st_century = [],
     estimated_time_to_complete,
@@ -31,7 +31,7 @@ export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema)
     personalization_options,
     curriculum
   } = params
-  const courseDetails = courseDurationRange(educational_level)
+  const courseDetails = courseDurationRange(education_level)
   const learningStyle = generateLearningStyleDescription(params.learning_style)
   const tone = generateToneDescription(params.tone)
 
@@ -40,7 +40,7 @@ export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema)
 
   The user prefers to follow the curriculum of school / university / educational institution "${curriculum}"
 
-  The user prefers the course to be at the ${educational_level} level, which means the course will cover:
+  The user prefers the course to be at the ${education_level} level, which means the course will cover:
 
   - **Total hours**: Between ${courseDetails.totalHours.min} and ${courseDetails.totalHours.max} hours.
   - **Topics**: Between ${courseDetails.topics.min} and ${courseDetails.topics.max} main topics.
@@ -50,9 +50,9 @@ export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema)
   The user has selected the **"${params.learning_style}"** learning style, so content should be adapted to: "${learningStyle}".
   The user prefers the tone to be **"${params.tone}"**, so content should be generated in a **"${tone}"** tone.
 
-  Please write in the user's language (${params.lang}) when filling out the JSON schema.
+  Please write in the user's language (${params.language}) when filling out the JSON schema.
  
-  The user's Language is "${params.lang || 'en-US'}",
+  The user's Language is "${params.language || 'en-US'}",
 
   **Learning Objective Description:**
   "${content_description}"
@@ -61,7 +61,7 @@ export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema)
   ${sub_learning_objectives.length > 0 ? sub_learning_objectives.map((sub, index) => `\\${index + 1}. \\${sub}\\`).join('\n') : 'N/A'}
 
   **Educational Level:**
-  "${educational_level}"
+  "${education_level}"
 
   **Learning Outcomes:**
   ${learning_outcomes.length > 0 ? learning_outcomes.map((outcome, index) => `\\${index + 1}. \\${outcome}\\`).join('\n') : 'N/A'}
@@ -162,14 +162,14 @@ export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema)
     "languageName": "Human-readable language name (e.g., 'English')",
     "countryCode": "ISO 3166-1 alpha-2 country code (e.g., 'US' for United States)",
     "countryName": "Human-readable country name (e.g., 'United States')",
-    "educational_level": ${params.educational_level},
+    "education_level": ${params.education_level},
     "tone": "${params.tone}"
   }
 
   **Ensure that your response is in valid JSON format and conforms to the schema provided. Do not include any explanations or additional text outside the JSON response.`
 }
 
-export function createUserPromptForCurriculumOutlineSchema(params: CourseObjectiveSchema, curriculumPlan: CoursePlanSchema) {
+export function createUserPromptForCourseOutlineSchema(params: CourseObjectiveSchema, curriculumPlan: CoursePlanSchema) {
   const numberOfTopics = curriculumPlan.number_of_main_topics
   const numberOfSubTopics = curriculumPlan.number_of_sub_topics
   const numberOfPages = curriculumPlan.number_of_pages

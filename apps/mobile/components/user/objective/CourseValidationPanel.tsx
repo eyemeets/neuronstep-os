@@ -128,7 +128,7 @@ const CurriculumValidationPanel: React.FC = () => {
             </View>
             <View style={styles.iconTextRow}>
               <Icon name="language" size={20} color={theme.colors.onPrimary} style={styles.icon} />
-              <Text value={objective.languageName} variant="bodyLarge" />
+              <Text value={objective.language_name} variant="bodyLarge" />
             </View>
           </View>
 

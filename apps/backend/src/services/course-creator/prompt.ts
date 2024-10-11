@@ -12,9 +12,9 @@ export function createInitialInstructionPrompt(params: CurriculumObjectivePlanAn
   **Curriculum Overview:**
   - **Title:** ${params.plan.title}
   - **Description:** ${params.plan.description}
-  - **Educational Level:** ${params.plan.educational_level}
+  - **Educational Level:** ${params.plan.education_level}
   - **Tone:** ${params.plan.tone}
-  - **Language:** ${params.plan.languageName} (${params.plan.lang})
+  - **Language:** ${params.plan.languageName} (${params.plan.language})
   - **Country:** ${params.plan.countryName} (${params.plan.countryCode})
   - **Total Estimated Hours:** ${params.plan.estimated_total_minutes}
   - **Number of Main Topics:** ${params.plan.number_of_main_topics}
@@ -62,7 +62,7 @@ export function createInitialInstructionPrompt(params: CurriculumObjectivePlanAn
   This curriculum is structured into multiple chapters, each containing subtopics and corresponding content pages. Your role is to generate engaging and informative content for each page block. The content should adhere to the principles of Mastery Learning, Cognitive Load Theory, and Spaced Repetition to optimize learning outcomes.
 
   **Instructions:**
-  - Maintain an academic tone suitable for ${params.plan.educational_level} students.
+  - Maintain an academic tone suitable for ${params.plan.education_level} students.
   - Ensure clarity, coherence, and logical flow in all content.
   - Utilize appropriate HTML tags to format the content for frontend integration.
   - Align each content piece with the specified learning objectives and key focus areas.
@@ -89,13 +89,13 @@ export function createContentPromptForBlock(
   page: CourseOutlinePageSchema
 ): string {
   return `
-  You are a distinguished educational content creator with a PhD in Education, specializing in curriculum development and instructional design. Your expertise ensures the generation of high-quality, academically rigorous content tailored to the needs of ${params.plan.educational_level} students.
+  You are a distinguished educational content creator with a PhD in Education, specializing in curriculum development and instructional design. Your expertise ensures the generation of high-quality, academically rigorous content tailored to the needs of ${params.plan.education_level} students.
 
   **Curriculum Context:**
   - **Course Title:** ${params.plan.title}
-  - **Educational Level:** ${params.plan.educational_level}
+  - **Educational Level:** ${params.plan.education_level}
   - **Tone:** ${params.plan.tone}
-  - **Language:** ${params.plan.languageName} (${params.plan.lang})
+  - **Language:** ${params.plan.languageName} (${params.plan.language})
   - **Country:** ${params.plan.countryName} (${params.plan.countryCode})
   - **Total Estimated Hours:** ${params.plan.estimated_total_minutes}
 

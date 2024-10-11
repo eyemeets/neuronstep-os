@@ -46,7 +46,7 @@ export const ZodSubmissionSchema = (params: ZodCustomUserSchemaParams) => z.obje
   relevance_score: z.number().describe('A score assessing the relevance of the objective to the curriculum'),
   complexity_score: z.number().describe('A score assessing the complexity of the objective'),
 
-  educational_level: z.string().optional()
+  education_level: z.string().optional()
     .describe(params.education_level_desc || 'The educational level targeted by the curriculum'),
 
   missing_information: z.array(z.string()).optional().describe('Any missing key information required to create the curriculum'),

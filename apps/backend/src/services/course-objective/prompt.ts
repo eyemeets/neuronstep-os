@@ -169,7 +169,7 @@ export function createUserPrompt(params: UserObjectiveParamsSchema) {
     "objective_match": true/false,
     "relevance_score": number,
     "complexity_score": number,
-    "educational_level": ${params.education_level},
+    "education_level": ${params.education_level},
     "tone": "${params.tone}"
     "missing_information": ["missing key elements"],
     "ethical_compliance": true/false,

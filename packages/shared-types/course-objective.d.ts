@@ -28,7 +28,7 @@ export interface CourseObjectiveSchema {
   assistant_id?: string
   threadId?: string
   valid: boolean
-  lang?: string
+  language?: string
   language_name?: string
   country_code?: string
   country_name?: string
@@ -38,7 +38,7 @@ export interface CourseObjectiveSchema {
   objective_match: boolean
   relevance_score: number
   complexity_score: number
-  educational_level: EducationLevel
+  education_level: EducationLevel
   missing_information: string[]
   ethical_compliance: boolean
   ethical_compliance_details: string
@@ -83,8 +83,8 @@ export interface CourseObjectiveSchema {
   curriculum: string
   learning_style: UserLearningPreferences
   tone: UserTonePreferences
-  image_theme: ImageTheme
-  visual_elements: string[]
+  image_theme?: ImageTheme
+  visual_elements?: string[]
 }
 
 export enum EducationLevel {

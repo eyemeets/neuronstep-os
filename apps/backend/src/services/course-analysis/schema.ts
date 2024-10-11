@@ -24,15 +24,15 @@ export const ZodCurriculumPlanSchema = z.object({
   UDL_compliance: z.boolean(), // Whether the course is UDL compliant
   mastery_learning_applicability: z.boolean(), // Whether mastery learning applies
   personalization_options: z.string(), // Description of how personalization is offered
-  lang: z.string().describe('ISO 639-1 language code (e.g., en for English)'), // Language code
+  language: z.string().describe('ISO 639-1 language code (e.g., en for English)'), // Language code
   languageName: z.string().describe('Human-readable language name (e.g., English)'), // Human-readable language name
   countryCode: z.string().describe('ISO 3166-1 alpha-2 country code (e.g., US for United States)'), // Country code
   countryName: z.string().describe('Human-readable country name (e.g., United States)'), // Country name
-  educational_level: z.string().describe('Educational level (e.g., undergraduate, graduate, etc.)'), // Educational level
+  education_level: z.string().describe('Educational level (e.g., undergraduate, graduate, etc.)'), // Educational level
   tone: z.string().describe('Tone for the curriculum (e.g., academic, fun, etc.)') // Preferred tone
 })
 
-export const ZodCurriculumOutlineSchema = z.object({
+export const ZodCourseOutlineSchema = z.object({
   id: z.string().optional().describe('Leave this field empty'),
   title: z.string(),
   description: z.string(),
@@ -67,7 +67,7 @@ export const ZodCurriculumOutlineSchema = z.object({
 })
 
 
-export const emptyCurriculumOutlineSchema: CourseOutlineSchema = {
+export const emptyCourseOutlineSchema: CourseOutlineSchema = {
   id: '',
   title: '', // Title of the course, to be populated later
   description: '', // Description of the course, to be populated later

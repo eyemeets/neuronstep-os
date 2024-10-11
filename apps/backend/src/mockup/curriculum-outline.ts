@@ -40,7 +40,7 @@ export default {
     'languageName': 'English',
     'countryCode': 'US',
     'countryName': 'United States',
-    'educational_level': 'undergraduate',
+    'education_level': 'undergraduate',
     'tone': 'academic',
     'assistantId': 'asst_3BK07oGJLyhPzH4uVcEf1w2C',
     'threadId': 'thread_8nrtwRCeA8jSxAXsvdimMGqX'

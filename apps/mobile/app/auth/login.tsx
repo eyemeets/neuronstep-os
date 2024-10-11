@@ -13,18 +13,19 @@ import { auth } from '@/fb.config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useAuthStore } from '@/stores/auth'
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native'
+import type { FirebaseError } from 'firebase/app'
 
 // Define external styles for the component
 const styles = StyleSheet.create({
   flexContainer: {
     flex: 1
   },
-  scrollContainer: {
-    flexGrow: 1
-  },
   header: {
     flexShrink: 0,
     marginBottom: 25
+  },
+  scrollContainer: {
+    flexGrow: 1
   }
 })
 // Define validation schema using yup
@@ -40,9 +41,9 @@ const loginSchema = yup.object().shape({
 })
 
 const Login = () => {
-  const [error, setError] = useState<string | null>(null)
-  const [dialogVisible, setDialogVisible] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [ error, setError ] = useState<string | null>(null)
+  const [ dialogVisible, setDialogVisible ] = useState(false)
+  const [ loading, setLoading ] = useState(false)
 
   const navigation = useTypedNavigation<AuthStackParamList>()
   const setUser = useAuthStore((state) => state.setUser)
@@ -67,7 +68,8 @@ const Login = () => {
 
       navigation.navigate('user', { screen: 'objective' })
     }
-    catch (error: any) {
+    catch (e) {
+      const error = e as FirebaseError
       let errorMessage = 'An unknown error occurred'
 
       if (error.code) {

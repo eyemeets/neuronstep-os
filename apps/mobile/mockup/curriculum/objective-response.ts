@@ -1,23 +1,17 @@
-const curriculumObjectiveResponseData = {
+import type { CourseObjectiveSchema, EducationLevel } from 'shared-types'
+
+const courseObjectiveResponseData: CourseObjectiveSchema = {
+  title: '',
+  course_description: '',
   'valid': true,
   'reason': 'The objective is appropriate for curriculum development as it aligns with educational goals.',
   'curriculum': 'UIO',
-  'appropriate_for_curriculum': true,
-  'rejection_reason': '',
   'friendly_feedback': 'Great choice! Learning about AI is very relevant and can open up numerous opportunities. To enhance your learning goal, consider specifying particular aspects of AI you are interested in or what skills you aim to acquire, such as machine learning or natural language processing.',
-  'feedback_prompts': [
-    'What specific aspects of AI are you most interested in?',
-    'Have you considered the skills you want to gain from this learning experience?'
-  ],
-  'user_prompts': [
-    'I want to learn about AI, focusing on machine learning and its applications.',
-    'I seek to acquire skills in AI programming and data analysis.'
-  ],
   'content_description': 'The objective focuses on understanding the fundamentals, concepts, and applications of Artificial Intelligence.',
   'objective_match': true,
   'relevance_score': 85,
   'complexity_score': 70,
-  'educational_level': 'undergraduate',
+  'education_level': 'undergraduate' as EducationLevel,
   'missing_information': [
     'Specific interests or subtopics within AI',
     'Estimated time commitment',
@@ -101,10 +95,11 @@ const curriculumObjectiveResponseData = {
   'estimated_timeframe': 80,
   'timeframe_adjustment_reasoning': 'Reflects the typical time required to cover essential topics at the undergraduate level.',
   'mitigation_strategies': 'Use of scaffolding techniques to build understanding gradually while providing timely feedback.',
-  'lang': 'en',
-  'languageName': 'English',
-  'countryCode': 'US',
-  'countryName': 'United States'
+  'language': 'en',
+  'language_name': 'English',
+  'country_code': 'US',
+  'country_name': 'United States',
+  user_query: ''
 }
 
-export default curriculumObjectiveResponseData
+export default courseObjectiveResponseData
