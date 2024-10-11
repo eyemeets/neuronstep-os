@@ -21,6 +21,7 @@ export interface UserObjectiveParamsSchema {
 }
 
 export interface CourseObjectiveSchema {
+  uid?: string
   user_query: string
   title: string
   course_description: string
@@ -81,7 +82,6 @@ export interface CourseObjectiveSchema {
   mitigation_strategies: string
   file?: File
   curriculum: string
-  learning_style: UserLearningPreferences
   tone: UserTonePreferences
   image_theme?: ImageTheme
   visual_elements?: string[]

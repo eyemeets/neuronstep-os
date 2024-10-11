@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@shared-types/*": ["shared-types/*"]
+    }
+  }
+}
