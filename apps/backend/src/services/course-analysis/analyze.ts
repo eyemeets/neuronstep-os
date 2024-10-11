@@ -1,17 +1,14 @@
-// analyze.ts
-import { v4 as uuidv4 } from 'uuid' // Import the UUID generator
+import { v4 as uuidv4 } from 'uuid'
 import { zodResponseFormat } from 'openai/helpers/zod'
-import { sendMessageAndParseResponse, setupAssistantAndThread } from '../openai' // Adjust the import path as needed
+import { sendMessageAndParseResponse, setupAssistantAndThread } from '../openai'
 import { createUserPromptForCurriculumOutlineSchema, createUserPromptForCurriculumPlan } from './prompt'
 import { ZodCurriculumOutlineSchema, ZodCurriculumPlanSchema } from './schema'
-import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
-import type { UserRecord } from 'firebase-admin/lib/auth/user-record' // Import the UserRecord type
-
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
-import type { CoursePlanSchema, CourseObjectiveSchema } from 'shared-types'
 
-const a = [ { test: '' } ]
+import type { CoursePlanSchema, CourseObjectiveSchema } from 'shared-types'
+import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
+import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
 
 export async function analyzeContent(params: CourseObjectiveSchema, user: UserRecord) {
 

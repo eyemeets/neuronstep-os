@@ -1,6 +1,4 @@
-// course-generator/prompts.ts
-
-import type { CourseOutlineChapterSchema, CourseOutlinePageSchema, CourseOutlineSchema, CourseOutlineSubtopicSchema, CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
+import type { CourseOutlineChapterSchema, CourseOutlinePageSchema, CourseOutlineSubtopicSchema, CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
 
 /**
  * Creates an initial instruction prompt to set the context for content generation.

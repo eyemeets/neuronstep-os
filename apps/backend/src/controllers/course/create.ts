@@ -3,6 +3,13 @@ import { createContentForCourse } from '../../services/course-creator/create'
 import { processFile } from '../../services/file-processor'
 import type { CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
 
+/**
+ * Controller for handling course creation.
+ * 
+ * @param req - The Express request object.
+ * @param res - The Express response object.
+ * 
+ */
 export async function courseCreationController(req: Request, res: Response) {
   if (!req.user) {
     return res.status(400).json({ error: 'User object is undefined' })
