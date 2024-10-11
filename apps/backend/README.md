@@ -118,9 +118,9 @@ This API validates a user objective and returns feedback, validation results, an
 {
   "objective": "I want to learn about AI",
   "lang": "en-US",
-  "educationLevel": "undergraduate",
+  "education_level": "undergraduate",
   "curriculum": "UIS",
-  "learningStyle": "readingWriting",
+  "learning_style": "readingWriting",
   "tone": "academic"
 }
 ```

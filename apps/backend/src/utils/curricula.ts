@@ -2,7 +2,7 @@ import type { TopicRange, UserLearningPreferences, UserTonePreferences } from 's
 import { EducationLevel } from 'shared-types'
 
 // Updated function to match the refined values for different education levels
-export function courseDurationRange(level: EducationLevel): TopicRange {
+export function courseDurationRange(level?: EducationLevel): TopicRange {
   console.log( 'level', level )
   switch (level) {
     case EducationLevel.PRESCHOOL:
@@ -95,7 +95,7 @@ export function generateContentBasedOnLearningStyle(preferences: UserLearningPre
   }
 }
 
-export function generateLearningStyleDescription(preferences: UserLearningPreferences): string {
+export function generateLearningStyleDescription(preferences?: UserLearningPreferences): string {
   switch (preferences) {
     case 'visual':
       return 'a visually rich format with diagrams, charts, and video tutorials'
@@ -133,7 +133,7 @@ export function generateContentBasedOnTone(preferences: UserTonePreferences) {
   }
 }
 
-export function generateToneDescription(preferences: UserTonePreferences): string {
+export function generateToneDescription(preferences?: UserTonePreferences): string {
   switch (preferences) {
     case 'fun':
       return 'a lighthearted and engaging tone with humor and playful examples'

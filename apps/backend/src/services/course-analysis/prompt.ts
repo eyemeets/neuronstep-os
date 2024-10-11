@@ -1,8 +1,8 @@
 // content-analysis/prompt.ts
-import type { CoursePlanSchema, ValidatedObjective } from 'shared-types'
+import type { CoursePlanSchema, CourseObjectiveSchema } from 'shared-types'
 import { courseDurationRange, generateLearningStyleDescription, generateToneDescription } from '../../utils/curricula'
 
-export function createUserPromptForCurriculumPlan(params: ValidatedObjective) {
+export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema) {
   // Extract relevant fields from the validated objective
   const {
     content_description,
@@ -15,7 +15,7 @@ export function createUserPromptForCurriculumPlan(params: ValidatedObjective) {
     complexity_score,
     bloom_taxonomy_level,
     recommended_learning_frameworks = [],
-    learning_style_alignment = [],
+    learning_style = [],
     prerequisites = [],
     adaptive_learning_recommendations,
     assessment_methods = [],
@@ -85,7 +85,7 @@ export function createUserPromptForCurriculumPlan(params: ValidatedObjective) {
   ${recommended_learning_frameworks.length > 0 ? recommended_learning_frameworks.join(', ') : 'N/A'}
 
   **Learning Style Alignment:**
-  ${learning_style_alignment.length > 0 ? learning_style_alignment : 'N/A'}
+  ${learning_style.length > 0 ? learning_style : 'N/A'}
 
   **Adaptive Learning Recommendations:**
   "${adaptive_learning_recommendations}"
@@ -169,7 +169,7 @@ export function createUserPromptForCurriculumPlan(params: ValidatedObjective) {
   **Ensure that your response is in valid JSON format and conforms to the schema provided. Do not include any explanations or additional text outside the JSON response.`
 }
 
-export function createUserPromptForCurriculumOutlineSchema(params: ValidatedObjective, curriculumPlan: CoursePlanSchema) {
+export function createUserPromptForCurriculumOutlineSchema(params: CourseObjectiveSchema, curriculumPlan: CoursePlanSchema) {
   const numberOfTopics = curriculumPlan.number_of_main_topics
   const numberOfSubTopics = curriculumPlan.number_of_sub_topics
   const numberOfPages = curriculumPlan.number_of_pages

@@ -13,11 +13,12 @@ import { useForm, Controller } from 'react-hook-form'
 import HelperText from '../../atoms/HelperText'
 import ActivityIndicator from '../../atoms/ActivityIndicator'
 import { useCurriculumStore } from '@/stores/curriculum'
-import type { PromptData, ValidatedObjective } from '@/types/curricula'
 import { sleep } from '@/utils'
 import { useUiStore } from '@/stores/user-ui'
 import { auth } from '@/fb.config'
 import { useFirestore } from '@/hooks/useFirestore'
+import type { UserLearningPreferences, UserObjectiveParamsSchema, UserTonePreferences } from 'shared-types'
+import { EducationLevel } from 'shared-types'
 
 const styles = StyleSheet.create({
   activityIndicator: {
@@ -74,17 +75,56 @@ const styles = StyleSheet.create({
   }
 })
 
+// Define possible values for education level, learning style, and tone
+const educationLevels: EducationLevel[] = [
+  EducationLevel.PRESCHOOL,
+  EducationLevel.PRIMARY,
+  EducationLevel.SECONDARY,
+  EducationLevel.UNDERGRADUATE,
+  EducationLevel.GRADUATE,
+  EducationLevel.DOCTORATE,
+  EducationLevel.POSTDOCTORAL
+]
+
+
+const learningStyles: UserLearningPreferences[] = [
+  'visual',
+  'auditory',
+  'kinesthetic',
+  'readingWriting'
+]
+
+const tonePreferences: UserTonePreferences[] = [
+  'fun',
+  'serious',
+  'academic',
+  'motivational',
+  'satirical',
+  'friendly',
+  'reflective',
+  'inspirational'
+]
+
 // Define validation schema using yup
 const promptSchema = yup.object().shape({
-  curriculum: yup.string(),
+  curriculum: yup.string().optional(), // Optional field
   objective: yup
     .string()
     .min(10, 'Objective must be at least 10 characters')
-    .required('Objective is required'),
-  language: yup.string(),
-  educationLevel: yup.string(),
-  learningStyle: yup.string(),
-  tone: yup.string()
+    .required('Objective is required'), // Required field
+  language: yup.string().optional(), // Optional field
+  education_level: yup
+    .string()
+    .oneOf(educationLevels, 'Invalid education level') // Validate against allowed values
+    .optional(), // Optional field
+  learning_style: yup
+    .string()
+    .oneOf(learningStyles, 'Invalid learning style') // Validate against allowed values
+    .optional(), // Optional field
+  tone: yup
+    .string()
+    .oneOf(tonePreferences, 'Invalid tone preference') // Validate against allowed values
+    .optional() // Optional field
 })
 
 const PromptBox = () => {
@@ -147,14 +187,14 @@ const PromptBox = () => {
     { label: 'Inspirational', value: 'inspirational' }
   ]
 
-  const handleValidate = async (data: PromptData) => {
+  const handleValidate = async (data: UserObjectiveParamsSchema) => {
     setRequestValidating(true)
     // Set default values for missing fields
     const formattedData = {
       objective: data.objective,
       language: data.language || 'en-US',
-      education_level: data.educationLevel || 'undergraduate',
-      learning_style: data.learningStyle || 'visual',
+      education_level: data.education_level || 'undergraduate',
+      learning_style: data.learning_style || 'visual',
       tone: data.tone || 'accademic',
       curriculum: data.curriculum || 'General'
     }
@@ -279,7 +319,7 @@ const PromptBox = () => {
         <View style={styles.inputGroup}>
           <Controller
             control={control}
-            name="educationLevel"
+            name="education_level"
             render={({ field: { onChange, value } }) => (
               <Select
                 options={educationOptions}
@@ -297,7 +337,7 @@ const PromptBox = () => {
         <View style={styles.inputGroup}>
           <Controller
             control={control}
-            name="learningStyle"
+            name="learning_style"
             render={({ field: { onChange, value } }) => (
               <Select
                 options={learningStyleOptions}

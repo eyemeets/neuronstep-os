@@ -9,11 +9,11 @@ import type { UserRecord } from 'firebase-admin/lib/auth/user-record' // Import 
 
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
-import type { CoursePlanSchema, ValidatedObjective } from 'shared-types'
+import type { CoursePlanSchema, CourseObjectiveSchema } from 'shared-types'
 
 const a = [ { test: '' } ]
 
-export async function analyzeContent(params: ValidatedObjective, user: UserRecord) {
+export async function analyzeContent(params: CourseObjectiveSchema, user: UserRecord) {
 
   const assistant = await setupAssistantAndThread({
     name: 'Curriculum Designer',
@@ -107,7 +107,7 @@ export async function analyzeContent(params: ValidatedObjective, user: UserRecor
 }
 
 async function generateCurriculumPlan(params: {
-  validatedObjective: ValidatedObjective
+  validatedObjective: CourseObjectiveSchema
   assistantId: string
   threadId: string
   responseFormat: AssistantResponseFormatOption | null | undefined
@@ -139,7 +139,7 @@ async function generateCurriculumPlan(params: {
 
 async function createContentOutlineForCurriculum(params: {
   stream?: boolean
-  validatedObjective: ValidatedObjective
+  validatedObjective: CourseObjectiveSchema
   curriculumPlan: CoursePlanSchema | undefined
   assistantId: string
   threadId: string

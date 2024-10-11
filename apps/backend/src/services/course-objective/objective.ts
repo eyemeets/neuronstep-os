@@ -4,7 +4,7 @@ import { createUserPrompt } from './prompt'
 import { ZodSubmissionSchema } from './schema'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
 import { CurriculaSubmissionType } from 'shared-types'
-import type { ValidateObjectiveUserData } from 'shared-types'
+import type { UserObjectiveParamsSchema } from 'shared-types'
 
 /**
  * Function to validate if the objective is educational and suitable for curriculum creation
@@ -17,7 +17,7 @@ import type { ValidateObjectiveUserData } from 'shared-types'
  * @param {CCSubmissionType} submissionType - The type of submission (TEXT, PDF, DESCRIPTION)
  * @returns {Promise<Object>} Object with validation status, reason, objective summary, and potential subject classification
  */
-export async function validateLearningObjective(params: ValidateObjectiveUserData, submissionType: CurriculaSubmissionType, user: UserRecord) {
+export async function validateLearningObjective(params: UserObjectiveParamsSchema, submissionType: CurriculaSubmissionType, user: UserRecord) {
   const systemPrompt = getSubmissionTypeSystemPrompt(submissionType)
 
   if (!systemPrompt.length) {
@@ -25,11 +25,11 @@ export async function validateLearningObjective(params: ValidateObjectiveUserDat
   }
 
   const schema = ZodSubmissionSchema({
-    curriculum: `The curriculum or educational framework that the user has chosen (${params.curriculum})`,
-    friendly_feedback: `Constructive feedback provided in the user's preferred language (${params.lang})`,
-    educational_level: `The educational level chosen by the user (${params.education_level})`,
-    tone: `The tone for the curriculum as selected by the user (${params.tone})`,
-    learning_style_alignment: `Learning styles (${params.learning_style}) that align with the curriculum`
+    curriculum_desc: `The curriculum or educational framework that the user has chosen (${params.curriculum})`,
+    friendly_feedback_desc: `Constructive feedback provided in the user's preferred language (${params.language})`,
+    education_level_desc: `The educational level chosen by the user (${params.education_level})`,
+    tone_desc: `The tone for the curriculum as selected by the user (${params.tone})`,
+    learning_style_desc: `Learning styles (${params.learning_style}) that align with the curriculum`
   })
 
   const userPrompt = createUserPrompt(params)
@@ -53,9 +53,9 @@ export async function validateLearningObjective(params: ValidateObjectiveUserDat
     const validatedData = schema.parse(parsedJson)
 
     validatedData.curriculum = params.curriculum
-    validatedData.lang = params.lang
+    validatedData.language = params.language
     validatedData.educational_level = params.education_level
-    validatedData.learning_style_alignment = params.learning_style
+    validatedData.learning_style = params.learning_style
     validatedData.user_query = params.objective
 
     return validatedData

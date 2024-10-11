@@ -1,13 +1,13 @@
-import type { ValidatedObjective, CurriculumPlan, CurriculumOutlineSchema } from '@/types/curricula'
+import type { CourseObjectiveSchema, CoursePlanSchema, CourseOutlineSchema } from 'shared-types'
 import { create } from 'zustand'
 
 interface CurriculumStore {
-  objective: ValidatedObjective | null
-  plan: CurriculumPlan | null
-  outline: CurriculumOutlineSchema | null
-  setObjective: (objective: ValidatedObjective) => void
-  setPlan: (plan: CurriculumPlan) => void
-  setOutline: (outline: CurriculumOutlineSchema) => void
+  objective: CourseObjectiveSchema | null
+  plan: CoursePlanSchema | null
+  outline: CourseOutlineSchema | null
+  setObjective: (objective: CourseObjectiveSchema) => void
+  setPlan: (plan: CoursePlanSchema) => void
+  setOutline: (outline: CourseOutlineSchema) => void
 }
 
 export const useCurriculumStore = create<CurriculumStore>((set) => ({

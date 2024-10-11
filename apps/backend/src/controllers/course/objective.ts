@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { validateLearningObjective } from '../../services/course-objective/objective'
 import { processFile } from '../../services/file-processor'
-import { CurriculaSubmissionType, type ValidateObjectiveUserData } from 'shared-types'
+import { CurriculaSubmissionType, type UserObjectiveParamsSchema } from 'shared-types'
 
 /**
  * Controller function to handle user query and do analysis and prepare for the course.
@@ -15,7 +15,7 @@ export const courseObjectiveController = async (req: Request, res: Response) => 
 
   try {
     const file = req.file
-    const params = Object.assign(req.body, { file }) as ValidateObjectiveUserData
+    const params = Object.assign(req.body, { file }) as UserObjectiveParamsSchema
     
     // Parse and validate the objective using the helper function
     const validatedObjective = parseAndValidateObjective(params)
@@ -58,7 +58,7 @@ export const courseObjectiveController = async (req: Request, res: Response) => 
  * @param objective - The objective string to be validated
  * @returns {string | null} - The valid parsed objective or null if invalid
  */
-function parseAndValidateObjective(params: ValidateObjectiveUserData): string | null {
+function parseAndValidateObjective(params: UserObjectiveParamsSchema): string | null {
   if (!params.objective || typeof params.objective !== 'string') {
     return null
   }

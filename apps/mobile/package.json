@@ -81,6 +81,7 @@
     "jest-expo": "~51.0.4",
     "react-test-renderer": "18.2.0",
     "tsconfig": "workspace:*",
-    "vitest": "^2.1.2"
+    "vitest": "^2.1.2",
+    "shared-types": "workspace:*"
   }
 }

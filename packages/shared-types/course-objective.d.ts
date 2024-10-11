@@ -1,26 +1,26 @@
-export interface CustomUserSchemaParams {
-  curriculum: string
-  friendly_feedback: string
-  educational_level: string
-  tone: string
-  learning_style_alignment: string
+export interface ZodCustomUserSchemaParams {
+  curriculum_desc: string
+  friendly_feedback_desc: string
+  education_level_desc: string
+  tone_desc: string
+  learning_style_desc: string
 }
 
-export interface ValidateObjectiveUserData {
-  lang: string
+export interface UserObjectiveParamsSchema {
+  language?: string
   objective: string
-  education_level: EducationLevel
-  curriculum: string
-  learning_style: UserLearningPreferences
-  tone: UserTonePreferences
-  outcome: string
-  age: number
-  frameworks: string[]
-  timeframe: number
-  file: File
+  education_level?: EducationLevel
+  curriculum?: string
+  learning_style?: UserLearningPreferences
+  tone?: UserTonePreferences
+  outcome?: string
+  age?: number
+  frameworks?: string[]
+  timeframe?: number
+  file?: File
 }
 
-export interface ValidatedObjective {
+export interface CourseObjectiveSchema {
   user_query: string
   title: string
   course_description: string
@@ -66,7 +66,7 @@ export interface ValidatedObjective {
     description: string
   }
   recommended_learning_frameworks: string[]
-  learning_style_alignment: string[]
+  learning_style: UserLearningPreferences
   sub_learning_objectives: string[]
   prerequisites: string[]
   estimated_time_to_complete: string

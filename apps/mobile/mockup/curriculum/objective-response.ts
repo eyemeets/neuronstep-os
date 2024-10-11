@@ -64,10 +64,6 @@ const curriculumObjectiveResponseData = {
     'Project-Based Learning',
     'Inquiry-Based Learning'
   ],
-  'learning_style_alignment': [
-    'Visual',
-    'ReadingWriting'
-  ],
   'sub_learning_objectives': [
     'Define AI and its key components.',
     'Explore machine learning algorithms.',

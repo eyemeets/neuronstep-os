@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { analyzeContent } from '../../services/course-analysis/analyze'
 import { processFile } from '../../services/file-processor'
-import type { ValidatedObjective } from 'shared-types'
+import type { CourseObjectiveSchema } from 'shared-types'
 /**
  * Controller function to handle content analysis or file processing.
  * @param req - The Express request object.
@@ -14,7 +14,7 @@ export const courseAnalysisController = async (req: Request, res: Response) => {
 
   try {
     const file = req.file
-    const params = Object.assign(req.body, { file }) as ValidatedObjective
+    const params = Object.assign(req.body, { file }) as CourseObjectiveSchema
 
     if (!params) return res.status(400).json({
       error: 'No parameters provided'

@@ -1,4 +1,4 @@
-import type { CustomUserSchemaParams } from 'shared-types'
+import type { ZodCustomUserSchemaParams } from 'shared-types'
 import { z } from 'zod'
 
 export const imageThemeSchema = z.object({
@@ -24,20 +24,20 @@ export const imageThemeSchema = z.object({
   environment: z.string().describe('A description of the environment where the image is set, tailored to the specific subject or context')
 })
 
-export const ZodSubmissionSchema = (params: CustomUserSchemaParams) => z.object({
+export const ZodSubmissionSchema = (params: ZodCustomUserSchemaParams) => z.object({
   user_query: z.string().optional().describe('Leave this as an empty string'),
   valid: z.boolean().describe('Indicates if the objective is valid for curriculum creation'),
   reason: z.string().describe('Explanation of why the objective is suitable or not'),
   title: z.string().describe('The title of the course to provide context and identification.'),
   course_description: z.string().describe('A brief description of the course content and objectives for the user.'),
-  curriculum: z.string()
-    .describe(params.curriculum || 'The curriculum or educational framework that the user has chosen'),
+  curriculum: z.string().optional()
+    .describe(params.curriculum_desc || 'The curriculum or educational framework that the user has chosen'),
 
   appropriate_for_curriculum: z.boolean().describe('If the objective is appropriate for the chosen curriculum'),
   rejection_reason: z.string().optional().describe('The reason the objective was rejected, if applicable'),
 
   friendly_feedback: z.string()
-    .describe(params.friendly_feedback || 'Constructive feedback for the user, in the specified language'),
+    .describe(params.friendly_feedback_desc || 'Constructive feedback for the user, in the specified language'),
 
   feedback_prompts: z.array(z.string()).optional().describe('Follow-up questions to guide the user in improving the objective'),
   user_prompts: z.array(z.string()).optional().describe('Enhanced versions of the user’s original objective prompts'),
@@ -46,19 +46,18 @@ export const ZodSubmissionSchema = (params: CustomUserSchemaParams) => z.object(
   relevance_score: z.number().describe('A score assessing the relevance of the objective to the curriculum'),
   complexity_score: z.number().describe('A score assessing the complexity of the objective'),
 
-  educational_level: z.string()
-    .describe(params.educational_level || 'The educational level targeted by the curriculum'),
+  educational_level: z.string().optional()
+    .describe(params.education_level_desc || 'The educational level targeted by the curriculum'),
 
   missing_information: z.array(z.string()).optional().describe('Any missing key information required to create the curriculum'),
   ethical_compliance: z.boolean().describe('Whether the objective adheres to ethical standards'),
   ethical_compliance_details: z.string().describe('Details about any ethical considerations'),
   learning_outcomes: z.array(z.string()).optional().describe('The skills and knowledge learners will gain'),
-  learning_style: z.enum([ 'visual', 'auditory', 'kinesthetic', 'readingWriting' ]).describe('The preferred learning style for the course content'),
 
   tone: z.enum([
     'fun', 'serious', 'academic', 'motivational', 'satirical', 'friendly', 'reflective', 'inspirational'
   ])
-    .describe(params.tone || 'The tone or voice that the curriculum will use'),
+    .describe(params.tone_desc || 'The tone or voice that the curriculum will use'),
 
   suitability_for_adaptive_learning: z.number().describe('A score assessing how well the curriculum adapts to different learners'),
   adaptive_learning_recommendations: z.string().describe('Suggestions for improving the curriculum’s adaptability'),
@@ -84,12 +83,12 @@ export const ZodSubmissionSchema = (params: CustomUserSchemaParams) => z.object(
   }).optional().describe('The classification of the curriculum content'),
   recommended_learning_frameworks: z.array(z.string()).optional().describe('Recommended educational frameworks for structuring the curriculum'),
 
-  learning_style_alignment: z.union([
+  learning_style: z.union([
     z.literal('visual'),
     z.literal('auditory'),
     z.literal('kinesthetic'),
     z.literal('readingWriting')
-  ]).describe(params.learning_style_alignment || 'Which learning styles the user aligns with'),
+  ]).optional().describe(params.learning_style_desc || 'Which learning styles the user aligns with'),
 
   sub_learning_objectives: z.array(z.string()).optional().describe('The sub-objectives that break down the main learning objective'),
   prerequisites: z.array(z.string()).optional().describe('The knowledge or skills required before taking the course'),
@@ -103,7 +102,7 @@ export const ZodSubmissionSchema = (params: CustomUserSchemaParams) => z.object(
   estimated_timeframe: z.number().describe('The total estimated time to complete the course'),
   timeframe_adjustment_reasoning: z.string().optional().describe('Reasoning behind any changes to the estimated time'),
   mitigation_strategies: z.string().describe('Strategies to handle any challenges or difficulties that arise during the course'),
-  lang: z.string().optional().describe('The language code for the curriculum (ISO 639-1)'),
+  language: z.string().optional().describe('The language code for the curriculum (ISO 639-1)'),
   language_name: z.string().optional().describe('The name of the language used for the curriculum'),
   country_code: z.string().optional().describe('ISO 3166-1 alpha-2 country code'),
   country_name: z.string().optional().describe('The name of the country associated with the curriculum'),

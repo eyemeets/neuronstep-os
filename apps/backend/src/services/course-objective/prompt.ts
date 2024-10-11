@@ -1,7 +1,7 @@
-import type { ValidateObjectiveUserData } from 'shared-types'
+import type { UserObjectiveParamsSchema } from 'shared-types'
 import { courseDurationRange, generateLearningStyleDescription, generateToneDescription } from '../../utils/curricula'
 
-export function createUserPrompt(params: ValidateObjectiveUserData) {
+export function createUserPrompt(params: UserObjectiveParamsSchema) {
   const courseDetails = courseDurationRange(params.education_level)
   const learningStyle = generateLearningStyleDescription(params.learning_style)
   const tone = generateToneDescription(params.tone)
@@ -10,7 +10,7 @@ export function createUserPrompt(params: ValidateObjectiveUserData) {
   A user has submitted a request. Analyze the following objective: "${params.objective}". 
 
   The user’s learning goal is "${params.objective}". 
-  The user's Language is "${params.lang || 'en-US'}",
+  The user's Language is "${params.language || 'en-US'}",
   Expected outcome is "${params.outcome || 'N/A'}",
   Age: "${params.age || 'N/A'}",
   Timeframe in hours: "${params.timeframe || 'N/A'}",  
@@ -26,7 +26,7 @@ export function createUserPrompt(params: ValidateObjectiveUserData) {
   The user has selected the **"${params.learning_style}"** learning style, so content should be adapted to: "${learningStyle}".
   The user prefers the tone to be **"${params.tone}"**, so content should be generated in a **"${tone}"** tone.
 
-  Please write in the user's language (${params.lang}) when filling out the JSON schema.
+  Please write in the user's language (${params.language}) when filling out the JSON schema.
  
   Please respect the users preferences.
 
@@ -162,7 +162,7 @@ export function createUserPrompt(params: ValidateObjectiveUserData) {
     "reason": "why the objective is suitable or not for curriculum creation",
     "appropriate_for_curriculum": true/false,
     "rejection_reason": "Explanation if the objective is not appropriate",
-    "friendly_feedback": "Constructive feedback in language code \"${params.lang}\" to the user",
+    "friendly_feedback": "Constructive feedback in language code \"${params.language}\" to the user",
     "feedback_prompts": ["question 1", "question 2", ...]
     "user_prompts": ["Enhanced prompt version of the users objective", "another one", ...]
     "content_description": "Summary of what the objective is about",
@@ -198,7 +198,6 @@ export function createUserPrompt(params: ValidateObjectiveUserData) {
       "description": "Description of the classification"
     },
     "recommended_learning_frameworks": ["Mastery Learning", "Spaced Repetition", ...],
-    "learning_style_alignment": ["Visual", "Auditory", "Kinesthetic"],
     "learning_style": ${params.learning_style}",
     "sub_learning_objectives": ["Sub-objective 1", "Sub-objective 2", ...],
     "prerequisites": ["Prerequisite knowledge or skills"],
