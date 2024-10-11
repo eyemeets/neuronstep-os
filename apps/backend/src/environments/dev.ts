@@ -1,4 +1,3 @@
-import { requestLogger } from '../middlewares/request-logger'
 import { updateEnvFile } from '../utils/env'
 
 export const dev = (localIp: string, port: number) => {

@@ -33,19 +33,23 @@ export const ZodCurriculumPlanSchema = z.object({
 })
 
 export const ZodCurriculumOutlineSchema = z.object({
+  id: z.string().optional().describe('Leave this field empty'),
   title: z.string(),
   description: z.string(),
   image_prompt: z.string(),
   chapters: z.array(
     z.object({
+      id: z.string().optional().describe('Leave this field empty'),
       topic: z.string(),
       image_prompt: z.string(),
       subtopics: z.array(
         z.object({
+          id: z.string().optional().describe('Leave this field empty'),
           subtopic: z.string(),
           image_prompt: z.string(),
           pages: z.array(
             z.object({
+              id: z.string().optional().describe('Leave this field empty'),
               block_title: z.string(),
               content_type: z.nativeEnum(ContentTypeEnum), // Using the defined enum for content type
               description: z.string(),
@@ -58,25 +62,29 @@ export const ZodCurriculumOutlineSchema = z.object({
       )
     })
   ),
-  assistantId: z.string().optional(), // Add this field
-  threadId: z.string().optional() // Add this field
+  assistantId: z.string().optional(),
+  threadId: z.string().optional()
 })
 
 
 export const emptyCurriculumOutlineSchema: CurriculumOutlineSchema = {
+  id: '',
   title: '', // Title of the course, to be populated later
   description: '', // Description of the course, to be populated later
   image_prompt: '', // Optional course-level image prompt
   chapters: [
     {
+      id: '',
       topic: '', // Topic of the chapter, to be populated later
       image_prompt: '', // Optional image prompt for the chapter
       subtopics: [
         {
+          id: '',
           subtopic: '', // Subtopic name, to be populated later
           image_prompt: '', // Optional image prompt for the subtopic
           pages: [
             {
+              id: '',
               block_title: '', // Title of the page, to be populated later
               content_type: '' as ContentTypeEnum, // Content type, e.g., 'text', 'video', etc.
               description: '', // Description of the page

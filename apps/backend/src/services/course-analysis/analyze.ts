@@ -1,4 +1,5 @@
 // analyze.ts
+import { v4 as uuidv4 } from 'uuid' // Import the UUID generator
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { sendMessageAndParseResponse, setupAssistantAndThread } from '../openai' // Adjust the import path as needed
 import type { CurriculumPlan } from '../../types/curricula'
@@ -11,8 +12,10 @@ import type { UserRecord } from 'firebase-admin/lib/auth/user-record' // Import 
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
 
+const a = [ { test: '' } ]
+
 export async function analyzeContent(params: ValidatedObjective, user: UserRecord) {
-  user.uid
+
   const assistant = await setupAssistantAndThread({
     name: 'Curriculum Designer',
     instructions: 'You are an expert curriculum designer with a deep understanding of educational frameworks and adaptive learning strategies.',
@@ -70,16 +73,19 @@ export async function analyzeContent(params: ValidatedObjective, user: UserRecor
 
     return {
       ...chapter,
+      id: `chapter-${uuidv4()}`, // Generate id if missing
       image_prompt: topicImagePrompt, // This assigns the image prompt for the topic
       subtopics: chapter.subtopics.map((subtopic) => {
         const subtopicImagePrompt = generateSubtopicImagePrompt(params.image_theme, subtopic.subtopic)
 
         return {
           ...subtopic,
+          id: `subtopic-${uuidv4()}`, // Generate id if missing
           image_prompt: subtopicImagePrompt,
           pages: subtopic.pages.map((page) => {
             return {
               ...page,
+              id: `page-${uuidv4()}`, // Generate id if missing
               content: page.content || '' // Ensure content always has a value
             }
           })
@@ -88,6 +94,10 @@ export async function analyzeContent(params: ValidatedObjective, user: UserRecor
     }
   })
 
+  // Add course ID as well
+  const courseId = `course-${uuidv4()}`
+
+  curriculumOutline.id = courseId
   curriculumOutline.chapters = formattedChapters
 
   return {

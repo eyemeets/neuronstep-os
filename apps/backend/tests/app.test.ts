@@ -10,4 +10,3 @@ describe('GET /', () => {
     expect(res.body).toEqual({ hello: 'world' }) // Update to match the actual response
   })
 })
-

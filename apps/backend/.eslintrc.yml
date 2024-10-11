@@ -1,3 +1,8 @@
+ignorePatterns:
+  - 'node_modules/'
+  - '*.md'
+  - '*.env'
+
 extends:
   - 'eslint-config-custom'
 
@@ -16,3 +21,6 @@ rules:
   '@typescript-eslint/no-redeclare': 'error'
   '@typescript-eslint/explicit-function-return-type': 'off'
   '@typescript-eslint/no-explicit-any': 'off'
+  'no-multi-spaces': 'error'
+  'object-curly-spacing': ['error', 'always']
+  'array-bracket-spacing': ['error', 'always']

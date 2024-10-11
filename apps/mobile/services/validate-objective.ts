@@ -1,4 +1,3 @@
-import { auth } from '@/fb.config'
 import { createCourseServerInstance } from './api' // Import the function to create the instance
 import { endpoints } from './endpoints'
 import curriculumObjectiveResponseData from '@/mockup/curriculum/objective-response'

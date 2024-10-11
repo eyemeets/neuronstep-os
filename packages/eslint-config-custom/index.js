@@ -1,5 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
+  ignorePatterns: ['node_modules/'],
   extends: [
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
@@ -14,7 +15,7 @@ module.exports = {
   },
   rules: {
     'turbo/no-undeclared-env-vars': 'off',
-    "eol-last": ["error", "always"],
+    'eol-last': ['error', 'always'],
     'no-multi-spaces': ['error'],
     'array-bracket-spacing': ['error', 'always'],
     'object-curly-spacing': ['error', 'always'],

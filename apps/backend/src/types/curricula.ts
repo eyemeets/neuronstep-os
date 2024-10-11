@@ -206,16 +206,20 @@ export interface CurriculumPlan {
 }
 
 export interface CurriculumOutlineSchema {
+  id: string
   title: string
   description: string
   image_prompt?: string // Add image_prompt to course-level
   chapters: {
+    id: string
     topic: string
     image_prompt?: string // Add image_prompt to topic-level
     subtopics: {
+      id: string
       subtopic: string
       image_prompt?: string // Add image_prompt to subtopic-level
       pages: {
+        id: string
         block_title: string
         content_type: ContentTypeEnum
         description: string
