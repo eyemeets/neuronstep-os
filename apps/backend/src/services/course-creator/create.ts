@@ -5,9 +5,9 @@ import { createInitialInstructionPrompt, createContentPromptForBlock } from './p
 import type { BlockContentResponse, InitialInstructionResponse } from './schema'
 import { ZodInitialInstructionResponseSchema, ZodBlockContentResponseSchema } from './schema'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
-import type { CourseOutlineChapterSchema, CourseOutlineSubtopicSchema, CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
+import type { CourseOutlineChapterSchema, CourseOutlineSubtopicSchema, CurriculumObjectivePlanAndOutlineStructure } from '@repo/shared-types'
 import { uploadImageToFirebase } from '../firestore'
-import { collections } from 'shared-constants'
+import { collections } from '@repo/shared-constants'
 import { writeToFirestore } from '../firestore'
 
 export async function createContentForCourse(params: CurriculumObjectivePlanAndOutlineStructure, user: UserRecord) {
@@ -103,7 +103,7 @@ async function createCourseImg(params: CurriculumObjectivePlanAndOutlineStructur
   }
   
   // Step 2: Upload course image to Firebase Storage
-  const courseImagePath = `users/${user.uid}/${params.objective.objetive_id}/course-cover-${params.outline.id}.png`
+  const courseImagePath = `users/${user.uid}/${params.objective.objective_id}/course-cover-${params.outline.id}.png`
   const courseImageFirebaseUrl = await uploadImageToFirebase(imgUrl, courseImagePath)
 
   return courseImageFirebaseUrl
@@ -117,7 +117,7 @@ async function createChapterImg(params: CurriculumObjectivePlanAndOutlineStructu
     throw new Error('Chapter image was undefined')
   }
 
-  const chapterImagePath = `users/${user.uid}/${params.objective.objetive_id}/chapter-${chapter.id}.png`
+  const chapterImagePath = `users/${user.uid}/${params.objective.objective_id}/chapter-${chapter.id}.png`
   const chapterImageFirebaseUrl = await uploadImageToFirebase(imgUrl, chapterImagePath)
 
   return chapterImageFirebaseUrl
@@ -130,7 +130,7 @@ async function createSubtopicImg(params: CurriculumObjectivePlanAndOutlineStruct
   if (!imgUrl) {
     throw new Error('Chapter image was undefined')
   }
-  const subtopicImagePath = `users/${user.uid}/${params.objective.objetive_id}/subtopic-${subtopic.id}.png`
+  const subtopicImagePath = `users/${user.uid}/${params.objective.objective_id}/subtopic-${subtopic.id}.png`
   const subtopicImageFirebaseUrl = await uploadImageToFirebase(imgUrl, subtopicImagePath)
 
   return subtopicImageFirebaseUrl

@@ -1,6 +1,6 @@
-import type { CoursePlanSchema, CourseOutlineSchema } from 'shared-types'
+import type { CoursePlanSchema, CourseOutlineSchema } from '@repo/shared-types'
 import { createCourseServerInstance } from './api' // Use the createServerInstance function
-import { endpoints } from 'shared-constants'
+import { endpoints } from '@repo/shared-constants'
 
 export const createCourse = async (coursePlan: CoursePlanSchema): Promise<CourseOutlineSchema | null> => {
   try {

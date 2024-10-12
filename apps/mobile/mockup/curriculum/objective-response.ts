@@ -1,4 +1,5 @@
-import type { CourseObjectiveSchema, EducationLevel } from 'shared-types'
+import type { CourseObjectiveSchema } from '@repo/shared-types'
+import {EducationLevel} from '@repo/shared-enums'
 
 const courseObjectiveResponseData: CourseObjectiveSchema = {
   title: '',
@@ -99,7 +100,8 @@ const courseObjectiveResponseData: CourseObjectiveSchema = {
   'language_name': 'English',
   'country_code': 'US',
   'country_name': 'United States',
-  user_query: ''
+  'user_query': '',
+  'objective_id': ''
 }
 
 export default courseObjectiveResponseData

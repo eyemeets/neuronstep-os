@@ -1,7 +1,7 @@
 // content-analysis/schema.ts
 import { z } from 'zod'
-import { ContentTypeEnum } from 'shared-types'
-import type { CourseOutlineSchema } from 'shared-types'
+import { ContentTypeEnum } from '@repo/shared-enums'
+import type { CourseOutlineSchema } from '@repo/shared-types'
 
 export type CurriculumPlanZod = z.infer<typeof ZodCurriculumPlanSchema>
 

@@ -1,4 +1,4 @@
-import { ContentTypeEnum } from "index"
+//import type { ContentTypeEnum } from 'shared-enums'
 
 export interface CourseOutlineSchema {
   id: string
@@ -30,7 +30,7 @@ export interface CourseOutlineSubtopicSchema {
 export interface CourseOutlinePageSchema {
   id: string
   block_title: string
-  content_type: ContentTypeEnum
+  content_type: string //ContentTypeEnum
   description: string
   estimated_time: string
   content?: string

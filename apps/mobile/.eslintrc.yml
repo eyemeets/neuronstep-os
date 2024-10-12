@@ -2,7 +2,7 @@ ignorePatterns:
   - 'node_modules/'
 
 extends:
-  - 'eslint-config-custom'
+  - '@repo/shared-eslint-config'
   - 'plugin:react/recommended'
   - 'plugin:react-native/all'
 

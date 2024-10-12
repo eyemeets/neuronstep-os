@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { createContentForCourse } from '../../services/course-creator/create'
 import { processFile } from '../../services/file-processor'
-import type { CurriculumObjectivePlanAndOutlineStructure } from 'shared-types'
+import type { CurriculumObjectivePlanAndOutlineStructure } from '@repo/shared-types'
 
 /**
  * Controller for handling course creation.

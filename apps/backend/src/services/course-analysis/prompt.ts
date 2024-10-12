@@ -1,5 +1,5 @@
 // content-analysis/prompt.ts
-import type { CoursePlanSchema, CourseObjectiveSchema } from 'shared-types'
+import type { CoursePlanSchema, CourseObjectiveSchema } from '@repo/shared-types'
 import { courseDurationRange, generateLearningStyleDescription, generateToneDescription } from '../../utils/curricula'
 
 export function createUserPromptForCurriculumPlan(params: CourseObjectiveSchema) {

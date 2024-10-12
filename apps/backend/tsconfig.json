@@ -1,13 +1,15 @@
 {
-  "extends": "tsconfig/tsconfig.json",
+  "extends": "@repo/shared-tsconfig",
   "compilerOptions": {
     "target": "ESNext",
     "module": "commonjs",
     "lib": ["ESNext"],
     "allowJs": true,
+    "skipLibCheck": true,
     "outDir": "./dist",
     "isolatedModules": false,
     "noUnusedLocals": true,
+    "baseUrl": "./",
     "typeRoots": [
       "node_modules/@types",
       "src/types"

@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { analyzeContent } from '../../services/course-analysis/analyze'
 import { processFile } from '../../services/file-processor'
-import type { CourseObjectiveSchema } from 'shared-types'
+import type { CourseObjectiveSchema } from '@repo/shared-types'
 
 /**
  * Controller function to handle content analysis or file processing.

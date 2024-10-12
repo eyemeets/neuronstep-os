@@ -1,4 +1,4 @@
-import type { ZodCustomUserSchemaParams } from 'shared-types'
+import type { ZodCustomUserSchemaParams } from '@repo/shared-types'
 import { z } from 'zod'
 
 export const imageThemeSchema = z.object({

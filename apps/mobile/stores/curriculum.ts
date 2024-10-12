@@ -1,4 +1,4 @@
-import type { CourseObjectiveSchema, CoursePlanSchema, CourseOutlineSchema } from 'shared-types'
+import type { CourseObjectiveSchema, CoursePlanSchema, CourseOutlineSchema } from '@repo/shared-types'
 import { create } from 'zustand'
 
 interface CurriculumStore {

@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@shared-types/*": ["shared-types/*"]
-    }
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true
   }
 }

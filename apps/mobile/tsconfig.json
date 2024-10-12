@@ -1,16 +1,16 @@
 {
-  "extends": "tsconfig",
+  "extends": "@repo/shared-tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
     "allowJs": true,
     "jsx": "react-native",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["ESNext"],
     "noEmit": true,
+    "skipLibCheck": true,
     "target": "ESNext",
     "paths": {
       "@/*": ["./*"],
-      "@firebase/auth": ["../../node_modules/@firebase/auth/dist/index.rn.d.ts"],
-      "@shared-types": ["../../packages/shared-types/*"]
+      "@firebase/auth": ["../../node_modules/@firebase/auth/dist/index.rn.d.ts"]
     }
   },
   "include": [
@@ -18,8 +18,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "types/*.d.ts",
-    "../../packages/shared-types/*"
+    "types/*.d.ts"
   ],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

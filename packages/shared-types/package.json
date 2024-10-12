@@ -1,16 +1,13 @@
 {
-  "name": "shared-types",
+  "name": "@repo/shared-types",
   "version": "1.0.0",
   "description": "Shared type definitions for NeuronStep",
-  "main": "index.ts",
-  "types": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "index.d.ts",
+  "types": "index.d.ts",
   "keywords": [],
   "author": "Daniel Hendricks",
   "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.0.0"
+  "dependencies": {
+    "@repo/shared-enums": "workspace:*"
   }
 }

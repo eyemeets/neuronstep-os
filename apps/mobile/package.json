@@ -71,7 +71,7 @@
     "@types/react-native-vector-icons": "^6.4.18",
     "@types/react-test-renderer": "^18.0.7",
     "babel-plugin-module-resolver": "^5.0.0",
-    "eslint-config-custom": "workspace:*",
+    "@repo/shared-eslint-config": "workspace:*",
     "eslint-config-universe": "^12.0.0",
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-format": "^0.1.0",
@@ -80,9 +80,10 @@
     "jest": "^29.4.0",
     "jest-expo": "~51.0.4",
     "react-test-renderer": "18.2.0",
-    "tsconfig": "workspace:*",
+    "@repo/shared-tsconfig": "workspace:*",
     "vitest": "^2.1.2",
-    "shared-types": "workspace:*",
-    "shared-constants": "workspace:*"
+    "@repo/shared-enums": "workspace:*",
+    "@repo/shared-types": "workspace:*",
+    "@repo/shared-constants": "workspace:*"
   }
 }

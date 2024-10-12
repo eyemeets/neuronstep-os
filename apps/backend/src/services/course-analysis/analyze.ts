@@ -8,10 +8,10 @@ import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicIm
 
 import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
-import { collections } from 'shared-constants'
+import { collections } from '@repo/shared-constants'
 import { writeToFirestore } from '../firestore'
 
-import type { CourseObjectiveSchema, CoursePlanSchema } from 'shared-types'
+import type { CourseObjectiveSchema, CoursePlanSchema } from '@repo/shared-types'
 
 export async function analyzeContent(params: CourseObjectiveSchema, user: UserRecord) {
   try {

@@ -2,11 +2,11 @@ import { zodResponseFormat } from 'openai/helpers/zod'
 import { createGPTCompletion } from '../openai'
 import { createUserPrompt, getSubmissionTypeSystemPrompt } from './prompt'
 import { ZodSubmissionSchema } from './schema'
-import { collections } from 'shared-constants'
+import { collections } from '@repo/shared-constants'
 
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
-import type { CurriculaSubmissionType } from 'shared-types'
-import type { UserObjectiveParamsSchema } from 'shared-types'
+import type { CurriculaSubmissionTypeEnum } from '@repo/shared-enums'
+import type { UserObjectiveParamsSchema } from '@repo/shared-types'
 import { writeToFirestore } from '../firestore'
 
 /**
@@ -20,7 +20,7 @@ import { writeToFirestore } from '../firestore'
  * @param {CCSubmissionType} submissionType - The type of submission (TEXT, PDF, DESCRIPTION)
  * @returns {Promise<Object>} Object with validation status, reason, objective summary, and potential subject classification
  */
-export async function validateLearningObjective(params: UserObjectiveParamsSchema, submissionType: CurriculaSubmissionType, user: UserRecord) {
+export async function validateLearningObjective(params: UserObjectiveParamsSchema, submissionType: CurriculaSubmissionTypeEnum, user: UserRecord) {
   const systemPrompt = getSubmissionTypeSystemPrompt(submissionType)
 
   if (!systemPrompt.length) {

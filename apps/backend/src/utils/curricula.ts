@@ -1,5 +1,5 @@
-import type { TopicRange, UserLearningPreferences, UserTonePreferences } from 'shared-types'
-import { EducationLevel } from 'shared-types'
+import type { TopicRange, UserLearningPreferences, UserTonePreferences } from '@repo/shared-types'
+import { EducationLevel } from '@repo/shared-enums'
 
 // Updated function to match the refined values for different education levels
 export function courseDurationRange(level?: EducationLevel): TopicRange {

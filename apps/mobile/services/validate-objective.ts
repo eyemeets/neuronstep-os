@@ -1,6 +1,6 @@
-import type { CourseObjectiveSchema } from 'shared-types'
+import type { CourseObjectiveSchema } from '@repo/shared-types'
 import { createCourseServerInstance } from './api' // Import the function to create the instance
-import { endpoints } from 'shared-constants'
+import { endpoints } from '@repo/shared-constants'
 import courseObjectiveResponseData from '@/mockup/curriculum/objective-response'
 import { sleep } from '@/utils'
 

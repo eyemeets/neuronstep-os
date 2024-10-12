@@ -1,0 +1,15 @@
+{
+  "name": "@repo/shared-enums",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Daniel Hendricks",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "~5.3.0"
+  }
+}

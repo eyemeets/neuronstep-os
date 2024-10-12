@@ -49,7 +49,6 @@ const CurriculumValidationPanel: React.FC = () => {
   const { objective } = useCurriculumStore()
   const navigation = useTypedNavigation()
   const { isValidationPanelVisible, closeValidationPanel } = useUiStore()
-  const { addDoc } = useFirestore()
 
   const handleConfirm = async () => {
     if (!objective) {
@@ -67,9 +66,10 @@ const CurriculumValidationPanel: React.FC = () => {
     // Populate store data
     useCurriculumStore.getState().setPlan(response.plan)
     useCurriculumStore.getState().setOutline(response.outline)
-
+    console.log('response.plan -> ', response.plan, '<- response.plan')
+    console.log('response.outline -> ', response.outline, '<- response.outline')
     // Navigate to chapters and wait for content generation
-    navigation.navigate('chapters')
+    navigation.navigate('user', { screen: 'user' })
   }
 
   return (

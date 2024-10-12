@@ -1,4 +1,4 @@
-import { CourseObjectiveSchema } from "course-objective"
+import { CourseObjectiveSchema } from "./course-objective"
 import { CourseOutlineSchema } from "./course-outline"
 import { CoursePlanSchema } from "./course-plan"
 

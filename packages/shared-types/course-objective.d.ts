@@ -1,4 +1,4 @@
-import { EducationLevel } from "index"
+//import type { EducationLevel } from "shared-enums"
 
 export interface ZodCustomUserSchemaParams {
   curriculum_desc: string
@@ -12,7 +12,7 @@ export interface UserObjectiveParamsSchema {
   objective_id?: string
   language?: string
   objective: string
-  education_level?: EducationLevel
+  education_level?: string //EducationLevel
   curriculum?: string
   learning_style?: UserLearningPreferences
   tone?: UserTonePreferences

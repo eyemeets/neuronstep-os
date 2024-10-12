@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
       turbo:
         specifier: ^2.1.3
         version: 2.1.3
@@ -72,6 +69,21 @@ importers:
         specifier: ^3.23.8
         version: 3.23.8
     devDependencies:
+      '@repo/shared-constants':
+        specifier: workspace:*
+        version: link:../../packages/shared-constants
+      '@repo/shared-enums':
+        specifier: workspace:*
+        version: link:../../packages/shared-enums
+      '@repo/shared-eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/shared-eslint-config
+      '@repo/shared-tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/shared-tsconfig
+      '@repo/shared-types':
+        specifier: workspace:*
+        version: link:../../packages/shared-types
       '@types/async-retry':
         specifier: ^1.4.8
         version: 1.4.8
@@ -108,9 +120,6 @@ importers:
       '@types/uuid':
         specifier: ^10.0.0
         version: 10.0.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
       eslint-plugin-cypress:
         specifier: ^2.13.3
         version: 2.13.3(eslint@8.41.0)
@@ -120,12 +129,6 @@ importers:
       globals:
         specifier: ^15.9.0
         version: 15.9.0
-      shared-constants:
-        specifier: workspace:*
-        version: link:../../packages/shared-constants
-      shared-types:
-        specifier: workspace:*
-        version: link:../../packages/shared-types
       supertest:
         specifier: ^7.0.0
         version: 7.0.0
@@ -135,9 +138,6 @@ importers:
       ts-node-dev:
         specifier: ^2.0.0
         version: 2.0.0(@types/node@22.7.5)(typescript@5.3.3)
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
@@ -280,6 +280,21 @@ importers:
       '@babel/core':
         specifier: ^7.24.0
         version: 7.24.0
+      '@repo/shared-constants':
+        specifier: workspace:*
+        version: link:../../packages/shared-constants
+      '@repo/shared-enums':
+        specifier: workspace:*
+        version: link:../../packages/shared-enums
+      '@repo/shared-eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/shared-eslint-config
+      '@repo/shared-tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/shared-tsconfig
+      '@repo/shared-types':
+        specifier: workspace:*
+        version: link:../../packages/shared-types
       '@testing-library/jest-native':
         specifier: ^5.4.3
         version: 5.4.3(react-native@0.74.5)(react-test-renderer@18.2.0)(react@18.2.0)
@@ -301,9 +316,6 @@ importers:
       babel-plugin-module-resolver:
         specifier: ^5.0.0
         version: 5.0.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
       eslint-config-universe:
         specifier: ^12.0.0
         version: 12.0.0(eslint@8.41.0)(prettier@3.2.5)(typescript@5.3.3)
@@ -328,20 +340,19 @@ importers:
       react-test-renderer:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
-      shared-constants:
-        specifier: workspace:*
-        version: link:../../packages/shared-constants
-      shared-types:
-        specifier: workspace:*
-        version: link:../../packages/shared-types
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
       vitest:
         specifier: ^2.1.2
         version: 2.1.2(@types/node@22.7.5)(jsdom@25.0.1)
 
-  packages/eslint-config-custom:
+  packages/shared-constants: {}
+
+  packages/shared-enums:
+    dependencies:
+      typescript:
+        specifier: ~5.3.0
+        version: 5.3.3
+
+  packages/shared-eslint-config:
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.8
@@ -359,19 +370,17 @@ importers:
         specifier: ^2.27.5
         version: 2.27.5(@typescript-eslint/parser@5.59.8)(eslint@8.41.0)
 
-  packages/shared-constants: {}
-
-  packages/shared-types:
-    devDependencies:
-      typescript:
-        specifier: ^4.0.0
-        version: 4.0.2
-
-  packages/tsconfig:
+  packages/shared-tsconfig:
     dependencies:
       typescript:
         specifier: ~5.3.0
         version: 5.3.3
+
+  packages/shared-types:
+    dependencies:
+      '@repo/shared-enums':
+        specifier: workspace:*
+        version: link:../shared-enums
 
 packages:
 
@@ -530,7 +539,7 @@ packages:
     resolution: {integrity: sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.19.0
+      '@babel/types': 7.25.7
     dev: false
 
   /@babel/helper-module-imports@7.25.7:
@@ -13550,12 +13559,6 @@ packages:
   /typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: false
-
-  /typescript@4.0.2:
-    resolution: {integrity: sha512-e4ERvRV2wb+rRZ/IQeb3jm2VxBsirQLpQhdxplZ2MEzGvDkkMmPglecnNDfSUBivMjP93vRbngYYDQqQ/78bcQ==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
 
   /typescript@5.3.3:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}

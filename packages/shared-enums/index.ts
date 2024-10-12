@@ -1,11 +1,5 @@
-// shared-types/index.ts
-export * from './course-objective'; // instead of export type *
-export * from './course-plan'; 
-export * from './course-outline'; 
-export * from './course-curriculum'; 
-export * from './adaptive-learning';
 
-export enum CurriculaSubmissionType {
+export enum CurriculaSubmissionTypeEnum {
   TEXT = 'text',
   PDF = 'pdf',
   DESCRIPTION = 'description'

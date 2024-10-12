@@ -1,5 +1,5 @@
 {
-  "name": "shared-constants",
+  "name": "@repo/shared-constants",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

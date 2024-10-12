@@ -1,5 +1,6 @@
-import { CurriculaSubmissionType, type UserObjectiveParamsSchema } from 'shared-types'
+import { type UserObjectiveParamsSchema } from '@repo/shared-types'
 import { courseDurationRange, generateLearningStyleDescription, generateToneDescription } from '../../utils/curricula'
+import { CurriculaSubmissionTypeEnum } from '@repo/shared-enums'
 
 export function createUserPrompt(params: UserObjectiveParamsSchema) {
   const courseDetails = courseDurationRange(params.education_level)
@@ -249,15 +250,15 @@ export function getSubmissionTypeSystemPrompt(type: string) {
   let prompt = ''
 
   switch (type) {
-    case CurriculaSubmissionType.TEXT:
+    case CurriculaSubmissionTypeEnum.TEXT:
       prompt = 'As an expert educational evaluator, analyze the provided text for suitability in curriculum creation. Your analysis should be based on educational frameworks including SMART goals, Bloom\'s Taxonomy, Cognitive Load Theory, Mastery Learning, Universal Design for Learning (UDL), and 21st-Century Skills.'
       break
 
-    case CurriculaSubmissionType.PDF:
+    case CurriculaSubmissionTypeEnum.PDF:
       prompt = 'As an expert educational evaluator, analyze the content of the provided PDF for suitability in curriculum creation. Your analysis should be based on educational frameworks including SMART goals, Bloom\'s Taxonomy, Cognitive Load Theory, Mastery Learning, Universal Design for Learning (UDL), and 21st-Century Skills.'
       break
 
-    case CurriculaSubmissionType.DESCRIPTION:
+    case CurriculaSubmissionTypeEnum.DESCRIPTION:
       prompt = 'As an expert educational evaluator, analyze the following description for suitability in curriculum creation. Your analysis should be based on educational frameworks including SMART goals, Bloom\'s Taxonomy, Cognitive Load Theory, Mastery Learning, Universal Design for Learning (UDL), and 21st-Century Skills.'
       break
 

@@ -1,4 +1,4 @@
-import type { CurriculumPlanAndOutlineStructure } from 'shared-types'
+import type { CurriculumPlanAndOutlineStructure } from '@repo/shared-types'
 
 
 export default {
