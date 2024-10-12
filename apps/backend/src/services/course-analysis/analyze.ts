@@ -71,7 +71,7 @@ export async function analyzeContent(params: CourseObjectiveSchema, user: UserRe
   
     const courseImagePrompt = generateCourseImagePrompt(params.image_theme, courseTitle, courseDescription, params.user_query)
   
-    curriculumOutline.image_prompt = courseImagePrompt
+    curriculumOutline.img_prompt = courseImagePrompt
     console.log('courseImagePrompt -> ', courseImagePrompt)
   
     const formattedChapters = curriculumOutline.chapters.map((chapter) => {
@@ -82,14 +82,14 @@ export async function analyzeContent(params: CourseObjectiveSchema, user: UserRe
       return {
         ...chapter,
         id: `chapter-${uuidv4()}`, // Generate id if missing
-        image_prompt: topicImagePrompt, // This assigns the image prompt for the topic
+        img_prompt: topicImagePrompt, // This assigns the image prompt for the topic
         subtopics: chapter.subtopics.map((subtopic) => {
           const subtopicImagePrompt = generateSubtopicImagePrompt(params.image_theme, subtopic.subtopic)
   
           return {
             ...subtopic,
             id: `subtopic-${uuidv4()}`, // Generate id if missing
-            image_prompt: subtopicImagePrompt,
+            img_prompt: subtopicImagePrompt,
             pages: subtopic.pages.map((page) => {
               return {
                 ...page,
@@ -110,6 +110,7 @@ export async function analyzeContent(params: CourseObjectiveSchema, user: UserRe
   
     // Write to DB
     await writeToFirestore({
+      docId: params.objective_id,
       path: collections.course.outlines,
       uid: user.uid,
       data: curriculumPlan

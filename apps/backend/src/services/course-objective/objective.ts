@@ -69,10 +69,11 @@ export async function validateLearningObjective(params: UserObjectiveParamsSchem
       uid: user.uid,
       data: validatedObjective
     })
-    
+
     return validatedObjective
   }
   catch (validationError) {
+    console.error(validationError)
     return false
   }
 }

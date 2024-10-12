@@ -4,7 +4,8 @@ export interface CourseOutlineSchema {
   id: string
   title: string
   description: string
-  image_prompt?: string // Add image_prompt to course-level
+  img_prompt: string
+  img_url?: string
   chapters: CourseOutlineChapterSchema[]
   assistantId?: string
   threadId?: string
@@ -13,14 +14,16 @@ export interface CourseOutlineSchema {
 export interface CourseOutlineChapterSchema {
   id: string
   topic: string
-  image_prompt?: string // Add image_prompt to topic-level
+  img_prompt: string
+  img_url?: string
   subtopics: CourseOutlineSubtopicSchema[]
 }
 
 export interface CourseOutlineSubtopicSchema {
   id: string
   subtopic: string
-  image_prompt?: string // Add image_prompt to subtopic-level
+  img_prompt: string
+  img_url?: string
   pages: CourseOutlinePageSchema[]
 }
 
@@ -31,7 +34,8 @@ export interface CourseOutlinePageSchema {
   description: string
   estimated_time: string
   content?: string
-  image_prompt?: string // Add image_prompt to page-level if needed
+  img_prompt?: string
+  img_url?: string
 }
 
 export interface TopicRange {

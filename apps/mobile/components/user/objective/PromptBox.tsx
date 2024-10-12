@@ -14,7 +14,6 @@ import HelperText from '../../atoms/HelperText'
 import ActivityIndicator from '../../atoms/ActivityIndicator'
 import { useCurriculumStore } from '@/stores/curriculum'
 import { useUiStore } from '@/stores/user-ui'
-import { useFirestore } from '@/hooks/useFirestore'
 import type { UserLearningPreferences, UserObjectiveParamsSchema, UserTonePreferences } from 'shared-types'
 import { EducationLevel } from 'shared-types'
 import { v4 as uuidv4 } from 'uuid'
@@ -140,8 +139,6 @@ const PromptBox = () => {
   const { control, handleSubmit, setValue, formState: { errors } } = useForm({
     resolver: yupResolver(promptSchema)
   })
-
-  const { addDoc } = useFirestore()
 
   useEffect(() => {
     Animated.timing(animatedHeight, {

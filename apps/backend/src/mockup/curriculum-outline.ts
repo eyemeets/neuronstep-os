@@ -48,15 +48,15 @@ export default {
   'outline': {
     'title': 'Introduction to Artificial Intelligence',
     'description': 'This undergraduate curriculum provides a comprehensive overview of artificial intelligence (AI), covering key concepts, technologies, and applications across various industries. Students will engage in critical discussions about the ethical implications of AI while developing practical skills to apply AI methodologies in real-world scenarios. The course adopts an interactive approach to enhance learning through collaborative projects and case studies.',
-    'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "I want to learn about AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+    'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "I want to learn about AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
     'chapters': [
       {
         'topic': 'Foundations of AI',
-        'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Foundations of AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+        'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Foundations of AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
         'subtopics': [
           {
             'subtopic': 'Key Concepts in AI',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Key Concepts in AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Key Concepts in AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'Introduction to AI',
@@ -64,7 +64,7 @@ export default {
                 'description': 'Overview of what artificial intelligence is and its significance.',
                 'estimated_time': 'content\': \'Artificial Intelligence (AI) is the simulation of human intelligence processes by machines...\'',
                 'content': '',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'History of AI',
@@ -72,7 +72,7 @@ export default {
                 'description': 'Review of the historical development of AI technologies.',
                 'estimated_time': 'content\': \'The history of AI dates back to ancient mythologies and continues to evolve...\'',
                 'content': '',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Importance of AI',
@@ -80,7 +80,7 @@ export default {
                 'description': 'Discusses the importance of AI in today\'s society.',
                 'estimated_time': '',
                 'content': 'AI has immense implications for various sectors...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Future of AI',
@@ -88,13 +88,13 @@ export default {
                 'description': 'Explores potential future advancements in AI.',
                 'estimated_time': '',
                 'content': 'The future of AI is poised for significant breakthroughs...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           },
           {
             'subtopic': 'AI Terminology',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI Terminology" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI Terminology" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'Key Terms in AI',
@@ -102,7 +102,7 @@ export default {
                 'description': 'Definitions of essential AI terms.',
                 'estimated_time': '',
                 'content': 'Several key terms define the field of AI, including...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Understanding Algorithms',
@@ -110,7 +110,7 @@ export default {
                 'description': 'Introduction to algorithms used in AI.',
                 'estimated_time': '',
                 'content': 'Algorithms form the backbone of AI, enabling machines to process data...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Machine Learning vs AI',
@@ -118,7 +118,7 @@ export default {
                 'description': 'Differences between machine learning and AI.',
                 'estimated_time': '',
                 'content': 'While all machine learning is AI, not all AI is machine learning...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Deep Learning Essentials',
@@ -126,7 +126,7 @@ export default {
                 'description': 'Basic concepts and significance of deep learning.',
                 'estimated_time': '',
                 'content': 'Deep learning is a subset of machine learning emphasizing neural networks...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           }
@@ -134,11 +134,11 @@ export default {
       },
       {
         'topic': 'AI Technologies',
-        'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI Technologies" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+        'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI Technologies" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
         'subtopics': [
           {
             'subtopic': 'Types of AI Technologies',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Types of AI Technologies" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Types of AI Technologies" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'Supervised Learning',
@@ -146,7 +146,7 @@ export default {
                 'description': 'Explanation of supervised learning techniques.',
                 'estimated_time': '',
                 'content': 'Supervised learning involves training a model on a labeled dataset...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Unsupervised Learning',
@@ -154,7 +154,7 @@ export default {
                 'description': 'Overview of unsupervised learning methods.',
                 'estimated_time': '',
                 'content': 'Unsupervised learning identifies patterns in data without predefined labels...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Reinforcement Learning',
@@ -162,7 +162,7 @@ export default {
                 'description': 'Explains the concept of reinforcement learning.',
                 'estimated_time': '',
                 'content': 'Reinforcement learning is driven by rewards and penalties, guiding decision-making...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Natural Language Processing',
@@ -170,13 +170,13 @@ export default {
                 'description': 'Introduction to natural language processing in AI.',
                 'estimated_time': '',
                 'content': 'Natural Language Processing (NLP) enables machines to understand human language...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           },
           {
             'subtopic': 'AI Development Platforms',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI Development Platforms" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI Development Platforms" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'Overview of AI Platforms',
@@ -184,7 +184,7 @@ export default {
                 'description': 'Introduces various AI development platforms.',
                 'estimated_time': '',
                 'content': 'AI platforms such as TensorFlow and PyTorch facilitate model development...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Cloud-Based AI Services',
@@ -192,7 +192,7 @@ export default {
                 'description': 'Discusses cloud services for AI application.',
                 'estimated_time': '',
                 'content': 'Cloud services like AWS and Azure provide tools for AI model deployment...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'AI Programming Languages',
@@ -200,7 +200,7 @@ export default {
                 'description': 'List of programming languages used in AI.',
                 'estimated_time': '',
                 'content': 'Popular programming languages for AI include Python, R, and Java...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'AI Frameworks and Libraries',
@@ -208,7 +208,7 @@ export default {
                 'description': 'Overview of frameworks and libraries for AI development.',
                 'estimated_time': '',
                 'content': 'Frameworks such as Keras and Scikit-learn simplify the development of AI models...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           }
@@ -216,11 +216,11 @@ export default {
       },
       {
         'topic': 'Applications of AI',
-        'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Applications of AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+        'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Applications of AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
         'subtopics': [
           {
             'subtopic': 'AI in Healthcare',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI in Healthcare" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI in Healthcare" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'AI Diagnostic Tools',
@@ -228,7 +228,7 @@ export default {
                 'description': 'How AI tools assist in diagnosing medical conditions.',
                 'estimated_time': '',
                 'content': 'AI diagnostic tools analyze patient data to identify potential illnesses...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'AI in Treatment Plans',
@@ -236,7 +236,7 @@ export default {
                 'description': 'Role of AI in personalized treatment strategies.',
                 'estimated_time': '',
                 'content': 'AI can tailor treatment plans based on patient-specific data and responses...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Drug Discovery with AI',
@@ -244,7 +244,7 @@ export default {
                 'description': 'Overview of AI applications in drug discovery.',
                 'estimated_time': '',
                 'content': 'AI accelerates drug discovery processes through predictive analysis...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'AI in Patient Care',
@@ -252,13 +252,13 @@ export default {
                 'description': 'Advantages of AI in patient management and care.',
                 'estimated_time': '',
                 'content': 'AI enhances patient monitoring and real-time care solutions...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           },
           {
             'subtopic': 'AI in Finance',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI in Finance" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI in Finance" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'Algorithmic Trading',
@@ -266,7 +266,7 @@ export default {
                 'description': 'The use of AI in trading algorithms.',
                 'estimated_time': '',
                 'content': 'Algorithmic trading leverages AI to make rapid investment decisions...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Fraud Detection Systems',
@@ -274,7 +274,7 @@ export default {
                 'description': 'AI applications in identifying fraudulent activities.',
                 'estimated_time': '',
                 'content': 'AI systems monitor transactions to detect anomalies indicative of fraud...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Risk Assessment Tools',
@@ -282,7 +282,7 @@ export default {
                 'description': 'How AI helps in financial risk assessments.',
                 'estimated_time': '',
                 'content': 'AI technologies evaluate potential risks using historical data patterns...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Customer Service Automation',
@@ -290,7 +290,7 @@ export default {
                 'description': 'AI chatbots in enhancing financial services.',
                 'estimated_time': '',
                 'content': 'AI chatbots improve customer service in the finance sector through automation...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           }
@@ -298,11 +298,11 @@ export default {
       },
       {
         'topic': 'Ethical Implications of AI',
-        'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Ethical Implications of AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+        'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Ethical Implications of AI" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
         'subtopics': [
           {
             'subtopic': 'Understanding AI Ethics',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Understanding AI Ethics" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "Understanding AI Ethics" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'AI and Bias',
@@ -310,7 +310,7 @@ export default {
                 'description': 'Examining bias in AI algorithms.',
                 'estimated_time': '',
                 'content': 'AI systems can perpetuate biases present in training data...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Privacy Concerns',
@@ -318,7 +318,7 @@ export default {
                 'description': 'Discussing privacy issues related to AI.',
                 'estimated_time': '',
                 'content': 'AI applications can pose privacy risks through data collection and analysis...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Accountability in AI',
@@ -326,7 +326,7 @@ export default {
                 'description': 'Role of accountability in AI decision-making.',
                 'estimated_time': '',
                 'content': 'Establishing accountability is crucial for AI systems that affect human lives...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Regulation of AI Technologies',
@@ -334,13 +334,13 @@ export default {
                 'description': 'Overview of strategies for regulating AI.',
                 'estimated_time': '',
                 'content': 'Regulating AI requires a balance between innovation and ethical considerations...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           },
           {
             'subtopic': 'AI in Society',
-            'image_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI in Society" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
+            'img_prompt': 'Create a concise 20-word photorealistic image prompt focused on "AI in Society" with a cinematic style. \n\nInclude: real-world visuals and real random world and everyday scenarios and settings related to the subject settings.. \n\nExclude: No futuristic, tech-related, no visible letters, no text, no symbols, no signs..',
             'pages': [
               {
                 'block_title': 'Impact of AI on Jobs',
@@ -348,7 +348,7 @@ export default {
                 'description': 'Effects of AI on employment and job markets.',
                 'estimated_time': '',
                 'content': 'AI\'s impact on jobs varies by industry, potentially displacing some roles...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Social Equity and AI',
@@ -356,7 +356,7 @@ export default {
                 'description': 'How AI can influence social equity.',
                 'estimated_time': '',
                 'content': 'Effective use of AI can help address societal challenges but risks exacerbating inequality...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'AI and National Security',
@@ -364,7 +364,7 @@ export default {
                 'description': 'Implications of AI for national security.',
                 'estimated_time': '',
                 'content': 'AI technologies play a significant role in defense and security strategies...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               },
               {
                 'block_title': 'Future Ethics of AI',
@@ -372,7 +372,7 @@ export default {
                 'description': 'Exploring future ethical considerations in AI.',
                 'estimated_time': '',
                 'content': 'As AI evolves, so do the ethical dilemmas it presents for society...\'',
-                'image_prompt': ''
+                'img_prompt': ''
               }
             ]
           }

@@ -24,6 +24,7 @@ export interface UserObjectiveParamsSchema {
 }
 
 export interface CourseObjectiveSchema {
+  objective_id: string
   uid?: string
   user_query: string
   title: string

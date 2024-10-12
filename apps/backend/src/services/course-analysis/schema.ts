@@ -8,7 +8,7 @@ export type CurriculumPlanZod = z.infer<typeof ZodCurriculumPlanSchema>
 export const ZodCurriculumPlanSchema = z.object({
   title: z.string(), // Title of the curriculum
   description: z.string(), // 50-100 words description of the curriculum
-  //image_prompt: z.string(),
+  //img_prompt: z.string(),
   estimated_total_minutes: z.number(), // Total estimated hours
   number_of_main_topics: z.number(), // Number of main topics (e.g., based on courseDetails.topics)
   number_of_sub_topics: z.number(), // Number of subtopics per topic (e.g., courseDetails.subtopics)
@@ -36,17 +36,20 @@ export const ZodCourseOutlineSchema = z.object({
   id: z.string().optional().describe('Leave this field empty'),
   title: z.string(),
   description: z.string(),
-  image_prompt: z.string(),
+  img_prompt: z.string(),
+  img_url: z.string().optional(),
   chapters: z.array(
     z.object({
       id: z.string().optional().describe('Leave this field empty'),
       topic: z.string(),
-      image_prompt: z.string(),
+      img_prompt: z.string(),
+      img_url: z.string().optional().describe('Leave this field empty'),
       subtopics: z.array(
         z.object({
           id: z.string().optional().describe('Leave this field empty'),
           subtopic: z.string(),
-          image_prompt: z.string(),
+          img_prompt: z.string(),
+          img_url: z.string().optional().describe('Leave this field empty'),
           pages: z.array(
             z.object({
               id: z.string().optional().describe('Leave this field empty'),
@@ -55,7 +58,7 @@ export const ZodCourseOutlineSchema = z.object({
               description: z.string(),
               estimated_time: z.string(),
               content: z.string().optional(),
-              image_prompt: z.string()
+              img_prompt: z.string()
             })
           )
         })
@@ -71,17 +74,18 @@ export const emptyCourseOutlineSchema: CourseOutlineSchema = {
   id: '',
   title: '', // Title of the course, to be populated later
   description: '', // Description of the course, to be populated later
-  image_prompt: '', // Optional course-level image prompt
+  img_prompt: '', // Optional course-level image prompt
+  img_url: '',
   chapters: [
     {
       id: '',
       topic: '', // Topic of the chapter, to be populated later
-      image_prompt: '', // Optional image prompt for the chapter
+      img_prompt: '', // Optional image prompt for the chapter
       subtopics: [
         {
           id: '',
           subtopic: '', // Subtopic name, to be populated later
-          image_prompt: '', // Optional image prompt for the subtopic
+          img_prompt: '', // Optional image prompt for the subtopic
           pages: [
             {
               id: '',
@@ -90,11 +94,13 @@ export const emptyCourseOutlineSchema: CourseOutlineSchema = {
               description: '', // Description of the page
               estimated_time: '', // Estimated time for the content
               content: '', // Optional content for the page
-              image_prompt: '' // Optional image prompt for the page
+              img_prompt: '' // Optional image prompt for the page
             }
-          ]
+          ],
+          img_url: ''
         }
-      ]
+      ],
+      img_url: ''
     }
   ],
   assistantId: '', // Optional assistantId

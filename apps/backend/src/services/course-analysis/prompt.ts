@@ -201,16 +201,16 @@ export function createUserPromptForCourseOutlineSchema(params: CourseObjectiveSc
   {
     "title": "Course Title",
     "description": "50 - 100 words about the curriculum.",
-    "image_prompt": ""
+    "img_prompt": ""
     "chapters": [
       {
         "topic": "Main Topic 1",
-        "image_prompt": ""
+        "img_prompt": ""
         "subtopics": [
           {
             "id": "1"
             "subtopic": "Subtopic 1.1",
-            "image_prompt": ""
+            "img_prompt": ""
             "pages": [
               {
                 "id": "1",
