@@ -1,3 +1,5 @@
+import { EducationLevel } from "index"
+
 export interface ZodCustomUserSchemaParams {
   curriculum_desc: string
   friendly_feedback_desc: string
@@ -85,16 +87,6 @@ export interface CourseObjectiveSchema {
   tone: UserTonePreferences
   image_theme?: ImageTheme
   visual_elements?: string[]
-}
-
-export enum EducationLevel {
-  PRESCHOOL = 'preschool',
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  UNDERGRADUATE = 'undergraduate',
-  GRADUATE = 'graduate',
-  DOCTORATE = 'doctorate',
-  POSTDOCTORAL = 'postdoctoral'
 }
 
 export type UserLearningPreferences = 'visual' | 'auditory' | 'kinesthetic' | 'readingWriting'

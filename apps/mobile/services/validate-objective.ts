@@ -1,6 +1,6 @@
 import type { CourseObjectiveSchema } from 'shared-types'
 import { createCourseServerInstance } from './api' // Import the function to create the instance
-import { endpoints } from './endpoints'
+import { endpoints } from 'shared-constants'
 import courseObjectiveResponseData from '@/mockup/curriculum/objective-response'
 
 export const validateObjective = async (params: { data: string; mockupResponse?: boolean }): Promise<CourseObjectiveSchema | null> => {

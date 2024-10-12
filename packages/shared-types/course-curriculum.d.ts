@@ -11,12 +11,6 @@ export interface CurriculumObjectivePlanAndOutlineStructure extends CurriculumPl
   objective: CourseObjectiveSchema
 }
 
-export enum CurriculaSubmissionType {
-  TEXT = 'text',
-  PDF = 'pdf',
-  DESCRIPTION = 'description'
-}
-
 export interface KnowledgeGraphData {
   source: string
   target: string

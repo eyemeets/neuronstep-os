@@ -64,29 +64,9 @@ const CurriculumValidationPanel: React.FC = () => {
       throw new Error('Plan and outline was null or undefined.')
     }
 
-    const uid = auth.currentUser?.uid
-
-    const plan = {
-      uid,
-      createdAt: new Date(),
-      ...response.plan
-    }
-
-    const outline = {
-      uid,
-      createdAt: new Date(),
-      ...response.outline
-    }
-
     // Populate store data
-    useCurriculumStore.getState().setPlan(plan)
-    useCurriculumStore.getState().setOutline(outline)
-
-    // Write data to db
-    Promise.all([
-      addDoc('course-plans', plan),
-      addDoc('course-outlines', outline)
-    ])    
+    useCurriculumStore.getState().setPlan(response.plan)
+    useCurriculumStore.getState().setOutline(response.outline)
 
     // Navigate to chapters and wait for content generation
     navigation.navigate('chapters')

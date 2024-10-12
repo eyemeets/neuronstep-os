@@ -1,10 +1,13 @@
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { createGPTCompletion } from '../openai'
-import { createUserPrompt } from './prompt'
+import { createUserPrompt, getSubmissionTypeSystemPrompt } from './prompt'
 import { ZodSubmissionSchema } from './schema'
+import { collections } from 'shared-constants'
+
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
-import { CurriculaSubmissionType } from 'shared-types'
+import type { CurriculaSubmissionType } from 'shared-types'
 import type { UserObjectiveParamsSchema } from 'shared-types'
+import { writeToFirestore } from '../firestore'
 
 /**
  * Function to validate if the objective is educational and suitable for curriculum creation
@@ -50,40 +53,25 @@ export async function validateLearningObjective(params: UserObjectiveParamsSchem
   }
 
   try {
-    const validatedData = schema.parse(parsedJson)
+    const validatedObjective = schema.parse(parsedJson)
 
-    validatedData.curriculum = params.curriculum
-    validatedData.language = params.language
-    validatedData.education_level = params.education_level
-    validatedData.learning_style = params.learning_style
-    validatedData.user_query = params.objective
+    validatedObjective.curriculum = params.curriculum
+    validatedObjective.language = params.language
+    validatedObjective.education_level = params.education_level
+    validatedObjective.learning_style = params.learning_style
+    validatedObjective.user_query = params.objective
 
-    return validatedData
+    const colPath = collections.course.objectives
+
+    writeToFirestore({
+      path: colPath,
+      uid: user.uid,
+      data: validatedObjective
+    })
+    
+    return validatedObjective
   }
   catch (validationError) {
     return false
   }
-}
-
-export function getSubmissionTypeSystemPrompt(type: string) {
-  let prompt = ''
-
-  switch (type) {
-    case CurriculaSubmissionType.TEXT:
-      prompt = 'As an expert educational evaluator, analyze the provided text for suitability in curriculum creation. Your analysis should be based on educational frameworks including SMART goals, Bloom\'s Taxonomy, Cognitive Load Theory, Mastery Learning, Universal Design for Learning (UDL), and 21st-Century Skills.'
-      break
-
-    case CurriculaSubmissionType.PDF:
-      prompt = 'As an expert educational evaluator, analyze the content of the provided PDF for suitability in curriculum creation. Your analysis should be based on educational frameworks including SMART goals, Bloom\'s Taxonomy, Cognitive Load Theory, Mastery Learning, Universal Design for Learning (UDL), and 21st-Century Skills.'
-      break
-
-    case CurriculaSubmissionType.DESCRIPTION:
-      prompt = 'As an expert educational evaluator, analyze the following description for suitability in curriculum creation. Your analysis should be based on educational frameworks including SMART goals, Bloom\'s Taxonomy, Cognitive Load Theory, Mastery Learning, Universal Design for Learning (UDL), and 21st-Century Skills.'
-      break
-
-    default:
-      return ''
-  }
-
-  return prompt
 }

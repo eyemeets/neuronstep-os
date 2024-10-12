@@ -1,7 +1,6 @@
 import type { CourseObjectiveSchema, CourseOutlineSchema, CoursePlanSchema } from 'shared-types'
 import { createCourseServerInstance } from './api' // Use the createServerInstance function
-import { endpoints } from './endpoints'
-
+import { endpoints } from 'shared-constants'
 type CourseAnalysisReturnParams = { plan: CoursePlanSchema; outline: CourseOutlineSchema } | null
 
 export const analyzeCourse = async (validatedObjective: CourseObjectiveSchema): Promise<CourseAnalysisReturnParams> => {

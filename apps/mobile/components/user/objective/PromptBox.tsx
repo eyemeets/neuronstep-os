@@ -211,19 +211,10 @@ const PromptBox = () => {
         throw new Error('Objective was null or undefined.')
       }
 
-      const uid = auth.currentUser?.uid
-
-      const objective = {
-        uid, // Add user's uid
-        createdAt: new Date(),
-        ...response
-      }
-
       // Populate store data
-      useCurriculumStore.getState().setObjective(objective)
+      useCurriculumStore.getState().setObjective(response)
 
-      // Write data to db
-      addDoc('course-objectives', objective)
+      // The server will write the data if valid
 
       // Open up the validation panel
       userUI.openValidationPanel()

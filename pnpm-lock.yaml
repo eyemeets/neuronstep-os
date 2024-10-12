@@ -120,6 +120,9 @@ importers:
       globals:
         specifier: ^15.9.0
         version: 15.9.0
+      shared-constants:
+        specifier: workspace:*
+        version: link:../../packages/shared-constants
       shared-types:
         specifier: workspace:*
         version: link:../../packages/shared-types
@@ -325,6 +328,9 @@ importers:
       react-test-renderer:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      shared-constants:
+        specifier: workspace:*
+        version: link:../../packages/shared-constants
       shared-types:
         specifier: workspace:*
         version: link:../../packages/shared-types
@@ -353,11 +359,13 @@ importers:
         specifier: ^2.27.5
         version: 2.27.5(@typescript-eslint/parser@5.59.8)(eslint@8.41.0)
 
+  packages/shared-constants: {}
+
   packages/shared-types:
     devDependencies:
       typescript:
-        specifier: ^4.0.0
-        version: 4.0.2
+        specifier: ^5.3.0
+        version: 5.3.3
 
   packages/tsconfig:
     dependencies:
@@ -13542,12 +13550,6 @@ packages:
   /typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: false
-
-  /typescript@4.0.2:
-    resolution: {integrity: sha512-e4ERvRV2wb+rRZ/IQeb3jm2VxBsirQLpQhdxplZ2MEzGvDkkMmPglecnNDfSUBivMjP93vRbngYYDQqQ/78bcQ==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
 
   /typescript@5.3.3:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}

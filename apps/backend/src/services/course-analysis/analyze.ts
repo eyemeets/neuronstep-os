@@ -6,100 +6,129 @@ import { ZodCourseOutlineSchema, ZodCurriculumPlanSchema } from './schema'
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
 import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/image-prompts'
 
-import type { CoursePlanSchema, CourseObjectiveSchema } from 'shared-types'
 import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
+import { collections } from 'shared-constants'
+import { writeToFirestore } from '../firestore'
+
+import type { CourseObjectiveSchema, CoursePlanSchema } from 'shared-types'
 
 export async function analyzeContent(params: CourseObjectiveSchema, user: UserRecord) {
-
-  const assistant = await setupAssistantAndThread({
-    name: 'Curriculum Designer',
-    instructions: 'You are an expert curriculum designer with a deep understanding of educational frameworks and adaptive learning strategies.',
-    assistantId: params.assistant_id,
-    threadId: params.threadId
-  })
-
-  // Step 1: Generate Curriculum Plan
-  console.log('Generate Curriculum Plan')
-
-  const curriculumPlan = params.use_mockup_data ?
-    mockupCurriculumOutline.plan :
-    await generateCurriculumPlan({
-      validatedObjective: params,
-      threadId: assistant.threadId,
-      assistantId: assistant.assistantId,
-      responseFormat: zodResponseFormat(ZodCurriculumPlanSchema, 'validation_response')
+  try {
+    const assistant = await setupAssistantAndThread({
+      name: 'Curriculum Designer',
+      instructions: 'You are an expert curriculum designer with a deep understanding of educational frameworks and adaptive learning strategies.',
+      assistantId: params.assistant_id,
+      threadId: params.threadId
     })
-
-  console.log('Finished generating Curriculum Plan')
-
-  // Step 4: Generate Main Topics, Sub Topics, and Pages based on the plan
-  console.log('Generate Main Topics, Sub Topics, and Pages based on the plan')
-
-  // Generate content
-  const curriculumOutline = params.use_mockup_data ?
-    mockupCurriculumOutline.outline :
-    await createContentOutlineForCurriculum({
-      validatedObjective: params,
-      curriculumPlan: curriculumPlan,
-      threadId: assistant.threadId,
-      assistantId: assistant.assistantId,
-      responseFormat: zodResponseFormat(ZodCourseOutlineSchema, 'validation_response')
-    })
-
-  // Add this guard clause
-  if (!curriculumOutline) {
-    throw new Error('Failed to generate curriculum outline.')
-  }
-  // Format data
-  const courseTitle = curriculumOutline.title
-  const courseDescription = curriculumOutline.description
-
-  console.log('user_query', params.user_query)
-
-  const courseImagePrompt = generateCourseImagePrompt(params.image_theme, courseTitle, courseDescription, params.user_query)
-
-  curriculumOutline.image_prompt = courseImagePrompt
-  console.log('courseImagePrompt -> ', courseImagePrompt)
-
-  const formattedChapters = curriculumOutline.chapters.map((chapter) => {
-    const topicImagePrompt = generateTopicImagePrompt(params.image_theme, chapter.topic)
-
-    console.log('topicImagePrompt -> ', topicImagePrompt)
-
-    return {
-      ...chapter,
-      id: `chapter-${uuidv4()}`, // Generate id if missing
-      image_prompt: topicImagePrompt, // This assigns the image prompt for the topic
-      subtopics: chapter.subtopics.map((subtopic) => {
-        const subtopicImagePrompt = generateSubtopicImagePrompt(params.image_theme, subtopic.subtopic)
-
-        return {
-          ...subtopic,
-          id: `subtopic-${uuidv4()}`, // Generate id if missing
-          image_prompt: subtopicImagePrompt,
-          pages: subtopic.pages.map((page) => {
-            return {
-              ...page,
-              id: `page-${uuidv4()}`, // Generate id if missing
-              content: page.content || '' // Ensure content always has a value
-            }
-          })
-        }
+  
+    // Step 1: Generate Curriculum Plan
+    console.log('Generate Curriculum Plan')
+  
+    const curriculumPlan = params.use_mockup_data ?
+      mockupCurriculumOutline.plan :
+      await generateCurriculumPlan({
+        validatedObjective: params,
+        threadId: assistant.threadId,
+        assistantId: assistant.assistantId,
+        responseFormat: zodResponseFormat(ZodCurriculumPlanSchema, 'validation_response')
       })
+  
+    if (!curriculumPlan) {
+      throw new Error('Failed to generate curriculum outline.')
     }
-  })
+  
+    await writeToFirestore({
+      path: collections.course.plans,
+      uid: user.uid,
+      data: curriculumPlan
+    })
+  
+    console.log('Finished generating Curriculum Plan')
+  
+    // Step 4: Generate Main Topics, Sub Topics, and Pages based on the plan
+    console.log('Generate Main Topics, Sub Topics, and Pages based on the plan')
+  
+    // Generate content
+    const curriculumOutline = params.use_mockup_data ?
+      mockupCurriculumOutline.outline :
+      await createContentOutlineForCurriculum({
+        validatedObjective: params,
+        curriculumPlan: curriculumPlan,
+        threadId: assistant.threadId,
+        assistantId: assistant.assistantId,
+        responseFormat: zodResponseFormat(ZodCourseOutlineSchema, 'validation_response')
+      })
+  
+    if (!curriculumOutline) {
+      throw new Error('Failed to generate curriculum outline.')
+    }
+    // Format data
+    const courseTitle = curriculumOutline.title
+    const courseDescription = curriculumOutline.description
+  
+    console.log('user_query', params.user_query)
+  
+    const courseImagePrompt = generateCourseImagePrompt(params.image_theme, courseTitle, courseDescription, params.user_query)
+  
+    curriculumOutline.image_prompt = courseImagePrompt
+    console.log('courseImagePrompt -> ', courseImagePrompt)
+  
+    const formattedChapters = curriculumOutline.chapters.map((chapter) => {
+      const topicImagePrompt = generateTopicImagePrompt(params.image_theme, chapter.topic)
+  
+      console.log('topicImagePrompt -> ', topicImagePrompt)
+  
+      return {
+        ...chapter,
+        id: `chapter-${uuidv4()}`, // Generate id if missing
+        image_prompt: topicImagePrompt, // This assigns the image prompt for the topic
+        subtopics: chapter.subtopics.map((subtopic) => {
+          const subtopicImagePrompt = generateSubtopicImagePrompt(params.image_theme, subtopic.subtopic)
+  
+          return {
+            ...subtopic,
+            id: `subtopic-${uuidv4()}`, // Generate id if missing
+            image_prompt: subtopicImagePrompt,
+            pages: subtopic.pages.map((page) => {
+              return {
+                ...page,
+                id: `page-${uuidv4()}`, // Generate id if missing
+                content: page.content || '' // Ensure content always has a value
+              }
+            })
+          }
+        })
+      }
+    })
+  
+    // Add course ID as well
+    const courseId = `course-${uuidv4()}`
+  
+    curriculumOutline.id = courseId
+    curriculumOutline.chapters = formattedChapters
+  
+    // Write to DB
+    await writeToFirestore({
+      path: collections.course.outlines,
+      uid: user.uid,
+      data: curriculumPlan
+    }) 
+  
+    return {
+      objective: params,
+      plan: curriculumPlan,
+      outline: curriculumOutline
+    }
+  }  
+  
+  catch (e) {
+    const error = e as Error
 
-  // Add course ID as well
-  const courseId = `course-${uuidv4()}`
+    console.error('Error during content analysis:', error)
 
-  curriculumOutline.id = courseId
-  curriculumOutline.chapters = formattedChapters
-
-  return {
-    objective: params,
-    plan: curriculumPlan,
-    outline: curriculumOutline
+    // Optionally throw the error again or return a structured error response
+    throw new Error(`Failed to analyze content: ${error.message}`)
   }
 }
 
@@ -161,8 +190,6 @@ async function createContentOutlineForCurriculum(params: {
     schema: ZodCourseOutlineSchema,
     errorMessage: 'Failed to parse educational outline'
   }, processChunk) // Pass the callback function to handle streamed chunks
-
-  console.log('Received response:', topics) // Log the final response when streaming is complete
 
   return topics // Return the final topics (could be valid or undefined)
 }

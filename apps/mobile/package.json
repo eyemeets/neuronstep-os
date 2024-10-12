@@ -82,6 +82,7 @@
     "react-test-renderer": "18.2.0",
     "tsconfig": "workspace:*",
     "vitest": "^2.1.2",
-    "shared-types": "workspace:*"
+    "shared-types": "workspace:*",
+    "shared-constants": "workspace:*"
   }
 }
