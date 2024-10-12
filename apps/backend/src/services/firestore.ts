@@ -8,17 +8,20 @@ import type { FirestoreDeleteParams, FirestoreGetParams, FirestoreUpdateParams, 
  * @returns {Promise<void>} - A Promise that resolves when the write is complete.
  */
 export async function writeToFirestore({
+  docId,
   path,
   uid,
   data
 }: FirestoreWriteParams): Promise<void> {
-  const docRef = db.collection(path).doc(uid) // Use user UID as document ID
-  
+  const docRef = docId
+    ? db.collection(path).doc(docId)
+    : db.collection(path).doc()
+
   await docRef.set({
     ...data,
-    uid, // Link the user with the objective
-    createdAt: admin.firestore.FieldValue.serverTimestamp() // Set the creation time
-  })
+    uid,
+    createdAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true })
 }
 
 /**

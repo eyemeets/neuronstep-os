@@ -5,7 +5,6 @@ export * from './course-outline';
 export * from './course-curriculum'; 
 export * from './adaptive-learning';
 
-
 export enum CurriculaSubmissionType {
   TEXT = 'text',
   PDF = 'pdf',

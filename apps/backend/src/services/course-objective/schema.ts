@@ -25,6 +25,7 @@ export const imageThemeSchema = z.object({
 })
 
 export const ZodSubmissionSchema = (params: ZodCustomUserSchemaParams) => z.object({
+  objective_id: z.string().optional().describe('Leave this as an empty string'),
   user_query: z.string().optional().describe('Leave this as an empty string'),
   valid: z.boolean().describe('Indicates if the objective is valid for curriculum creation'),
   reason: z.string().describe('Explanation of why the objective is suitable or not'),

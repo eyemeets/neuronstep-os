@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import type { TextInput as RNTextInput } from 'react-native'
-import { StyleSheet, Animated, Easing, Platform, Keyboard } from 'react-native'
+import { StyleSheet, Animated, Easing, Keyboard } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import View from '../../atoms/View'
 import TextInput from '../../atoms/TextInput'
@@ -13,12 +13,11 @@ import { useForm, Controller } from 'react-hook-form'
 import HelperText from '../../atoms/HelperText'
 import ActivityIndicator from '../../atoms/ActivityIndicator'
 import { useCurriculumStore } from '@/stores/curriculum'
-import { sleep } from '@/utils'
 import { useUiStore } from '@/stores/user-ui'
-import { auth } from '@/fb.config'
 import { useFirestore } from '@/hooks/useFirestore'
 import type { UserLearningPreferences, UserObjectiveParamsSchema, UserTonePreferences } from 'shared-types'
 import { EducationLevel } from 'shared-types'
+import { v4 as uuidv4 } from 'uuid'
 
 const styles = StyleSheet.create({
   activityIndicator: {
@@ -189,18 +188,20 @@ const PromptBox = () => {
 
   const handleValidate = async (data: UserObjectiveParamsSchema) => {
     setRequestValidating(true)
+    const uniqueId = uuidv4()
+
     // Set default values for missing fields
-    const formattedData = {
+    const formattedData: UserObjectiveParamsSchema = {
+      objective_id: uniqueId,
       objective: data.objective,
       language: data.language || 'en-US',
       education_level: data.education_level || 'undergraduate',
       learning_style: data.learning_style || 'visual',
-      tone: data.tone || 'accademic',
+      tone: data.tone || 'academic',
       curriculum: data.curriculum || 'General'
     }
 
     try {
-      //await sleep(500) // Use it to test mockup data instead of paying money for requests.
       const response = await validateObjective({
         data: JSON.stringify(formattedData),
         mockupResponse: false

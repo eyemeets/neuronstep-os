@@ -1,5 +1,6 @@
 // Define the interface for Firestore write parameters
 export interface FirestoreWriteParams {
+  docId?: string
   path: string // Firestore collection path
   uid: string // User UID to be used as the document ID
   data: object // Data to be written to Firestore

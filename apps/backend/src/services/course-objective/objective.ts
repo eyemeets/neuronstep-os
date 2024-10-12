@@ -60,10 +60,11 @@ export async function validateLearningObjective(params: UserObjectiveParamsSchem
     validatedObjective.education_level = params.education_level
     validatedObjective.learning_style = params.learning_style
     validatedObjective.user_query = params.objective
-
+    validatedObjective.objective_id = params.objective_id
     const colPath = collections.course.objectives
 
-    writeToFirestore({
+    await writeToFirestore({
+      docId: params.objective_id,
       path: colPath,
       uid: user.uid,
       data: validatedObjective

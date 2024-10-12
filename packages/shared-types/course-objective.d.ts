@@ -9,6 +9,7 @@ export interface ZodCustomUserSchemaParams {
 }
 
 export interface UserObjectiveParamsSchema {
+  objective_id?: string
   language?: string
   objective: string
   education_level?: EducationLevel
