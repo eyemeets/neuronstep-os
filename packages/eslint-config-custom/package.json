@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared-eslint-config",
+  "name": "eslint-config-custom",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

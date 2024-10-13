@@ -4,7 +4,7 @@ ignorePatterns:
   - '*.env'
 
 extends:
-  - '@repo/shared-eslint-config'
+  - 'eslint-config-custom'
 
 overrides:
   - files:

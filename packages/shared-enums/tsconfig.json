@@ -6,7 +6,9 @@
     "skipLibCheck": true,
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "target": "ESNext" 
   },
   "include": ["index.ts"],
   "exclude": ["node_modules", "dist"]

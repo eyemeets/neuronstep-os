@@ -11,7 +11,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "build:pkgs": "pnpm run build --filter @repo/*"
   },
   "devDependencies": {
     "turbo": "^2.1.3",

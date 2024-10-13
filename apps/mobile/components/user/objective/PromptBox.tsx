@@ -15,7 +15,7 @@ import ActivityIndicator from '../../atoms/ActivityIndicator'
 import { useCurriculumStore } from '@/stores/curriculum'
 import { useUiStore } from '@/stores/user-ui'
 import type { UserLearningPreferences, UserObjectiveParamsSchema, UserTonePreferences } from '@repo/shared-types'
-import { EducationLevel } from '@repo/shared-enums'
+import { EducationLevel } from '@repo/shared-enums';
 import { v4 as uuidv4 } from 'uuid'
 
 const styles = StyleSheet.create({

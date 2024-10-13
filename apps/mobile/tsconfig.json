@@ -4,9 +4,8 @@
     "baseUrl": ".",
     "allowJs": true,
     "jsx": "react-native",
-    "lib": ["ESNext"],
+    "lib": ["DOM", "ESNext"],
     "noEmit": true,
-    "skipLibCheck": true,
     "target": "ESNext",
     "paths": {
       "@/*": ["./*"],
