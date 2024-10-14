@@ -10,7 +10,7 @@ import { requestLogger } from './middlewares/request-logger'
 import { authenticateUser } from './middlewares/auth'
 
 const app = express()
-const localIp = getLocalNetworkIp() // Get the Wi-Fi IP address dynamically
+const localIp = getLocalNetworkIp()
 const port = 8080
 const isProd = process.env.NODE_ENV === 'production'
 
