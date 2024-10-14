@@ -22,6 +22,6 @@ export interface CoursePlanSchema {
   countryName: string // Human-readable country name (e.g., 'United States')
   education_level: string // Educational level (e.g., undergraduate, graduate)
   tone: string // Tone for the curriculum (e.g., academic, fun)
-  assistantId?: string
-  threadId?: string
+  assistantId: string
+  threadId: string
 }

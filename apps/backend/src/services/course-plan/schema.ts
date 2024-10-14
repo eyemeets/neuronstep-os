@@ -26,5 +26,7 @@ export const ZodCurriculumPlanSchema = z.object({
   countryCode: z.string().describe('ISO 3166-1 alpha-2 country code (e.g., US for United States)'), // Country code
   countryName: z.string().describe('Human-readable country name (e.g., United States)'), // Country name
   education_level: z.string().describe('Educational level (e.g., undergraduate, graduate, etc.)'), // Educational level
-  tone: z.string().describe('Tone for the curriculum (e.g., academic, fun, etc.)') // Preferred tone
+  tone: z.string().describe('Tone for the curriculum (e.g., academic, fun, etc.)'), // Preferred tone
+  assistantId: z.string().describe('Leave this field empty'),
+  threadId: z.string().describe('Leave this field empty')
 })

@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import { createCourseOutline } from '../../services/course-outline'
 import { processFile } from '../../services/file-processor'
-import type { CourseObjectiveSchema } from '@repo/shared-types'
+import type { CourseObjectiveAndPlanParams } from '@repo/shared-types'
 
 /**
  * Controller function to handle outline or file processing.
@@ -15,7 +15,7 @@ export const courseOutlineController = async (req: Request, res: Response) => {
 
   try {
     const file = req.file
-    const params = Object.assign(req.body, { file }) as CourseObjectiveSchema
+    const params = Object.assign(req.body, { file }) as CourseObjectiveAndPlanParams
 
     if (!params) return res.status(400).json({
       error: 'No parameters provided'

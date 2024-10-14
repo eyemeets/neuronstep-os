@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useCurriculumStore } from '@/stores/curriculum'
-import { useTypedNavigation } from '@/hooks/useTypedNav'
 import { useUiStore } from '@/stores/user-ui'
 import SlideUpPanel from '@/components/molecules/SlideUpPanel'
 import Text from '@/components/atoms/Text'

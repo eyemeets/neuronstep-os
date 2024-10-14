@@ -11,20 +11,20 @@ import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
 import { collections } from '@repo/shared-constants'
 import { writeToFirestore } from '../firestore'
 
-import type { CourseObjectiveSchema, CoursePlanSchema, CourseGenStructure } from '@repo/shared-types'
+import type { CourseObjectiveSchema, CoursePlanSchema, CourseGenStructure, CourseObjectiveAndPlanParams } from '@repo/shared-types'
 import { createChapterImg, createCourseImg } from '@/utils/img-generation'
 
-export async function createCourseOutline(params: CourseObjectiveSchema, user: UserRecord) {
+export async function createCourseOutline(params: CourseObjectiveAndPlanParams, user: UserRecord) {
   try {
     // Generate Main Topics, Sub Topics, and Pages based on the plan
     console.log('Generating an outline structure based on the plan')
   
     // Generate content
     const curriculumOutline = await createContentOutlineForCurriculum({
-      validatedObjective: params,
-      curriculumPlan: params.plan,
-      threadId: params.assistant.threadId,
-      assistantId: params.assistant.assistantId,
+      objective: params.objective,
+      plan: params.plan,
+      threadId: params.plan.threadId,
+      assistantId: params.plan.assistantId,
       responseFormat: zodResponseFormat(ZodCourseOutlineSchema, 'validation_response')
     })
   
@@ -47,7 +47,7 @@ export async function createCourseOutline(params: CourseObjectiveSchema, user: U
     }
     
     // Image generation for course
-    const courseImagePrompt = generateCourseImagePrompt(params.image_theme, curriculumOutline.title, curriculumOutline.description, params.user_query)
+    const courseImagePrompt = generateCourseImagePrompt(params.objective.image_theme, curriculumOutline.title, curriculumOutline.description, params.objective.user_query)
     
     curriculumOutline.img_prompt = courseImagePrompt
     curriculumOutline.img_url = await createCourseImg(dataForImgParams, user)
@@ -55,7 +55,7 @@ export async function createCourseOutline(params: CourseObjectiveSchema, user: U
   
     // Format chapters - Use Promise.all to resolve async map results
     const formattedChapters = await Promise.all(curriculumOutline.chapters.slice(0, 1).map(async (chapter) => {
-      const topicImagePrompt = generateTopicImagePrompt(params.image_theme, chapter.topic)
+      const topicImagePrompt = generateTopicImagePrompt(params.objective.image_theme, chapter.topic)
   
       chapter.img_url = await createChapterImg(dataForImgParams, chapter, user)
     
@@ -64,7 +64,7 @@ export async function createCourseOutline(params: CourseObjectiveSchema, user: U
         id: `chapter-${uuidv4()}`,
         img_prompt: topicImagePrompt,
         subtopics: chapter.subtopics.slice(0, 1).map((subtopic) => {
-          const subtopicImagePrompt = generateSubtopicImagePrompt(params.image_theme, subtopic.subtopic)
+          const subtopicImagePrompt = generateSubtopicImagePrompt(params.objective.image_theme, subtopic.subtopic)
       
           return {
             ...subtopic,
@@ -84,7 +84,7 @@ export async function createCourseOutline(params: CourseObjectiveSchema, user: U
 
     // Write to DB
     await writeToFirestore({
-      docId: params.objective_id,
+      docId: params.objective.objective_id,
       path: collections.course.outlines,
       uid: user.uid,
       data: curriculumOutline
@@ -109,8 +109,8 @@ export async function createCourseOutline(params: CourseObjectiveSchema, user: U
 
 async function createContentOutlineForCurriculum(params: {
   stream?: boolean
-  validatedObjective: CourseObjectiveSchema
-  curriculumPlan: CoursePlanSchema | undefined
+  objective: CourseObjectiveSchema
+  plan: CoursePlanSchema | undefined
   assistantId: string
   threadId: string
   responseFormat: AssistantResponseFormatOption | null | undefined
@@ -121,13 +121,13 @@ async function createContentOutlineForCurriculum(params: {
     return mockupCurriculumOutline.outline
   }
   // Handle case where curriculumPlan is undefined
-  if (!params.curriculumPlan) {
+  if (!params.plan) {
     console.error('Curriculum plan is undefined, cannot proceed with content outline generation.')
     return
   }
 
   // Create the user message for curriculum outline schema
-  const userMsgForTopics = createUserPromptForCourseOutlineSchema(params.validatedObjective, params.curriculumPlan)
+  const userMsgForTopics = createUserPromptForCourseOutlineSchema(params.objective, params.plan)
 
   // Use sendMessageAndParseResponse with streaming enabled and pass the processChunk callback
   const outline = await sendMessageAndParseResponse({
