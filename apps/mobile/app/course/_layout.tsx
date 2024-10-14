@@ -2,7 +2,7 @@ import React from 'react'
 import { Stack } from 'expo-router'
 import View from '@/components/atoms/View'
 import Header from '@/components/user/Header'
-import UserDrawer from '@/components/user/UserDrawer'
+import UserDrawer from '@/components/user/UserDrawer' // Import the drawer component
 
 export default function UserLayout() {
   return (
@@ -19,7 +19,9 @@ export default function UserLayout() {
           headerShown: false
         }}
       >
-        <Stack.Screen name="objective" options={{ title: 'Objective' }} />
+        <Stack.Screen name="overview" options={{ title: 'Overview' }} />
+        <Stack.Screen name="chapters" options={{ title: 'Chapters' }} />
+        <Stack.Screen name="page" options={{ title: 'Page' }} />
       </Stack>
     </View>
   )

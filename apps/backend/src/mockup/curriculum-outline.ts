@@ -1,4 +1,4 @@
-import type { CurriculumPlanAndOutlineStructure } from '@repo/shared-types'
+import type { CoursePlanAndOutlineParams } from '@repo/shared-types'
 
 
 export default {
@@ -382,4 +382,4 @@ export default {
     'assistantId': 'asst_3BK07oGJLyhPzH4uVcEf1w2C',
     'threadId': 'thread_8nrtwRCeA8jSxAXsvdimMGqX'
   }
-} as unknown as CurriculumPlanAndOutlineStructure
+} as unknown as CoursePlanAndOutlineParams

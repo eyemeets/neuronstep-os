@@ -2,21 +2,22 @@ import React, { useRef, useState, useEffect } from 'react'
 import type { TextInput as RNTextInput } from 'react-native'
 import { StyleSheet, Animated, Easing, Keyboard } from 'react-native'
 import { IconButton } from 'react-native-paper'
-import View from '../../atoms/View'
-import TextInput from '../../atoms/TextInput'
+import View from '../atoms/View'
+import TextInput from '../atoms/TextInput'
 import { getPaperTheme } from '@/hooks/useThemeColor'
-import Select from '../../atoms/Select'
-import { validateObjective } from '@/services/validate-objective'
+import Select from '../atoms/Select'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
-import HelperText from '../../atoms/HelperText'
-import ActivityIndicator from '../../atoms/ActivityIndicator'
+import HelperText from '../atoms/HelperText'
+import ActivityIndicator from '../atoms/ActivityIndicator'
 import { useCurriculumStore } from '@/stores/curriculum'
 import { useUiStore } from '@/stores/user-ui'
 import type { UserLearningPreferences, UserObjectiveParamsSchema, UserTonePreferences } from '@repo/shared-types'
-import { EducationLevel } from '@repo/shared-enums';
-import { v4 as uuidv4 } from 'uuid'
+import { EducationLevelEnum } from '@repo/shared-enums'
+import { nanoid } from 'nanoid/non-secure'
+import { createCourseObjective } from '@/services/course/create-objective'
+import { useTypedNavigation } from '@/hooks/useTypedNav'
 
 const styles = StyleSheet.create({
   activityIndicator: {
@@ -74,14 +75,14 @@ const styles = StyleSheet.create({
 })
 
 // Define possible values for education level, learning style, and tone
-const educationLevels: EducationLevel[] = [
-  EducationLevel.PRESCHOOL,
-  EducationLevel.PRIMARY,
-  EducationLevel.SECONDARY,
-  EducationLevel.UNDERGRADUATE,
-  EducationLevel.GRADUATE,
-  EducationLevel.DOCTORATE,
-  EducationLevel.POSTDOCTORAL
+const educationLevels: EducationLevelEnum[] = [
+  EducationLevelEnum.PRESCHOOL,
+  EducationLevelEnum.PRIMARY,
+  EducationLevelEnum.SECONDARY,
+  EducationLevelEnum.UNDERGRADUATE,
+  EducationLevelEnum.GRADUATE,
+  EducationLevelEnum.DOCTORATE,
+  EducationLevelEnum.POSTDOCTORAL
 ]
 
 
@@ -184,8 +185,10 @@ const PromptBox = () => {
   ]
 
   const handleValidate = async (data: UserObjectiveParamsSchema) => {
+    const navigation = useTypedNavigation()
+    const uniqueId = nanoid()
+
     setRequestValidating(true)
-    const uniqueId = uuidv4()
 
     // Set default values for missing fields
     const formattedData: UserObjectiveParamsSchema = {
@@ -199,25 +202,12 @@ const PromptBox = () => {
     }
 
     try {
-      const response = await validateObjective({
-        data: JSON.stringify(formattedData),
-        mockupResponse: false
+      navigation.navigate('course', {
+        screen: 'build',
+        form: formattedData
       })
 
-      if (!response) {
-        setRequestValidating(false)
-        throw new Error('Objective was null or undefined.')
-      }
-
-      // Populate store data
-      useCurriculumStore.getState().setObjective(response)
-
-      // The server will write the data if valid
-
-      // Open up the validation panel
-      userUI.openValidationPanel()
       setRequestValidating(false)
-
     }
     catch (error) {
       setRequestValidating(false)

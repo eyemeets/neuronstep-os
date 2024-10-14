@@ -2,12 +2,17 @@ import { CourseObjectiveSchema } from "./course-objective"
 import { CourseOutlineSchema } from "./course-outline"
 import { CoursePlanSchema } from "./course-plan"
 
-export interface CurriculumPlanAndOutlineStructure {
+export interface CourseObjectiveAndPlanParams {
+  objective: CourseObjectiveSchema
+  plan: CoursePlanSchema
+}
+
+export interface CoursePlanAndOutlineParams {
   plan: CoursePlanSchema
   outline: CourseOutlineSchema
 }
 
-export interface CurriculumObjectivePlanAndOutlineStructure extends CurriculumPlanAndOutlineStructure {
+export interface CourseGenStructure extends CoursePlanAndOutlineParams {
   objective: CourseObjectiveSchema
 }
 

@@ -1,11 +1,11 @@
-import type { CourseOutlineChapterSchema, CourseOutlinePageSchema, CourseOutlineSubtopicSchema, CurriculumObjectivePlanAndOutlineStructure } from '@repo/shared-types'
+import type { CourseOutlineChapterSchema, CourseOutlinePageSchema, CourseOutlineSubtopicSchema, CourseGenStructure } from '@repo/shared-types'
 
 /**
  * Creates an initial instruction prompt to set the context for content generation.
  * @param params - The curriculum objective plan and outline structure.
  * @returns A string containing the initial prompt.
  */
-export function createInitialInstructionPrompt(params: CurriculumObjectivePlanAndOutlineStructure): string {
+export function createInitialInstructionPrompt(params: CourseGenStructure): string {
   return `
   You are a highly specialized educational content creator with a PhD in Education. Your expertise lies in transforming static curricula into dynamic, personalized learning experiences. You are tasked with generating high-quality, academically rigorous content that aligns with the provided curriculum's objectives, plan, and outline.
 
@@ -83,7 +83,7 @@ export function createInitialInstructionPrompt(params: CurriculumObjectivePlanAn
  * @returns A string containing the content generation prompt for the block.
  */
 export function createContentPromptForBlock(
-  params: CurriculumObjectivePlanAndOutlineStructure,
+  params: CourseGenStructure,
   chapter: CourseOutlineChapterSchema,
   subtopic: CourseOutlineSubtopicSchema,
   page: CourseOutlinePageSchema

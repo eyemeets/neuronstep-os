@@ -1,11 +1,11 @@
-import type { CoursePlanSchema, CourseOutlineSchema } from '@repo/shared-types'
-import { createCourseServerInstance } from './api' // Use the createServerInstance function
+import type { CourseGenStructure, CourseOutlineSchema } from '@repo/shared-types'
+import { createCourseServerInstance } from '../api'
 import { endpoints } from '@repo/shared-constants'
 
-export const createCourse = async (coursePlan: CoursePlanSchema): Promise<CourseOutlineSchema | null> => {
+export const createCourseContent = async (coursePlan: CourseGenStructure): Promise<CourseOutlineSchema | null> => {
   try {
     const course = await createCourseServerInstance()
-    const response = await course.post<CourseOutlineSchema>(endpoints.course.create, coursePlan)
+    const response = await course.post<CourseOutlineSchema>(endpoints.course.content, coursePlan)
 
     return response.data
   }

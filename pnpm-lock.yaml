@@ -177,6 +177,9 @@ importers:
       expo:
         specifier: ~51.0.36
         version: 51.0.36(@babel/core@7.24.0)(@babel/preset-env@7.25.7)
+      expo-background-fetch:
+        specifier: ~12.0.1
+        version: 12.0.1(expo@51.0.36)
       expo-blur:
         specifier: ~13.0.2
         version: 13.0.2(expo@51.0.36)
@@ -207,6 +210,9 @@ importers:
       expo-system-ui:
         specifier: ~3.0.7
         version: 3.0.7(expo@51.0.36)
+      expo-task-manager:
+        specifier: ~11.8.2
+        version: 11.8.2(expo@51.0.36)
       expo-web-browser:
         specifier: ~13.0.3
         version: 13.0.3(expo@51.0.36)
@@ -216,6 +222,9 @@ importers:
       install:
         specifier: ^0.13.0
         version: 0.13.0
+      nanoid:
+        specifier: ^5.0.7
+        version: 5.0.7
       nativewind:
         specifier: ^2.0.11
         version: 2.0.11(react@18.2.0)(tailwindcss@3.3.2)
@@ -7551,6 +7560,15 @@ packages:
       - supports-color
     dev: false
 
+  /expo-background-fetch@12.0.1(expo@51.0.36):
+    resolution: {integrity: sha512-8915rCoRKWBwCkhSSowv2+kH+QV6YYR7ES8r+yWAUPQ0vq+26NojeWAZtR0vCyTW+QLsQrYVV5Eh0brpZIMS7w==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.36(@babel/core@7.24.0)(@babel/preset-env@7.25.7)
+      expo-task-manager: 11.8.2(expo@51.0.36)
+    dev: false
+
   /expo-blur@13.0.2(expo@51.0.36):
     resolution: {integrity: sha512-t2p7BChO3Reykued++QJRMZ/og6J3aXtSQ+bU31YcBeXhZLkHwjWEhiPKPnJka7J2/yTs4+jOCNDY0kCZmcE3w==}
     peerDependencies:
@@ -7727,6 +7745,15 @@ packages:
       expo: 51.0.36(@babel/core@7.24.0)(@babel/preset-env@7.25.7)
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /expo-task-manager@11.8.2(expo@51.0.36):
+    resolution: {integrity: sha512-Uhy3ol5gYeZOyeRFddYjLI1B2DGRH1gjp/YC8Hpn5p5MVENviySoKNF+wd98rRvOAokzrzElyDBHSTfX+C3tpg==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.36(@babel/core@7.24.0)(@babel/preset-env@7.25.7)
+      unimodules-app-loader: 4.6.0
     dev: false
 
   /expo-web-browser@13.0.3(expo@51.0.36):
@@ -10743,6 +10770,12 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  /nanoid@5.0.7:
+    resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
+
   /nativewind@2.0.11(react@18.2.0)(tailwindcss@3.3.2):
     resolution: {integrity: sha512-qCEXUwKW21RYJ33KRAJl3zXq2bCq82WoI564fI21D/TiqhfmstZOqPN53RF8qK1NDK6PGl56b2xaTxgObEePEg==}
     engines: {node: '>=14.18'}
@@ -13607,6 +13640,10 @@ packages:
   /unicode-property-aliases-ecmascript@2.1.0:
     resolution: {integrity: sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==}
     engines: {node: '>=4'}
+
+  /unimodules-app-loader@4.6.0:
+    resolution: {integrity: sha512-FRNIlx7sLBDVPG117JnEBhnzZkTIgZTEwYW2rzrY9HdvLBTpRN+k0dxY50U/CAhFHW3zMD0OP5JAlnSQRhx5HA==}
+    dev: false
 
   /unique-filename@3.0.0:
     resolution: {integrity: sha512-afXhuC55wkAmZ0P18QsVE6kp8JaxrEokN2HGIoIVv2ijHQd419H0+6EigAFcIzXeMIkcIkNBpB3L/DXB3cTS/g==}

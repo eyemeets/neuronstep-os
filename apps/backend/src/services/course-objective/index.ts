@@ -20,7 +20,7 @@ import { writeToFirestore } from '../firestore'
  * @param {CCSubmissionType} submissionType - The type of submission (TEXT, PDF, DESCRIPTION)
  * @returns {Promise<Object>} Object with validation status, reason, objective summary, and potential subject classification
  */
-export async function validateLearningObjective(params: UserObjectiveParamsSchema, submissionType: CurriculaSubmissionTypeEnum, user: UserRecord) {
+export async function createCourseObjective(params: UserObjectiveParamsSchema, submissionType: CurriculaSubmissionTypeEnum, user: UserRecord) {
   const systemPrompt = getSubmissionTypeSystemPrompt(submissionType)
 
   if (!systemPrompt.length) {

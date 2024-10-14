@@ -1,11 +1,11 @@
-import type { TopicRange, UserLearningPreferences, UserTonePreferences } from '@repo/shared-types'
-import { EducationLevel } from '@repo/shared-enums'
+import type { CourseOutlineSchema, TopicRange, UserLearningPreferences, UserTonePreferences } from '@repo/shared-types'
+import { EducationLevelEnum } from '@repo/shared-enums'
+import { v4 as uuidv4 } from 'uuid'
 
 // Updated function to match the refined values for different education levels
-export function courseDurationRange(level?: EducationLevel): TopicRange {
-  console.log( 'level', level )
+export function courseDurationRange(level?: EducationLevelEnum): TopicRange {
   switch (level) {
-    case EducationLevel.PRESCHOOL:
+    case EducationLevelEnum.PRESCHOOL:
       return {
         courseLengthInHours: { min: 0.5, max: 2 }, // Shorter learning pages
         minutesPerTopic: { min: 5, max: 15 },
@@ -15,7 +15,7 @@ export function courseDurationRange(level?: EducationLevel): TopicRange {
         totalHours: { min: 0.5, max: 2 }
       }
 
-    case EducationLevel.PRIMARY:
+    case EducationLevelEnum.PRIMARY:
       return {
         courseLengthInHours: { min: 5, max: 10 }, // Weekly cumulative hours
         minutesPerTopic: { min: 10, max: 30 },
@@ -25,7 +25,7 @@ export function courseDurationRange(level?: EducationLevel): TopicRange {
         totalHours: { min: 5, max: 10 }
       }
 
-    case EducationLevel.SECONDARY:
+    case EducationLevelEnum.SECONDARY:
       return {
         courseLengthInHours: { min: 20, max: 50 }, // Semester-long courses
         minutesPerTopic: { min: 30, max: 60 },
@@ -35,9 +35,9 @@ export function courseDurationRange(level?: EducationLevel): TopicRange {
         totalHours: { min: 20, max: 50 }
       }
 
-    case EducationLevel.UNDERGRADUATE:
+    case EducationLevelEnum.UNDERGRADUATE:
       return {
-        courseLengthInHours: { min: 40, max: 120 }, // Typical university course workload
+        courseLengthInHours: { min: 40, max: 120 },
         minutesPerTopic: { min: 60, max: 90 },
         topics: { min: 8, max: 12 },
         subtopics: { min: 3, max: 5 },
@@ -45,9 +45,9 @@ export function courseDurationRange(level?: EducationLevel): TopicRange {
         totalHours: { min: 40, max: 120 }
       }
 
-    case EducationLevel.GRADUATE:
+    case EducationLevelEnum.GRADUATE:
       return {
-        courseLengthInHours: { min: 60, max: 120 }, // More intense study and research
+        courseLengthInHours: { min: 60, max: 120 },
         minutesPerTopic: { min: 60, max: 90 },
         topics: { min: 10, max: 15 },
         subtopics: { min: 4, max: 6 },
@@ -55,9 +55,9 @@ export function courseDurationRange(level?: EducationLevel): TopicRange {
         totalHours: { min: 60, max: 120 }
       }
 
-    case EducationLevel.DOCTORATE:
+    case EducationLevelEnum.DOCTORATE:
       return {
-        courseLengthInHours: { min: 100, max: 160 }, // Deep research and specialized courses
+        courseLengthInHours: { min: 100, max: 160 },
         minutesPerTopic: { min: 90, max: 120 },
         topics: { min: 10, max: 20 },
         subtopics: { min: 5, max: 8 },
@@ -65,9 +65,9 @@ export function courseDurationRange(level?: EducationLevel): TopicRange {
         totalHours: { min: 100, max: 160 }
       }
 
-    case EducationLevel.POSTDOCTORAL:
+    case EducationLevelEnum.POSTDOCTORAL:
       return {
-        courseLengthInHours: { min: 160, max: 200 }, // Specialized research pages
+        courseLengthInHours: { min: 160, max: 200 },
         minutesPerTopic: { min: 90, max: 120 },
         topics: { min: 10, max: 20 },
         subtopics: { min: 6, max: 10 },
@@ -154,4 +154,48 @@ export function generateToneDescription(preferences?: UserTonePreferences): stri
     default:
       return 'a balanced and neutral tone'
   }
+}
+
+// Recursive function to assign IDs at all levels
+export function ensureIdsForCourseOutline(curriculumOutline: CourseOutlineSchema): CourseOutlineSchema {
+  // Assign an id to the root if it's missing
+  curriculumOutline.id = curriculumOutline.id || `course-${uuidv4()}`
+
+  // Iterate over chapters, subtopics, and pages to ensure IDs
+  curriculumOutline.chapters = curriculumOutline.chapters.map(chapter => {
+    // Assign an ID to the chapter if it's missing
+    chapter.id = chapter.id || `chapter-${uuidv4()}`
+
+    // Assign IDs to subtopics
+    chapter.subtopics = chapter.subtopics.map(subtopic => {
+      // Assign an ID to the subtopic if it's missing
+      subtopic.id = subtopic.id || `subtopic-${uuidv4()}`
+
+      // Assign IDs to pages
+      subtopic.pages = subtopic.pages.map(page => {
+        // Assign an ID to the page if it's missing
+        page.id = page.id || `page-${uuidv4()}`
+
+        // Return the updated page
+        return page
+      })
+
+      // Return the updated subtopic
+      return subtopic
+    })
+
+    // Return the updated chapter
+    return chapter
+  })
+
+  return curriculumOutline
+}
+
+// Helper type guard to check if curriculumOutline conforms to CourseOutlineSchema
+export function isCourseOutlineSchema(outline: any): outline is CourseOutlineSchema {
+  return (
+    typeof outline.id === 'string' && !outline.id.length &&
+    Array.isArray(outline.chapters) &&
+    outline.chapters.every((chapter: any) => typeof chapter.id === 'string' || typeof chapter.id === 'undefined')
+  )
 }

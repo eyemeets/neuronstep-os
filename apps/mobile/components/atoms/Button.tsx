@@ -1,20 +1,31 @@
 import React from 'react'
 import type { ButtonProps } from 'react-native-paper'
-import { Button as PaperButton } from 'react-native-paper'
+import { Button as PaperButton, ActivityIndicator } from 'react-native-paper'
 import { styled } from 'nativewind'
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import Text from './Text'
+
 // Create a styled version of Paper's Button component
 const StyledButton = styled(PaperButton)
 
-// Define a custom component that supports all PaperButton props, optional text, and className
+// Define a custom component that supports all PaperButton props, optional text, className, and loading state
 interface CustomButtonProps extends Omit<ButtonProps, 'children'> {
   className?: string
   text?: string
   children?: React.ReactNode
+  loading?: boolean // Add loading prop
+  loadIconSize?: number // Add loadIconSize prop for ActivityIndicator size
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ className, style, text, children, ...rest }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  className,
+  style,
+  text,
+  children,
+  loading = false, // Default loading to false
+  loadIconSize = 20, // Default loadIconSize to 20
+  ...rest
+}) => {
   const theme = getPaperTheme()
   const colors = theme.colors
 
@@ -39,9 +50,16 @@ const CustomButton: React.FC<CustomButtonProps> = ({ className, style, text, chi
       theme={buttonTheme} // Ensure valid theming is passed
       {...rest}
     >
-      {text ?
-          (<Text value={text} />)
-        : children}
+      {loading ? (
+        <ActivityIndicator
+          size={loadIconSize} // Use loadIconSize prop
+          style={{ marginRight: 8 }} // Optional: adjust the margin if needed
+        />
+      ) : text ? (
+        <Text value={text} />
+      ) : (
+        children
+      )}
     </StyledButton>
   )
 }

@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native'
 import Text from '@/components/atoms/Text'
 import View from '@/components/atoms/View'
-import PromptBox from '@/components/user/objective/PromptBox'
+import PromptBox from '@/components/user/PromptBox'
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import CourseValidationPanel from '@/components/user/objective/CourseValidationPanel'
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +38,6 @@ const ObjectivePage = () => {
           <PromptBox />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
-      <CourseValidationPanel />
     </View>
   )
 }

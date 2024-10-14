@@ -5,7 +5,7 @@ export enum CurriculaSubmissionTypeEnum {
   DESCRIPTION = 'description'
 }
 
-export enum EducationLevel {
+export enum EducationLevelEnum {
   PRESCHOOL = 'preschool',
   PRIMARY = 'primary',
   SECONDARY = 'secondary',

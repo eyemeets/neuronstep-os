@@ -1,5 +1,5 @@
 import type { CourseObjectiveSchema } from '@repo/shared-types'
-import {EducationLevel} from '@repo/shared-enums'
+import type { EducationLevelEnum } from '@repo/shared-enums'
 
 const courseObjectiveResponseData: CourseObjectiveSchema = {
   title: '',
@@ -12,7 +12,7 @@ const courseObjectiveResponseData: CourseObjectiveSchema = {
   'objective_match': true,
   'relevance_score': 85,
   'complexity_score': 70,
-  'education_level': 'undergraduate' as EducationLevel,
+  'education_level': 'undergraduate' as EducationLevelEnum,
   'missing_information': [
     'Specific interests or subtopics within AI',
     'Estimated time commitment',

@@ -1,23 +1,23 @@
 import type { Request, Response } from 'express'
-import { createContentForCourse } from '../../services/course-creator/create'
+import { createContentForCourse } from '../../services/course-content'
 import { processFile } from '../../services/file-processor'
-import type { CurriculumObjectivePlanAndOutlineStructure } from '@repo/shared-types'
+import type { CourseGenStructure } from '@repo/shared-types'
 
 /**
- * Controller for handling course creation.
+ * Controller for handling content creation.
  * 
  * @param req - The Express request object.
  * @param res - The Express response object.
  * 
  */
-export async function courseCreationController(req: Request, res: Response) {
+export async function courseContentController(req: Request, res: Response) {
   if (!req.user) {
     return res.status(400).json({ error: 'User object is undefined' })
   }
 
   try {
     const file = req.file
-    const params = Object.assign(req.body, { file }) as CurriculumObjectivePlanAndOutlineStructure
+    const params = Object.assign(req.body, { file }) as CourseGenStructure
 
     if (!params) return
 

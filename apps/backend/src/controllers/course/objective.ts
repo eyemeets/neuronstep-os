@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express'
-import { validateLearningObjective } from '../../services/course-objective/objective'
+import { createCourseObjective } from '../../services/course-objective'
 import { processFile } from '../../services/file-processor'
 import { type UserObjectiveParamsSchema } from '@repo/shared-types'
 import { CurriculaSubmissionTypeEnum } from '@repo/shared-enums'
@@ -27,7 +27,7 @@ export const courseObjectiveController = async (req: Request, res: Response) => 
 
     if (validatedObjective) {
       // Handle description text and pass the userRecord instead of req.user
-      const response = await validateLearningObjective(params, CurriculaSubmissionTypeEnum.TEXT, req.user)
+      const response = await createCourseObjective(params, CurriculaSubmissionTypeEnum.TEXT, req.user)
 
       if (!response) return res.status(400).json({ reason: response, error: 'Invalid input provided' })
       

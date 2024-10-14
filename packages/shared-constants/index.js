@@ -1,8 +1,9 @@
 export const endpoints = {
   course: {
     objective: 'objective',
-    analyze: 'analyze',
-    create: 'create'
+    plan: 'plan',
+    outline: 'outline',
+    content: 'content'
   }
 }
 

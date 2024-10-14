@@ -29,8 +29,7 @@ rules:
   react-native/no-color-literals: 'warn'
   react-native/no-raw-text: 'error'
   react-native/split-platform-components: 'error'
-  react-native/sort-styles: 
-    - error
+  react-native/sort-styles: 'off'
   react/jsx-max-props-per-line:
     - error
     - when: multiline

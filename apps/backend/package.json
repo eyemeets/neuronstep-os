@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-dev --max_old_space_size=4096 --respawn --transpile-only --exit-child --watch tsc src/index.ts"
+    "dev": "NODE_ENV=development ts-node-dev --max_old_space_size=4096 --respawn --transpile-only --exit-child --watch tsc -r tsconfig-paths/register src src/* src/**/*.ts"
   },
   "keywords": [],
   "author": "",

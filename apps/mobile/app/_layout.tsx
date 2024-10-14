@@ -11,6 +11,8 @@ import { useAuthStore, listenToAuthChanges } from '@/stores'
 import { useLoadFonts } from '@/css/fonts'
 import { useTypedNavigation } from '@/hooks/useTypedNav'
 import type { AuthStackParamList } from '@/types/auth'
+import GlobalDialogBox from '@/components/global/GlobalDialogbox'
+import ObjectiveInvalidPanel from '@/components/global/ObjectiveInvalidPanel'
 
 const styles = StyleSheet.create({
   blurView: {
@@ -98,6 +100,8 @@ const RootLayout = () => {
         <RNView style={styles.slotContainer}>
           <Slot />
         </RNView>
+        <GlobalDialogBox />
+        <ObjectiveInvalidPanel />
       </View>
     </PaperProvider>
   )

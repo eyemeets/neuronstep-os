@@ -1,14 +1,14 @@
 import type { Request, Response } from 'express'
-import { analyzeContent } from '../../services/course-analysis/analyze'
+import { createCoursePlan } from '../../services/course-plan'
 import { processFile } from '../../services/file-processor'
 import type { CourseObjectiveSchema } from '@repo/shared-types'
 
 /**
- * Controller function to handle content analysis or file processing.
+ * Controller function to handle curriculum plan or file processing.
  * @param req - The Express request object.
  * @param res - The Express response object.
  */
-export const courseAnalysisController = async (req: Request, res: Response) => {
+export const coursePlanController = async (req: Request, res: Response) => {
   if (!req.user) {
     return res.status(400).json({ error: 'User object is undefined' })
   }
@@ -21,7 +21,7 @@ export const courseAnalysisController = async (req: Request, res: Response) => {
       error: 'No parameters provided'
     })
 
-    const curriculumOutline = await analyzeContent(params, req.user)
+    const curriculumOutline = await createCoursePlan(params, req.user)
 
     if (curriculumOutline) {
       return res.json(curriculumOutline)

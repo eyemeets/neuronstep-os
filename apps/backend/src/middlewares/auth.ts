@@ -26,8 +26,8 @@ export const authenticateUser = async (req: Request, res: Response, next: NextFu
     // Fetch the full UserRecord from Firebase Admin using the UID from decodedToken
     const userRecord = await admin.auth().getUser(decodedToken.uid)
 
-    req.user = userRecord // Attach the UserRecord to the request object
-    next() // Continue to the next middleware or route handler
+    req.user = userRecord
+    next()
   }
   catch (error) {
     console.error('Error verifying token:', error)
