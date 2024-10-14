@@ -12,7 +12,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "build:pkgs": "pnpm run build --filter @repo/*"
+    "build:pkgs": "pnpm run build --filter @repo/*",
+    "commit": "git add . && git commit --no-edit"
   },
   "devDependencies": {
     "turbo": "^2.1.3",
