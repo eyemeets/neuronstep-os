@@ -23,7 +23,7 @@ const CourseOverview = () => {
   // Use the useRoute hook to access the typed route params
   const route = useRoute<CourseOverviewProps>()
   const { data } = route.params // Destructure the passed data
-  const { objective, plan, outline } = data // Extract objective, plan, and outline
+  const { outline } = data // Extract objective, plan, and outline
 
   // Create styles for the page
   const styles = StyleSheet.create({

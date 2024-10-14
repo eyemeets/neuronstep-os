@@ -17,11 +17,11 @@ export interface CoursePlanSchema {
   mastery_learning_applicability: boolean // Mastery learning applicability
   personalization_options: string // Description of how personalization will be offered
   language: string // ISO 639-1 language code (e.g., 'en' for English)
-  languageName: string // Human-readable language name (e.g., 'English')
-  countryCode: string // ISO 3166-1 alpha-2 country code (e.g., 'US' for United States)
-  countryName: string // Human-readable country name (e.g., 'United States')
+  language_name: string // Human-readable language name (e.g., 'English')
+  country_code: string // ISO 3166-1 alpha-2 country code (e.g., 'US' for United States)
+  country_name: string // Human-readable country name (e.g., 'United States')
   education_level: string // Educational level (e.g., undergraduate, graduate)
   tone: string // Tone for the curriculum (e.g., academic, fun)
-  assistantId: string
-  threadId: string
+  assistant_id: string
+  thread_id: string
 }

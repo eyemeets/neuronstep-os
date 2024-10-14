@@ -10,8 +10,8 @@ import { writeToFirestore } from '../firestore'
 import type { CourseGenStructure } from '@repo/shared-types'
 
 export async function createContentForCourse(params: CourseGenStructure, user: UserRecord) {
-  const assistantId = params.plan.assistantId
-  const threadId = params.plan.threadId
+  const assistantId = params.plan.assistant_id
+  const threadId = params.plan.thread_id
 
   if (!assistantId || !threadId) {
     return 'Assistant ID or Thread ID is required but was not defined.'

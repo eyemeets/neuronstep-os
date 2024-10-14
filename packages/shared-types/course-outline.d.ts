@@ -7,8 +7,8 @@ export interface CourseOutlineSchema {
   img_prompt: string
   img_url?: string
   chapters: CourseOutlineChapterSchema[]
-  assistantId?: string
-  threadId?: string
+  assistant_id?: string
+  thread_id?: string
 }
 
 export interface CourseOutlineChapterSchema {

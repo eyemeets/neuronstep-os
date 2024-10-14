@@ -15,16 +15,20 @@ import type { CourseObjectiveSchema, CoursePlanSchema, CourseGenStructure, Cours
 import { createChapterImg, createCourseImg } from '@/utils/img-generation'
 
 export async function createCourseOutline(params: CourseObjectiveAndPlanParams, user: UserRecord) {
+  // Log and see if assistant ID and thread ID are available
+  console.log('createCourseOutline -> Assistant ID:', params.plan.assistant_id)
+  console.log('createCourseOutline -> Thread ID:', params.plan.thread_id)
+
   try {
     // Generate Main Topics, Sub Topics, and Pages based on the plan
-    console.log('Generating an outline structure based on the plan')
+    console.log('Generating an outline structure based on the plan', JSON.stringify(params.plan))
   
     // Generate content
     const curriculumOutline = await createContentOutlineForCurriculum({
       objective: params.objective,
       plan: params.plan,
-      threadId: params.plan.threadId,
-      assistantId: params.plan.assistantId,
+      threadId: params.plan.thread_id,
+      assistantId: params.plan.assistant_id,
       responseFormat: zodResponseFormat(ZodCourseOutlineSchema, 'validation_response')
     })
   
@@ -90,11 +94,7 @@ export async function createCourseOutline(params: CourseObjectiveAndPlanParams, 
       data: curriculumOutline
     }) 
   
-    return {
-      objective: params.objective,
-      plan: params.plan,
-      outline: curriculumOutline
-    }
+    return curriculumOutline
   }  
   
   catch (e) {

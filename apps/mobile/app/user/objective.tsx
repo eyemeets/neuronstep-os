@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 const ObjectivePage = () => {
   const theme = getPaperTheme()
-  const [ text, setText ] = useState('Learn something new')
+  const [ text ] = useState('Learn something new')
 
   return (
     <View style={[ styles.container, { backgroundColor: theme.colors.background } ]}>

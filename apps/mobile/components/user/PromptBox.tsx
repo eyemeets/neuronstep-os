@@ -127,6 +127,7 @@ const promptSchema = yup.object().shape({
 })
 
 const PromptBox = () => {
+  const navigation = useTypedNavigation()
   const [ isFocused, setIsFocused ] = useState(false)
   const [ isSettingsVisible, setIsSettingsVisible ] = useState(false)
   const theme = getPaperTheme()
@@ -134,8 +135,6 @@ const PromptBox = () => {
   const textInputRef = useRef<RNTextInput>(null)
   const animatedHeight = useRef(new Animated.Value(0)).current
   const [ requestValidating, setRequestValidating ] = useState(false)
-
-  const userUI = useUiStore()
 
   const { control, handleSubmit, setValue, formState: { errors } } = useForm({
     resolver: yupResolver(promptSchema)
@@ -185,7 +184,6 @@ const PromptBox = () => {
   ]
 
   const handleValidate = async (data: UserObjectiveParamsSchema) => {
-    const navigation = useTypedNavigation()
     const uniqueId = nanoid()
 
     setRequestValidating(true)
@@ -204,7 +202,7 @@ const PromptBox = () => {
     try {
       navigation.navigate('course', {
         screen: 'build',
-        form: formattedData
+        params: { form: formattedData }
       })
 
       setRequestValidating(false)
@@ -263,6 +261,7 @@ const PromptBox = () => {
                   size={20}
                   iconColor={colors.onPrimaryContainer}
                   onPress={handleSubmit(async (data) => {
+                    setRequestValidating(true)
                     Keyboard.dismiss() // Close the keyboard when submitting
                     await handleValidate(data)
                   })}

@@ -22,11 +22,11 @@ export const ZodCurriculumPlanSchema = z.object({
   mastery_learning_applicability: z.boolean(), // Whether mastery learning applies
   personalization_options: z.string(), // Description of how personalization is offered
   language: z.string().describe('ISO 639-1 language code (e.g., en for English)'), // Language code
-  languageName: z.string().describe('Human-readable language name (e.g., English)'), // Human-readable language name
-  countryCode: z.string().describe('ISO 3166-1 alpha-2 country code (e.g., US for United States)'), // Country code
-  countryName: z.string().describe('Human-readable country name (e.g., United States)'), // Country name
+  language_name: z.string().describe('Human-readable language name (e.g., English)'), // Human-readable language name
+  country_code: z.string().describe('ISO 3166-1 alpha-2 country code (e.g., US for United States)'), // Country code
+  country_name: z.string().describe('Human-readable country name (e.g., United States)'), // Country name
   education_level: z.string().describe('Educational level (e.g., undergraduate, graduate, etc.)'), // Educational level
   tone: z.string().describe('Tone for the curriculum (e.g., academic, fun, etc.)'), // Preferred tone
-  assistantId: z.string().describe('Leave this field empty'),
-  threadId: z.string().describe('Leave this field empty')
+  assistant_id: z.string().describe('Leave this field empty'),
+  thread_id: z.string().describe('Leave this field empty')
 })

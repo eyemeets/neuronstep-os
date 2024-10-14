@@ -14,9 +14,7 @@ export async function createCoursePlan(params: CourseObjectiveSchema, user: User
   try {
     const assistant = await setupAssistantAndThread({
       name: 'Curriculum Designer',
-      instructions: 'You are an expert curriculum designer with a deep understanding of educational frameworks and adaptive learning strategies.',
-      assistantId: params.assistant_id,
-      threadId: params.threadId
+      instructions: 'You are an expert curriculum designer with a deep understanding of educational frameworks and adaptive learning strategies.'
     })
   
     // Generate Curriculum Plan
@@ -38,11 +36,16 @@ export async function createCoursePlan(params: CourseObjectiveSchema, user: User
       uid: user.uid,
       data: curriculumPlan
     })
+    
+    // Log assitant id and thread id
+    console.log('Assistant ID:', assistant.assistantId)
+    console.log('Thread ID:', assistant.threadId)
 
-    return {
-      objective: params,
-      plan: curriculumPlan
-    }
+    // console Log assitant id and thread id in the curriculum plan
+    console.log('Plan - Assistant ID:', curriculumPlan.assistant_id)
+    console.log('Plan - Thread ID:', curriculumPlan.thread_id)
+
+    return curriculumPlan
   }  
   
   catch (e) {
@@ -83,8 +86,8 @@ async function generateCurriculumPlan(params: {
   }
 
   // Assign the assistantId and threadId to the plan
-  plan.assistantId = params.assistantId
-  plan.threadId = params.threadId
+  plan.assistant_id = params.assistantId
+  plan.thread_id = params.threadId
 
   return plan
 }

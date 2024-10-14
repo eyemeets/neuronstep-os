@@ -42,7 +42,7 @@ export default {
     'countryName': 'United States',
     'education_level': 'undergraduate',
     'tone': 'academic',
-    'assistantId': 'asst_3BK07oGJLyhPzH4uVcEf1w2C',
+    'assistant_id': 'asst_3BK07oGJLyhPzH4uVcEf1w2C',
     'threadId': 'thread_8nrtwRCeA8jSxAXsvdimMGqX'
   },
   'outline': {
@@ -379,7 +379,7 @@ export default {
         ]
       }
     ],
-    'assistantId': 'asst_3BK07oGJLyhPzH4uVcEf1w2C',
+    'assistant_id': 'asst_3BK07oGJLyhPzH4uVcEf1w2C',
     'threadId': 'thread_8nrtwRCeA8jSxAXsvdimMGqX'
   }
 } as unknown as CoursePlanAndOutlineParams
