@@ -8,60 +8,21 @@ import { useTypedNavigation } from '@/hooks/useTypedNav'
 import type { AuthStackParamList } from '@/types/auth'
 import Text from '@/components/atoms/Text'
 import Button from '@/components/atoms/Button'
+import { styleSheet } from './styles'
 
 const CustomDrawer: React.FC = () => {
   const theme = getPaperTheme()
-  const styles = StyleSheet.create({
-    avatarStyle: {
-      marginLeft: 8
-    },
-    dialogButton: {
-      marginRight: 10
-    },
-    drawerContainer: {
-      bottom: 0,
-      left: 0,
-      position: 'absolute',
-      top: 0,
-      width: 350,
-      zIndex: 1000
-    },
-    drawerSection: {
-      borderBottomWidth: 0, marginBottom: 0, paddingBottom: 0
-    },
-    overlay: {
-      ...StyleSheet.absoluteFillObject,
-      zIndex: 999 // Ensure overlay covers the entire screen
-    },
-    profileContainer: {
-      alignItems: 'center',
-      borderBottomColor: theme.colors.elevation.level1,
-      borderBottomWidth: 1,
-      flexDirection: 'row',
-      paddingBottom: 16,
-      paddingHorizontal: 16, paddingTop: 16
-    },
-    profileText: {
-      color: theme.colors.onBackground,
-      fontWeight: '500'
-    },
-    profileTextContainer: {
-      marginLeft: 16
-    },
-    userNameText: {
-      fontWeight: '600'
-    }
-  })
-
+  const styles = styleSheet()
   const isDrawerOpen = useUiStore((state) => state.isDrawerOpen)
   const closeDrawer = useUiStore((state) => state.closeDrawer)
   const slideAnim = React.useRef(new Animated.Value(-350)).current
   const overlayAnim = React.useRef(new Animated.Value(0)).current
   const [ isVisible, setIsVisible ] = useState(isDrawerOpen)
-  const [ dialogVisible, setDialogVisible ] = useState(false) // Dialog visibility state
-  const [ error, setError ] = useState<string | null>(null) // Error state
+  const [ dialogVisible, setDialogVisible ] = useState(false)
+  const [ error, setError ] = useState<string | null>(null)
   const user = useAuthStore((state) => state.user)
   const signOutUser = useAuthStore((state) => state.signOutUser)
+  const router = useTypedNavigation<AuthStackParamList>()
 
   const userInitial = user?.displayName ? user.displayName.charAt(0).toUpperCase() : '?' // Default to '?' if no user name is available
   const userName = user?.displayName || 'Guest'
@@ -98,22 +59,6 @@ const CustomDrawer: React.FC = () => {
     }
   }, [ isDrawerOpen ])
 
-  const handleSignOut = async () => {
-    closeDrawer()
-    setIsVisible(false)
-    closeDrawer()
-    try {
-      await signOutUser()
-      const navigation = useTypedNavigation<AuthStackParamList>()
-
-      navigation.navigate('auth', { screen: 'login' })
-    }
-    catch (error) {
-      setError('Something went wrong. Please try again or contact support.')
-      setDialogVisible(true)
-    }
-  }
-
   const hideDialog = () => {
     setDialogVisible(false)
     setError(null)
@@ -146,6 +91,48 @@ const CustomDrawer: React.FC = () => {
       }
     })
   ).current
+
+  const navigation = [
+    {
+      label: 'Create a course',
+      icon: 'plus',
+      onPress: () => {
+        closeDrawer()
+        router.navigate('user', { screen: 'objective' })
+      }
+    },
+    {
+      label: 'My courses',
+      icon: 'book',
+      onPress: () => {
+        closeDrawer()
+        router.navigate('user', { screen: 'courses' })
+      }
+    },
+    {
+      label: 'Settings and privacy',
+      icon: 'cog',
+      onPress: () => {
+        closeDrawer()
+        router.navigate('user', { screen: 'settings' })
+      }
+    },
+    {
+      label: 'Log out',
+      icon: 'logout',
+      onPress: async () => {
+        closeDrawer()
+        try {
+          await signOutUser()
+          router.navigate('auth', { screen: 'login' })
+        }
+        catch (error) {
+          setError('Something went wrong. Please try again or contact support.')
+          setDialogVisible(true)
+        }
+      }
+    }
+  ]
 
   return (
     <>
@@ -195,17 +182,16 @@ const CustomDrawer: React.FC = () => {
               </View>
             </SafeAreaView>
             <View style={styles.drawerSection}>
-              <Drawer.Item
-                label="Settings and privacy"
-                icon="cog"
-                onPress={() => {}}
-              />
-
-              <Drawer.Item
-                label="Log out"
-                icon="logout"
-                onPress={handleSignOut}
-              />
+              {
+                navigation.map((item, key) => (
+                  <Drawer.Item
+                    key={key}
+                    label={item.label}
+                    icon={item.icon}
+                    onPress={item.onPress}
+                  />
+                ))
+              }
             </View>
           </Animated.View>
         </View>

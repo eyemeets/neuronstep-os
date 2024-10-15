@@ -200,8 +200,8 @@ const PromptBox = () => {
     }
 
     try {
-      navigation.navigate('course', {
-        screen: 'build',
+      navigation.navigate('user', {
+        screen: 'build-course',
         params: { form: formattedData }
       })
 

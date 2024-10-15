@@ -6,24 +6,13 @@ import type { RouteProp } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
 import type { CourseObjectiveSchema, CourseOutlineSchema, CoursePlanSchema } from '@repo/shared-types'
 
-// Define the expected params for this screen's route
-interface CourseOverviewRouteParams {
-  data: {
-    objective: CourseObjectiveSchema
-    plan: CoursePlanSchema
-    outline: CourseOutlineSchema
-  }
-}
-
-type CourseOverviewProps = RouteProp<{ overview: CourseOverviewRouteParams }, 'overview'>
 
 const CourseOverview = () => {
   // const { outline } = useCurriculumStore() // Access the curriculum store
   const navigation = useTypedNavigation()
   // Use the useRoute hook to access the typed route params
-  const route = useRoute<CourseOverviewProps>()
-  const { data } = route.params // Destructure the passed data
-  const { outline } = data // Extract objective, plan, and outline
+  const route = useRoute<RouteProp<{ params: { outline: CourseOutlineSchema } }, 'params'>>()
+  const outline = route.params.outline // Destructure the passed data
 
   // Create styles for the page
   const styles = StyleSheet.create({

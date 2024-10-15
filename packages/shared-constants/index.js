@@ -11,6 +11,7 @@ export const collections = {
   course: {
     objectives: 'course-objectives',
     plans: 'course-plans',
-    outlines: 'course-outlines'
+    outlines: 'course-outlines',
+    content: 'course-content'
   }
 }

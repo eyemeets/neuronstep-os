@@ -6,7 +6,7 @@ import { useTypedNavigation } from '@/hooks/useTypedNav'
 import { useUiStore } from '@/stores/user-ui'
 import { useRoute } from '@react-navigation/native'
 import { getPaperTheme } from '@/hooks/useThemeColor'
-
+import View from '@/components/atoms/View'
 import type { RouteProp } from '@react-navigation/native'
 import type { UserObjectiveParamsSchema, CourseGenStructure, CourseObjectiveSchema, CoursePlanSchema, CourseOutlineSchema } from '@repo/shared-types'
 import { createCourseObjective } from '@/services/course/create-objective'
@@ -122,9 +122,9 @@ const BuildPage: React.FC = () => {
         setStatus((prev) => ({ ...prev, content: 'Completed' }))
 
         // Navigate to the course overview
-        navigation.navigate('course', {
+        navigation.navigate('COURSE', {
           screen: 'overview',
-          plan
+          params: { outline }
         })
       }
       catch (error) {
@@ -134,9 +134,9 @@ const BuildPage: React.FC = () => {
   }, [ form, navigation, uiStore ])
 
   return (
-    <ScrollView contentContainerStyle={[ styles.container, { backgroundColor: theme.colors.background } ]}>
+    <View style={[ styles.container, { backgroundColor: theme.colors.background } ]}>
       <Card style={styles.card}>
-        <Card.Title title="Build the Course" titleStyle={{ color: theme.colors.primary }} />
+        <Card.Title title="Building the Course" titleStyle={{ color: theme.colors.primary }} />
         <Card.Content>
           <List.Section>
             <StatusListItem title="Create Objective" status={status.objective} theme={theme} />
@@ -146,7 +146,7 @@ const BuildPage: React.FC = () => {
           </List.Section>
         </Card.Content>
       </Card>
-    </ScrollView>
+    </View>
   )
 }
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native'
 import Text from '@/components/atoms/Text'
 import View from '@/components/atoms/View'
-import PromptBox from '@/components/user/PromptBox'
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -20,9 +19,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const ObjectivePage = () => {
+const CoursesPage = () => {
   const theme = getPaperTheme()
-  const [ text ] = useState('Learn something new')
+  const [ text ] = useState('My courses')
 
   return (
     <View style={[ styles.container, { backgroundColor: theme.colors.background } ]}>
@@ -34,11 +33,10 @@ const ObjectivePage = () => {
           keyboardShouldPersistTaps="handled"
         >
           <Text textType="h3" value={text} />
-          <PromptBox />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
     </View>
   )
 }
 
-export default ObjectivePage
+export default CoursesPage

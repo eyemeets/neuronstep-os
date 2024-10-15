@@ -22,8 +22,6 @@ export interface CourseOutlineChapterSchema {
 export interface CourseOutlineSubtopicSchema {
   id: string
   subtopic: string
-  img_prompt: string
-  img_url?: string
   pages: CourseOutlinePageSchema[]
 }
 
@@ -34,8 +32,6 @@ export interface CourseOutlinePageSchema {
   description: string
   estimated_time: string
   content?: string
-  img_prompt?: string
-  img_url?: string
 }
 
 export interface TopicRange {

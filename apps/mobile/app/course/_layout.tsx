@@ -22,7 +22,6 @@ export default function UserLayout() {
         <Stack.Screen name="overview" options={{ title: 'Overview' }} />
         <Stack.Screen name="chapters" options={{ title: 'Chapters' }} />
         <Stack.Screen name="page" options={{ title: 'Page' }} />
-        <Stack.Screen name="build" options={{ title: 'Build' }} />
       </Stack>
     </View>
   )

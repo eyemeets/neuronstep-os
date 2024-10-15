@@ -14,8 +14,8 @@ export function createInitialInstructionPrompt(params: CourseGenStructure): stri
   - **Description:** ${params.plan.description}
   - **Educational Level:** ${params.plan.education_level}
   - **Tone:** ${params.plan.tone}
-  - **Language:** ${params.plan.languageName} (${params.plan.language})
-  - **Country:** ${params.plan.countryName} (${params.plan.countryCode})
+  - **Language:** ${params.plan.language_name} (${params.plan.language})
+  - **Country:** ${params.plan.country_name} (${params.plan.country_code})
   - **Total Estimated Hours:** ${params.plan.estimated_total_minutes}
   - **Number of Main Topics:** ${params.plan.number_of_main_topics}
   - **Number of Subtopics per Topic:** ${params.plan.number_of_sub_topics}
@@ -95,8 +95,8 @@ export function createContentPromptForBlock(
   - **Course Title:** ${params.plan.title}
   - **Educational Level:** ${params.plan.education_level}
   - **Tone:** ${params.plan.tone}
-  - **Language:** ${params.plan.languageName} (${params.plan.language})
-  - **Country:** ${params.plan.countryName} (${params.plan.countryCode})
+  - **Language:** ${params.plan.language_name} (${params.plan.language})
+  - **Country:** ${params.plan.country_name} (${params.plan.country_code})
   - **Total Estimated Hours:** ${params.plan.estimated_total_minutes}
 
   **Chapter Details:**

@@ -41,21 +41,3 @@ export async function createChapterImg(params: CourseGenStructure, chapter: Cour
 
   return chapterImageFirebaseUrl
 }
-
-export async function createSubtopicImg(params: CourseGenStructure, subtopic: CourseOutlineSubtopicSchema, user: UserRecord) {
-  const prompt = subtopic.img_prompt
-
-  if (!prompt) {
-    return `"subtopic.img_prompt" is: "${prompt}"`
-  }
-  
-  const imgUrl = await generateDalleImage(prompt)
-
-  if (!imgUrl) {
-    throw new Error('Chapter image was undefined')
-  }
-  const subtopicImagePath = `users/${user.uid}/${params.objective.objective_id}/cover-${subtopic.id}.png`
-  const subtopicImageFirebaseUrl = await uploadImageToFirebase(imgUrl, subtopicImagePath)
-
-  return subtopicImageFirebaseUrl
-}

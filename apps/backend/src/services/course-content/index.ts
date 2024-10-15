@@ -59,7 +59,6 @@ export async function createContentForCourse(params: CourseGenStructure, user: U
           schema: ZodBlockContentResponseSchema
         })
 
-        // Check if contentResponse is not undefined
         if (contentResponse) {
           page.content = contentResponse.content
           console.log(`Content generated for block: ${page.block_title}`)
@@ -75,7 +74,7 @@ export async function createContentForCourse(params: CourseGenStructure, user: U
   // Write to Firestore after content generation is completed
   await writeToFirestore({
     docId: params.objective.objective_id,
-    path: collections.course.outlines,
+    path: collections.course.content,
     uid: user.uid,
     data: params.outline
   })

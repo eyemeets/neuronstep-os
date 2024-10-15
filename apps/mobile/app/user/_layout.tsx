@@ -20,6 +20,9 @@ export default function UserLayout() {
         }}
       >
         <Stack.Screen name="objective" options={{ title: 'Objective' }} />
+        <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+        <Stack.Screen name="courses" options={{ title: 'Courses' }} />
+        <Stack.Screen name="build-course" options={{ title: 'Build course' }} />
       </Stack>
     </View>
   )

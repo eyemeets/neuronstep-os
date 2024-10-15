@@ -4,7 +4,7 @@ import { sendMessageAndParseResponse } from '../openai'
 import { createUserPromptForCourseOutlineSchema } from './prompt'
 import { ZodCourseOutlineSchema } from './schema'
 import mockupCurriculumOutline from '../../mockup/curriculum-outline'
-import { generateCourseImagePrompt, generateSubtopicImagePrompt, generateTopicImagePrompt } from '../../utils/img-prompts'
+import { generateCourseImagePrompt, generateTopicImagePrompt } from '../../utils/img-prompts'
 
 import type { AssistantResponseFormatOption } from 'openai/resources/beta/threads/threads'
 import type { UserRecord } from 'firebase-admin/lib/auth/user-record'
@@ -12,7 +12,7 @@ import { collections } from '@repo/shared-constants'
 import { writeToFirestore } from '../firestore'
 
 import type { CourseObjectiveSchema, CoursePlanSchema, CourseGenStructure, CourseObjectiveAndPlanParams } from '@repo/shared-types'
-import { createChapterImg, createCourseImg } from '@/utils/img-generation'
+import { createCourseImg, createChapterImg } from '@/utils/img-generation'
 
 export async function createCourseOutline(params: CourseObjectiveAndPlanParams, user: UserRecord) {
   // Log and see if assistant ID and thread ID are available
@@ -51,38 +51,51 @@ export async function createCourseOutline(params: CourseObjectiveAndPlanParams, 
     }
     
     // Image generation for course
-    const courseImagePrompt = generateCourseImagePrompt(params.objective.image_theme, curriculumOutline.title, curriculumOutline.description, params.objective.user_query)
-    
+    const courseImagePrompt = generateCourseImagePrompt(
+      params.objective.image_theme, 
+      curriculumOutline.title, 
+      curriculumOutline.description, 
+      params.objective.user_query
+    )
+
     curriculumOutline.img_prompt = courseImagePrompt
     curriculumOutline.img_url = await createCourseImg(dataForImgParams, user)
     
   
     // Format chapters - Use Promise.all to resolve async map results
-    const formattedChapters = await Promise.all(curriculumOutline.chapters.slice(0, 1).map(async (chapter) => {
-      const topicImagePrompt = generateTopicImagePrompt(params.objective.image_theme, chapter.topic)
-  
-      chapter.img_url = await createChapterImg(dataForImgParams, chapter, user)
+    const formattedChapters = await Promise.all(
+      curriculumOutline.chapters.slice(0, 1).map(async (chapter) => {
+        const topicImagePrompt = generateTopicImagePrompt(params.objective.image_theme, chapter.topic)
     
-      return {
-        ...chapter,
-        id: `chapter-${uuidv4()}`,
-        img_prompt: topicImagePrompt,
-        subtopics: chapter.subtopics.slice(0, 1).map((subtopic) => {
-          const subtopicImagePrompt = generateSubtopicImagePrompt(params.objective.image_theme, subtopic.subtopic)
-      
-          return {
-            ...subtopic,
-            id: `subtopic-${uuidv4()}`,
-            img_prompt: subtopicImagePrompt,
-            pages: subtopic.pages.slice(0, 1).map((page) => ({
+        // Set img_prompt and img_url for the chapter
+        chapter.img_prompt = topicImagePrompt
+        chapter.img_url = await createChapterImg(dataForImgParams, chapter, user)
+    
+        // Resolve subtopics using Promise.all
+        const resolvedSubtopics = await Promise.all(
+          chapter.subtopics.slice(0, 1).map(async (subtopic) => {
+            // Resolve pages inside each subtopic
+            const resolvedPages = subtopic.pages.slice(0, 1).map((page) => ({
               ...page,
               id: `page-${uuidv4()}`,
               content: page.content || ''
             }))
-          }
-        })
-      }
-    }))
+    
+            return {
+              ...subtopic,
+              id: `subtopic-${uuidv4()}`,
+              pages: resolvedPages // Assign resolved pages here
+            }
+          })
+        )
+
+        return {
+          ...chapter,
+          id: `chapter-${uuidv4()}`,
+          subtopics: resolvedSubtopics // Assign resolved subtopics here
+        }
+      })
+    )
 
     curriculumOutline.chapters = formattedChapters
 
