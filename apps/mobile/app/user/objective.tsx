@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native'
 import Text from '@/components/atoms/Text'
 import View from '@/components/atoms/View'
-import PromptBox from '@/components/user/PromptBox'
+import PromptBox from '@/components/user/PromptBox/PromptBox'
 import { getPaperTheme } from '@/hooks/useThemeColor'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 

@@ -12,6 +12,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "install:pkgs": "pnpm install --filter @repo/*",
     "build:pkgs": "pnpm run build --filter @repo/*",
     "commit": "git add . && git commit --no-edit"
   },
