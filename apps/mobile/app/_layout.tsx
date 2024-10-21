@@ -44,7 +44,7 @@ const RootLayout = () => {
   useEffect(() => {
     const loadFonts = async () => {
       try {
-        await useLoadFonts()
+        await useLoadFonts('mobile')
         setFontsLoaded(true)
       }
       catch (error) {

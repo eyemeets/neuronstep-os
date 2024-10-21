@@ -10,7 +10,8 @@
     "strict": true,                 // Enable strict type checking
     "esModuleInterop": true,        // Enable interoperability between CommonJS and ES modules
     "skipLibCheck": true,           // Skip checking of declaration files (.d.ts)
-    "forceConsistentCasingInFileNames": true // Ensure file names are case-consistent
+    "forceConsistentCasingInFileNames": true, // Ensure file names are case-consistent
+    "typeRoots": ["./src/declarations.d.ts"] // Add your custom types folder here
   },
   "include": ["src/**/*"],          // Include all files under the src folder
   "exclude": ["node_modules"]       // Exclude node_modules from the compilation
