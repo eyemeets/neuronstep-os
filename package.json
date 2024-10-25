@@ -14,6 +14,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "install:pkgs": "pnpm install --filter @repo/*",
     "build:pkgs": "pnpm run build --filter @repo/*",
+    "build:pkgs:nocache": "pnpm run build --filter @repo/* --no-cache",
     "commit": "git add . && git commit --no-edit"
   },
   "devDependencies": {

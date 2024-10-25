@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared-constants",
+  "name": "@repo/shared-mockups",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -13,5 +13,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "@repo/shared-types": "workspace:*",
+    "@repo/shared-enums": "workspace:*"
+  }
 }

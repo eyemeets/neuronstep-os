@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared-constants",
+  "name": "@repo/shared-utils",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -13,5 +13,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "expo-task-manager": "~11.8.2",
+    "expo-background-fetch": "~12.0.1"
+  }
 }

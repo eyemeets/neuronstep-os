@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared-constants",
+  "name": "@repo/shared-ui",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",

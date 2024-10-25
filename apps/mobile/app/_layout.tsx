@@ -44,7 +44,7 @@ const RootLayout = () => {
   useEffect(() => {
     const loadFonts = async () => {
       try {
-        await useLoadFonts('mobile')
+        await useLoadFonts()
         setFontsLoaded(true)
       }
       catch (error) {
@@ -108,3 +108,37 @@ const RootLayout = () => {
 }
 
 export default RootLayout
+
+/*import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const PageTemplate = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Page Title</Text>
+      <Text style={styles.content}>This is a minimal page template.</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#f5f5f5',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  content: {
+    fontSize: 16,
+    color: '#333',
+  },
+});
+
+export default PageTemplate;
+*/

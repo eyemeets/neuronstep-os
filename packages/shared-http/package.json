@@ -1,0 +1,23 @@
+{
+  "name": "@repo/shared-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@repo/shared-types": "workspace:*",
+    "@repo/shared-constants": "workspace:*",
+    "@repo/shared-mockups": "workspace:*",
+    "@repo/shared-utils": "workspace:*",
+    "firebase": "^9.18.0"
+  }
+}
