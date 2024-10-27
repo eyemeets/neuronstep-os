@@ -2,7 +2,7 @@ ignorePatterns:
   - 'node_modules/'
 
 extends:
-  - 'eslint-config-custom'
+  - 'eslint-config-shared'  # Adjust the relative path if needed
   - 'plugin:react/recommended'
   - 'plugin:react-native/all'
 
@@ -10,7 +10,6 @@ overrides:
   - files:
       - "*.ts"
       - "*.tsx"
-      - "!src/"
     parser: '@typescript-eslint/parser'
     rules:
       no-unused-vars: 'off'
@@ -20,6 +19,11 @@ overrides:
 settings:
   react:
     version: 'detect'
+  import/resolver:
+    node:
+      paths:
+        - ./node_modules/eslint-config-shared
+      extensions: [".js", ".ts", ".mjs", ".cjs", ".json"]
 
 rules:
   react/prop-types: 'off'

@@ -41,7 +41,7 @@
     "@types/pdf-parse": "^1.1.4",
     "@types/supertest": "^6.0.2",
     "@types/uuid": "^10.0.0",
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-shared": "workspace:*",
     "@repo/shared-types": "workspace:*",
     "@repo/shared-enums": "workspace:*",
     "eslint-plugin-cypress": "^2.13.3",

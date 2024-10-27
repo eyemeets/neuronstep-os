@@ -12,7 +12,7 @@ import { useLoadFonts } from '@/css/fonts'
 import { useTypedNavigation } from '@/hooks/useTypedNav'
 import type { AuthStackParamList } from '@/types/auth'
 import GlobalDialogBox from '@/components/global/GlobalDialogbox'
-import ObjectiveInvalidPanel from '@/components/global/ObjectiveInvalidPanel'
+import ObjectiveInvalidPanel from '@/components/global/ObjectiveInvalidPanel';
 
 const styles = StyleSheet.create({
   blurView: {

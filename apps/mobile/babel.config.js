@@ -10,12 +10,6 @@ module.exports = (api) => {
           '~': './src'
         }
       }]
-    ],
-    overrides: [
-      {
-          test: /node_modules\/(expo-router|nativewind)/,
-          presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
-      },
-  ],
+    ]
   }
 }

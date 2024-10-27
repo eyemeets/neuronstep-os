@@ -1,0 +1,14 @@
+{
+  "name": "@repo/shared-tsup-config",
+  "version": "1.0.0",
+  "main": "dist/tsup.config.cjs",
+  "module": "dist/tsup.config.mjs",
+  "types": "dist/tsup.config.d.ts",
+  "scripts": {
+    "build": "tsup --config tsup.config.ts",
+    "postbuild": "mv dist/tsup.config.js dist/tsup.config.cjs && cp dist/tsup.config.cjs dist/tsup.config.mjs"
+  },
+  "dependencies": {
+    "tsup": "^5.10.2"
+  }
+}

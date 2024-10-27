@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "composite": true,
+    "composite": false,
     "declaration": true,
     "outDir": "dist",
     "skipLibCheck": true,
@@ -10,10 +10,10 @@
     "module": "ESNext",
     "target": "ESNext",
     "rootDir": "src",
-    "paths": {
-      "@firebase/auth": ["../../node_modules/@firebase/auth/dist/index.rn.d.ts"]
-    }
+    "resolveJsonModule": true,
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts"  // Includes all TypeScript files in src and subdirectories
+  ],
+  "exclude": ["node_modules", "dist", "tsup.config.ts"]
 }

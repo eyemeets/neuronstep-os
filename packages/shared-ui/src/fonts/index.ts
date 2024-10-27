@@ -1,23 +1,23 @@
 // Import Excon fonts
-import ExconThin from './fonts/excon/Excon-Thin.otf'
-import ExconLight from './fonts/excon/Excon-Light.otf'
-import ExconRegular from './fonts/excon/Excon-Regular.otf'
-import ExconMedium from './fonts/excon/Excon-Medium.otf'
-import ExconBold from './fonts/excon/Excon-Bold.otf'
-import ExconBlack from './fonts/excon/Excon-Black.otf'
+import ExconThin from './assets/excon/Excon-Thin.otf'
+import ExconLight from './assets/excon/Excon-Light.otf'
+import ExconRegular from './assets/excon/Excon-Regular.otf'
+import ExconMedium from './assets/excon/Excon-Medium.otf'
+import ExconBold from './assets/excon/Excon-Bold.otf'
+import ExconBlack from './assets/excon/Excon-Black.otf'
 
 // Import Lora fonts
-import LoraRegular from './fonts/lora/Lora-Regular.otf'
-import LoraBold from './fonts/lora/Lora-Bold.otf'
-import LoraItalic from './fonts/lora/Lora-Italic.otf'
-import LoraBoldItalic from './fonts/lora/Lora-BoldItalic.otf'
+import LoraRegular from './assets/lora/Lora-Regular.otf'
+import LoraBold from './assets/lora/Lora-Bold.otf'
+import LoraItalic from './assets/lora/Lora-Italic.otf'
+import LoraBoldItalic from './assets/lora/Lora-BoldItalic.otf'
 
 // Import Outfit fonts
-import OutfitRegular from './fonts/outfit/Outfit-Regular.otf'
-import OutfitLight from './fonts/outfit/Outfit-Light.otf'
-import OutfitMedium from './fonts/outfit/Outfit-Medium.otf'
-import OutfitBold from './fonts/outfit/Outfit-Bold.otf'
-import OutfitBlack from './fonts/outfit/Outfit-Black.otf'
+import OutfitRegular from './assets/outfit/Outfit-Regular.otf'
+import OutfitLight from './assets/outfit/Outfit-Light.otf'
+import OutfitMedium from './assets/outfit/Outfit-Medium.otf'
+import OutfitBold from './assets/outfit/Outfit-Bold.otf'
+import OutfitBlack from './assets/outfit/Outfit-Black.otf'
 
 export type FontWeight = '300' | '400' | '500' | '700' | 'normal' | 'bold' | '100' | '200' | '600' | '800' | '900' | undefined
 

@@ -1,9 +1,6 @@
 {
   "extends": "@repo/shared-tsconfig",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
-    "lib": ["ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
     "outDir": "./dist",

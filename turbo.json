@@ -17,6 +17,30 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "@repo/shared-enums#build": {
+      "dependsOn": ["^build"]
+    },
+    "@repo/shared-tsup-config#build": {
+      "dependsOn": ["@repo/shared-enums#build"]
+    },
+    "@repo/shared-constants#build": {
+      "dependsOn": ["@repo/shared-tsup-config#build"]
+    },
+    "eslint-config-shared#build": {
+      "dependsOn": ["@repo/shared-constants#build"]
+    },
+    "@repo/shared-utils#build": {
+      "dependsOn": ["eslint-config-shared#build"]
+    },
+    "@repo/shared-mockups#build": {
+      "dependsOn": ["@repo/shared-utils#build", "@repo/shared-enums#build"]
+    },
+    "@repo/shared-http#build": {
+      "dependsOn": ["@repo/shared-utils#build", "@repo/shared-constants#build", "@repo/shared-mockups#build"]
+    },
+    "@repo/shared-ui#build": {
+      "dependsOn": ["@repo/shared-http#build"]
     }
   }
 }
