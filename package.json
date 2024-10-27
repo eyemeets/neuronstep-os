@@ -13,12 +13,12 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "install:pkgs": "pnpm install --filter @repo/*",
-    "build:pkgs": "pnpm run build --filter @repo/*",
+    "build:pkgs": "pnpm run build --filter eslint-config-shared && pnpm run build --filter @repo/*",
     "build:pkgs:nocache": "pnpm run build --filter @repo/* --no-cache",
     "build:new": "pnpm --filter @repo/* run build",
     "build:dryrun": "pnpm turbo run build --filter=\"@repo/shared-*\" --dry-run",
     "commit": "git add . && git commit --no-edit",
-    "clean:all": "./clean-all.ts",
+    "clean:all": "./clean-all.ts && pn",
     "clean:builds": "./clean-all.ts -onlyDirs dist"
   },
   "devDependencies": {

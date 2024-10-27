@@ -1,10 +1,11 @@
 #!/usr/bin/env ts-node
 
-import { readdirSync, statSync, rmSync } from 'fs';
+import { readdirSync, statSync, rmSync, existsSync } from 'fs';
 import { join } from 'path';
 
 // Default directories and files to clean
 const targetDirs = ['node_modules', 'dist', '.turbo', '.expo']; // Add other files if needed
+const rootFiles = ['pnpm-lock.yaml'];
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
@@ -32,7 +33,26 @@ function cleanDirectory(dir: string) {
   }
 }
 
+function cleanRootFiles(rootPath: string) {
+  // Remove root files if no onlyDirs flag is specified
+  if (onlyDirs.length === 0) {
+    for (const file of rootFiles) {
+      const filePath = join(rootPath, file);
+      if (existsSync(filePath)) {
+        console.log(`Removing: ${filePath}`);
+        rmSync(filePath);
+      }
+    }
+  }
+}
+
 function traverseAndClean(rootPath: string, isRoot: boolean = false) {
+  // Clean root-level files and node_modules, .turbo
+  if (isRoot && onlyDirs.length === 0) {
+    cleanDirectory(rootPath); // Clean default root-level directories
+    cleanRootFiles(rootPath); // Clean specified root files
+  }
+
   readdirSync(rootPath).forEach((subDir) => {
     const fullPath = join(rootPath, subDir);
 

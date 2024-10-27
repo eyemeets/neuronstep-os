@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run build:types && tsup"
   },
   "files": [
     "dist"

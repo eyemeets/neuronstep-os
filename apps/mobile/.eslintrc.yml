@@ -2,7 +2,7 @@ ignorePatterns:
   - 'node_modules/'
 
 extends:
-  - 'eslint-config-shared'  # Adjust the relative path if needed
+  - './node_modules/eslint-config-shared'
   - 'plugin:react/recommended'
   - 'plugin:react-native/all'
 
