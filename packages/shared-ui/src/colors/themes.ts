@@ -6,6 +6,7 @@ export const lightThemeColors = {
   colors: {
     primary: '#ff5722', // Primary color for buttons, icons, and active elements
     accent: '#ff5722',
+    onAccent: '#FFFFFF', // Text color on accent elements
     onPrimary: '#FFFFFF', // Text color on primary elements (e.g., buttons)
     primaryContainer: '#FCD7C2', // Slightly stronger background for elevated elements (TextInput)
     onPrimaryContainer: '#4D2C1A', // Text on top of primary containers (input placeholders)
@@ -58,6 +59,7 @@ export const darkThemeColors = {
   colors: {
     primary: '#ff5722', // Primary color for buttons, icons, and active elements
     accent: '#FF5722', // Accent color
+    onAccent: '#FFFFFF', // Text color on accent elements
     onPrimary: '#FFFFFF', // Text color on primary elements (e.g., buttons)
     primaryContainer: '#4A454E', // Background color for elevated elements (e.g., text input background)
     onPrimaryContainer: '#FDE2D4', // Text on top of primary containers (e.g., input placeholders)

@@ -15,14 +15,6 @@ import GlobalDialogBox from '@/components/global/GlobalDialogbox'
 import ObjectiveInvalidPanel from '@/components/global/ObjectiveInvalidPanel'
 
 const styles = StyleSheet.create({
-  blurView: {
-    height: 50,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    zIndex: 1
-  },
   container: {
     flex: 1,
     position: 'relative'
@@ -95,8 +87,8 @@ const RootLayout = () => {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-        <BlurView intensity={50} style={styles.blurView} />
+        {/* <StatusBar translucent backgroundColor="transparent" barStyle="light-content" /> */}
+        {/* <BlurView intensity={50} style={styles.blurView} /> */}
         <RNView style={styles.slotContainer}>
           <Slot />
         </RNView>

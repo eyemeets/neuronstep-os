@@ -33,7 +33,7 @@ const ObjectivePage = () => {
           enableOnAndroid={true}
           keyboardShouldPersistTaps="handled"
         >
-          <Text textType="h3" value={text} />
+          <Text textType="smallTitle" value={text} />
           <PromptBox />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>

@@ -75,6 +75,7 @@ const CustomSelect = forwardRef<React.ElementRef<typeof Button>, CustomSelectPro
         <Menu
           visible={menuVisible}
           onDismiss={closeMenu}
+          contentStyle={{ backgroundColor: colors.background }} // Set background color for menu items
           anchor={
             <Button
               mode="outlined"

@@ -13,7 +13,9 @@ export const initStyle = () => {
     },
     collapsibleContainer: {
       marginBottom: 200,
-      marginTop: 25
+      marginTop: 10,
+      overflow: 'hidden', // Ensure content is hidden when collapsed
+      height: 'auto' // Ensure it can shrink to zero when animated
     },
     container: {
       flex: 1
@@ -35,13 +37,15 @@ export const initStyle = () => {
       bottom: 5,
       left: 5,
       position: 'absolute',
-      zIndex: 1
+      zIndex: 1,
+      backgroundColor: theme.colors.background
     },
     submitButton: {
       bottom: 5,
       position: 'absolute',
       right: 5,
-      zIndex: 1
+      zIndex: 1,
+      backgroundColor: theme.colors.background
     },
     textArea: {
       borderColor: theme.colors.elevation.level0,

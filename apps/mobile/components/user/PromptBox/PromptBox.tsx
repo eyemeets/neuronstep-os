@@ -76,14 +76,14 @@ const PromptBox = () => {
           icon="magnify"
           style={styles.searchIcon}
           size={20}
-          iconColor={isFocused ? colors.defaultIcon : colors.onPrimaryContainer}
+          iconColor={isFocused ? colors.accent : colors.onPrimaryContainer}
           onPress={() => textInputRef.current?.focus()}
         />
         <IconButton
           icon="cog"
           style={styles.settingsButton}
           size={20}
-          iconColor={colors.onPrimaryContainer}
+          iconColor={colors.accent}
           onPress={() => setIsSettingsVisible(!isSettingsVisible)}
         />
         <Controller
@@ -115,7 +115,7 @@ const PromptBox = () => {
               icon="arrow-right"
               style={styles.submitButton}
               size={20}
-              iconColor={colors.onPrimaryContainer}
+              iconColor={colors.accent}
               onPress={handleSubmit(async (data) => {
                 setRequestValidating(true)
                 Keyboard.dismiss() // Close the keyboard when submitting
