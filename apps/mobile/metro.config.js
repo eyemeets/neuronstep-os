@@ -30,6 +30,6 @@ config.resolver.extraNodeModules = {
 
 // Add babel transformer and source extensions to handle custom files
 config.transformer.babelTransformerPath = require.resolve('react-native-svg-transformer')
-config.resolver.sourceExts = [ 'ts', 'tsx', 'js', 'jsx', 'json', 'svg' ]
+config.resolver.sourceExts = [ 'ts', 'tsx', 'js', 'jsx', 'json', 'svg', 'cjs' ]
 
 module.exports = config

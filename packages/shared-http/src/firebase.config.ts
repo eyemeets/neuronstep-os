@@ -1,28 +1,26 @@
 import { initializeApp, getApps, getApp, FirebaseOptions } from 'firebase/app'
-import { getAnalytics, isSupported as isAnalyticsSupported } from 'firebase/analytics'
+import { isSupported as isAnalyticsSupported } from 'firebase/analytics'
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export function initDb(config: FirebaseOptions) {
-  // Initialize Firebase app
-  const app = !getApps().length ? initializeApp(config) : getApp()
+  const app = !getApps().length ? initializeApp(config) : getApp();
 
-  // Use initializeAuth directly without conditional checks
   const auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(AsyncStorage) // Set persistence
-  })
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
 
-  // Initialize Firestore
-  const db = getFirestore(app)
+  const db = getFirestore(app);
 
-  // Initialize Firebase Analytics if supported
-  isAnalyticsSupported().then((supported) => {
+  // Only import and initialize Analytics if supported
+  isAnalyticsSupported().then(async (supported) => {
     if (supported) {
-      getAnalytics(app)
-       console.log('Firebase Analytics initialized')
+      const { getAnalytics } = await import('firebase/analytics');
+      getAnalytics(app);
+      console.log('Firebase Analytics initialized');
     }
-  })
+  });
 
-  return { auth, db, app }
+  return { auth, db, app };
 }

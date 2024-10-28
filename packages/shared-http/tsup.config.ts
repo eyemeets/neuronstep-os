@@ -6,6 +6,6 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   outDir: 'dist',
-  external: ['esbuild'],  // Exclude esbuild to suppress warnings
+  external: ['esbuild', 'idb'],  // Exclude esbuild to suppress warnings
   splitting: false
 });
