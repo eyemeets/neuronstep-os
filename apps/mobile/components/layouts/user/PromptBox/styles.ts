@@ -13,7 +13,7 @@ export const initStyle = () => {
     },
     collapsibleContainer: {
       marginBottom: 200,
-      marginTop: 10,
+      marginTop: 25,
       overflow: 'hidden', // Ensure content is hidden when collapsed
       height: 'auto' // Ensure it can shrink to zero when animated
     },

@@ -2,14 +2,14 @@ import React, { useRef, useState, useEffect } from 'react'
 import type { TextInput as RNTextInput } from 'react-native'
 import { Animated, Easing, Keyboard } from 'react-native'
 import { IconButton } from 'react-native-paper'
-import View from '../../atoms/View'
-import TextInput from '../../atoms/TextInput'
+import View from '../../../atoms/View'
+import TextInput from '../../../atoms/TextInput'
 import { getPaperTheme } from '@/hooks/useThemeColor'
-import Select from '../../atoms/Select'
+import Select from '../../../atoms/Select'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
-import HelperText from '../../atoms/HelperText'
-import ActivityIndicator from '../../atoms/ActivityIndicator'
+import HelperText from '../../../atoms/HelperText'
+import ActivityIndicator from '../../../atoms/ActivityIndicator'
 import type { UserObjectiveParamsSchema } from '@repo/shared-types'
 import { nanoid } from 'nanoid/non-secure'
 import { useTypedNavigation } from '@/hooks/useTypedNav'
@@ -17,6 +17,8 @@ import { data, promptSchema } from './data'
 import { initStyle } from './styles'
 
 const PromptBox = () => {
+  const useMockupData = true
+  
   const navigation = useTypedNavigation()
   const [ isFocused, setIsFocused ] = useState(false)
   const [ isSettingsVisible, setIsSettingsVisible ] = useState(false)
@@ -45,6 +47,16 @@ const PromptBox = () => {
 
     setRequestValidating(true)
 
+    const objectiveMockupData: UserObjectiveParamsSchema = {
+      objective_id: uniqueId,
+      objective: 'I want to learn about the history of Europe',
+      language: 'en-US',
+      education_level: 'undergraduate',
+      learning_style: 'visual',
+      tone: 'academic',
+      curriculum: 'General'
+    }
+
     const formattedData: UserObjectiveParamsSchema = {
       objective_id: uniqueId,
       objective: data.objective,
@@ -58,7 +70,11 @@ const PromptBox = () => {
     try {
       navigation.navigate('user', {
         screen: 'build-course',
-        params: { form: formattedData }
+        params: { 
+          form: useMockupData ?
+            objectiveMockupData : 
+            formattedData
+        }
       })
 
       setRequestValidating(false)

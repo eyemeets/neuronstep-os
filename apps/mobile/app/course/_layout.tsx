@@ -1,8 +1,8 @@
 import React from 'react'
 import { Stack } from 'expo-router'
 import View from '@/components/atoms/View'
-import Header from '@/components/user/Header'
-import UserDrawer from '@/components/user/UserDrawer' // Import the drawer component
+import Header from '@/components/layouts/user/Header'
+import UserDrawer from '@/components/layouts/user/UserDrawer' // Import the drawer component
 
 export default function UserLayout() {
   return (

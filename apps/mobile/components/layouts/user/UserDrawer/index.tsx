@@ -98,7 +98,7 @@ const CustomDrawer: React.FC = () => {
       icon: 'plus',
       onPress: () => {
         closeDrawer()
-        router.navigate('user', { screen: 'objective' })
+        router.navigate('user', { screen: 'objective/index' })
       }
     },
     {
